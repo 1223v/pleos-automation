@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.pleos.routine.core.JournalContractTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-30T00:22:57.086Z" time="0.058">
+  <testcase name="cancellationStillAwaitsDurableTerminalAndStop" classname="com.pleos.routine.core.JournalContractTest" time="0.008" />
+  <testcase name="elapsedDeadlineIsDifferentFromUserCancellation" classname="com.pleos.routine.core.JournalContractTest" time="0.007" />
+  <testcase name="orderedJournalCarriesRunIdentityAndObservedValue" classname="com.pleos.routine.core.JournalContractTest" time="0.011" />
+  <testcase name="adapterTimeoutIsNotReportedAsTwoHourDeadline" classname="com.pleos.routine.core.JournalContractTest" time="0.01" />
+  <testcase name="journalFailureBeforeDispatchPreventsSideEffect" classname="com.pleos.routine.core.JournalContractTest" time="0.008" />
+  <testcase name="refusedWholeRunApprovalPrecedesEverySideEffect" classname="com.pleos.routine.core.JournalContractTest" time="0.004" />
+  <testcase name="swallowedProgressFailureStillCancelsSiblingBeforeNewSideEffect" classname="com.pleos.routine.core.JournalContractTest" time="0.01" />
+  </testsuite>

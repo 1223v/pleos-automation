@@ -1,0 +1,10 @@
+[
+  {
+    "Hash": "3BC82EB2239500B6266B17782501467DDB3F686AADE8F1CB7A0EA2FF9B650CB5",
+    "Path": "C:\\pleos-automation\\android\\app\\build\\outputs\\apk\\debug\\app-debug.apk"
+  },
+  {
+    "Hash": "FFDEB05474BB029A1C1336E44379CFD907C77E870AC630C43B2777DEB32D85DD",
+    "Path": "C:\\pleos-automation\\android\\app\\build\\outputs\\apk\\androidTest\\debug\\app-debug-androidTest.apk"
+  }
+]

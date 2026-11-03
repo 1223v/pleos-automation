@@ -1,0 +1,28 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+(node:1524) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ default and missing budgets block before provider creation/call (12.1281ms)
+✔ mock completion validates and duplicate request does not bill twice (3.936ms)
+✔ uncertain reservations survive restart and enforce budget (53.1089ms)
+✔ provider failure keeps full reservation and hides provider secrets (1.396ms)
+✔ invalid AI output is never a draft (1.0841ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.9721ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (4.7716ms)
+✔ HTTP authentication and disabled AI do not call a provider (129.5208ms)
+✔ schema rejects unexpected execution approval (1.7088ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (14.8349ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4301.1232

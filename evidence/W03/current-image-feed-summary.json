@@ -1,0 +1,10 @@
+[
+  {
+    "path": "system-images;android-34;pleos_car_emulator;x86_64",
+    "display": "Pleos Connect v2.1.0 APIs Intel x86_64 Atom System Image",
+    "revision": "2",
+    "sha1": "b4f858d5bcc6c71506d7edfc872bcb9e5a11acaa",
+    "bytes": "4087751964",
+    "url": "https://nexus-playground.pleos.ai/repository/raw-releases/connect-avd/2.x/crp_car_emulator.zip"
+  }
+]

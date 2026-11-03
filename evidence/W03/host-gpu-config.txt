@@ -1,0 +1,18 @@
+{
+  "config": "C:\\pleos-automation\\.tools\\avd\\PleosRoutine.avd\\config.ini",
+  "before": {
+    "fastboot.forceColdBoot": "yes",
+    "fastboot.forceFastBoot": "no",
+    "fastboot.forceChosenSnapshotBoot": "no",
+    "hw.gpu.enabled": "no",
+    "hw.gpu.mode": "auto"
+  },
+  "after": {
+    "fastboot.forceColdBoot": "yes",
+    "fastboot.forceFastBoot": "no",
+    "fastboot.forceChosenSnapshotBoot": "no",
+    "hw.gpu.enabled": "yes",
+    "hw.gpu.mode": "host"
+  },
+  "applied": true
+}

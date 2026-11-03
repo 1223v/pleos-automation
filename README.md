@@ -1,63 +1,62 @@
-# Moment Routine — Windows Codex 개발 인수인계
+# Pleos AI Routine Builder
 
-기준일: **2026-10-25 KST**. 이 폴더는 Pleos 차량 루틴 앱의 요구사항·공식 근거·TODO·검증·제출 계획이다. **현재 작업은 Markdown 보완만 수행했다. 앱·서버·APK·Git 저장소는 없으며 SDK 설치·프로젝트 신청·결제·접수도 수행하지 않았다.** Windows 환경과 에뮬레이터 동작은 후속 개발에서 검증한다.
+말로 초안을 만들고, 흐름을 확인·수정한 뒤 테스트하는 Android Automotive 앱입니다. **2026-11-03 개발 진행 중이며 전체 제품 검증 완료 상태가 아닙니다.** OpenAI 실제 호출은 사용자 결정에 따라 비활성 상태입니다.
 
-## 확정 목표
+## 현재 구현
 
-- 2026-11-13 18:00 KST까지 공식 Pleos Connect Emulator에서 검증된 완성 APK. 개발자 1명, 하루 5~7시간.
-- 텍스트 AI 생성·검토·편집·저장 → 차량 상태·트리거 → 공조 목표 온도·앰비언트 밝기/색상·시트 앞뒤/등받이 제한 이동과 STOP → 타이머·자체 음원·이력.
-- 시트는 매 실행 확인, 한 축씩 제한 이동. 요청 응답과 실제 상태·정지 확인을 구분한다.
-- AI는 외부 API와 서버를 사용한다. 공급자·모델·호스팅·비용 한도는 후속 결정 작업이다.
-- **공조·조명·시트 중 하나라도 미검증이면 전체 목표 미완료다.** 사용자 동의 없이 상태 읽기 전용 앱으로 완료 기준을 낮추지 않는다.
+- A05 실행 설명 API, 실제/가상 이력의 당시 규칙·버전·원인·설정/관찰값 표시, 조건 편집 연결. 과거 규칙은 최신 저장본과 다르면 복사본으로 열며 AI 설명은 원래 기록을 바꾸지 않습니다. [A05 검증 장부](evidence/A05/verification-2026-11-02.md)
 
-공개 신청 안내는 Vehicle Control을 준비 중으로 표시한다. 문서·SDK 소스 존재와 계정 권한·대상 환경 지원·상태 변경은 서로 다른 증거다. 10-28까지 3종 제어 접근성과 결과를 증명하지 못하면 11-13 완성 목표가 차단된 상태로 기록하고 독립 작업을 계속한다. [공식 신청 안내](https://document.pleos.ai/docs/pleos-only/create-my-project)
+- Compose: 생성·확인·수정·테스트, 노드 이동/확대, 카드·연결 편집, Undo/Redo, 복제, Room 초안·루틴·실행 이력.
+- Kotlin core: 조건·대기·타이머·구조화 반복·병렬·합류. 64노드·4병렬·20반복·2시간·최악 경로4,096회 방문 한도, 충돌 검사와 순수 시뮬레이션.
+- Vehicle 2.3.2 타입 어댑터, 제한 이동·STOP 경로, NaviHelper 3.0.5, 자체 음원. 실제 관찰과 요청 응답을 구분합니다.
+- Node 24 서버: OpenAI strict 출력·최소 패치, 인증·SQLite 예산 예약, 일정·장소·스마트홈 어댑터. 제공자 키는 서버에만 보관합니다.
+- 공식 출처를 첨부한 연결 카탈로그 43항목. SDK 도메인·마켓 입점·직접 연결·추가 계약 필요를 구분합니다. 모든 서비스의 완전 목록을 뜻하지 않습니다.
+- Gleo 생성·수정·호출 진입점 3개. 외부 요청은 사용자 확인 없이 물리 실행을 승인하지 못합니다.
+- 시작 조건·노드·분기 연결의 변경 전후 비교. 기기에서 조회한 실행 가능 앱 선택, Gleo 생성·수정 요청의 로컬 보관·검토 재개.
+- 입력 요청·작업 그래프의 원자적 초안 저장/복원, 실제 UX 제한 전환 시 편집·확인 창 닫기와 저장 결과 표시.
+- 전체 실행 전 시트 계획1회 승인, 선택된 동작만 지원 검사, 절전 포함 타이머, 순번 있는 실행 단계 journal·Room1→2→3 비파괴 migration, KST 예산·영속 차단.
+- 새 Gleo 요청/화면 재생성에서도 최신 편집을 보존하며, 새 요청을 반영하면 이전 요청의 늦은 AI 제안을 취소합니다.
 
-## Windows에서 시작하는 순서
+## 로컬 실행
 
-1. 폴더 전체를 Windows 작업 폴더에 옮기고 [AGENTS.md](AGENTS.md)를 읽는다.
-2. [제품 요구사항](03_PRODUCT_PRD.md), [Windows 인수인계](12_WINDOWS_HANDOFF.md)를 읽고 현재 파일·환경을 조사한다.
-3. [세부 TODO](13_IMPLEMENTATION_TODO.md)에서 선행 조건을 충족한 작업을 고른다.
-4. 해당 공식 문서와 설치 버전의 API를 확인한 뒤 구현한다. 계획값을 플랫폼 보장으로 사용하지 않는다.
-5. [검증 계획](07_VALIDATION_AND_DEMO.md)에 요구사항·시험·실제 증거를 연결한다. 미실행은 미실행으로 남긴다.
+JDK 17, Node 24, Python 3, Android SDK가 필요합니다. 검증 버전은 프로젝트 로컬 Corretto17.0.21.0.11, Node24.22.1, Gradle8.14.6입니다. SDK/AVD와 도구는 Git 제외 `.tools/`에 설치했습니다.
 
-시작·재개 프롬프트와 PowerShell 명령·실패 대응은 Windows 문서에 있다. 현재 Gradle 프로젝트는 없으므로 빌드 명령의 실행 조건부터 확인한다.
+```powershell
+python scripts/generate_contracts.py
+python scripts/verify_docs.py
+python scripts/bootstrap_node.py
+python scripts/bootstrap_java.py
+$env:JAVA_HOME='C:\pleos-automation\.tools\corretto-17.0.21.0.11'
+$env:Path='C:\pleos-automation\.tools\node-v24.22.1-win-x64;'+$env:Path
+$env:GRADLE_USER_HOME='C:\pleos-automation\.tools\gradle-home'
+& .\android\gradlew.bat -p android :core:test :app:testDebugUnitTest :app:assembleDebug :app:lintDebug --max-workers=2 --no-daemon '-Pkotlin.compiler.execution.strategy=in-process'
+& .\.tools\android-sdk\platform-tools\adb.exe -s emulator-5556 install -r android/app/build/outputs/apk/debug/app-debug.apk
+```
 
-## 문서 지도
+공식 AVD 사용자 10의 앱 목록에서 **Pleos AI 루틴**을 여세요. **연결 설정 → 속도·알림 권한**에서 필요한 권한을 요청합니다. 부팅 직후에는 Pleos 홈 초기화가 끝난 뒤 실행하세요. [실제 앱 영역 화면](evidence/W23/avd-first-flow.png)
 
-| 문서 | 역할 |
-|---|---|
-| [AGENTS.md](AGENTS.md) | 후속 Codex의 작업·근거·검증 규칙 |
-| [01 사실 검증](01_FACT_CHECK.md) | 제품 주장과 문서·권한·실행 증거 구분 |
-| [02 공모전](02_COMPETITION_GUIDE.md) | 일정·심사·제출·권리 규정 |
-| [03 요구사항](03_PRODUCT_PRD.md) | R01~R13과 최종 범위 |
-| [04 기술 설계](04_TECHNICAL_ARCHITECTURE.md) | 제안 구조·계약·시트/중지/실패 정책 |
-| [05 기능과 API](05_CAPABILITY_MATRIX.md) | 버전·함수·권한·단위·영역·게이트 |
-| [06 일정](06_DEVELOPMENT_ROADMAP.md) | 날짜·게이트·작업량·일정 위험 |
-| [07 검증](07_VALIDATION_AND_DEMO.md) | 요구사항→작업→시험→증거 |
-| [08 기획서 초안](08_APPLICATION_DRAFT.md) | 제출용 내용, 아직 구현 계획 |
-| [09 제출 체크](09_SUBMISSION_CHECKLIST.md) | APK·증거·양식·링크·개인정보 |
-| [10 결정과 위험](10_OPEN_QUESTIONS_AND_RISKS.md) | 확정 결정·미확인 조건·미발송 문의 |
-| [11 공식 출처](11_SOURCES.md) | 출처 ID·범위·SDK 해시·불일치 |
-| [12 Windows 인수인계](12_WINDOWS_HANDOFF.md) | 환경·명령·진단·전달·시작 프롬프트 |
-| [13 구현 TODO](13_IMPLEMENTATION_TODO.md) | 의존·시간·산출물·시험·상태 |
-| [공식 양식 메모](references/APPLICATION_FORM_NOTES.md) | 보관 DOCX의 항목과 해시 |
+서버는 `server/`에서 `npm ci`, `npm test`, `npm run build`, `npm start` 순서입니다. `.env.example`을 `.env`로 복사하고 무작위 32자 이상 SERVER_AUTH_TOKEN을 로컬에서 설정하세요. AI/외부 연결은 기본 비활성·예산 0입니다. [서버 안내](server/README.md)
 
-현재 구조와 향후 생성할 `android/`, `server/`, `evidence/`는 기술 설계에서 구분한다. 원본 [공식 양식](references/contest-application-consent.docx)은 변경하지 않는다.
+앱 debug 기본 서버 주소는 `http://127.0.0.1:8787`입니다. `adb -s emulator-5556 reverse tcp:8787 tcp:8787`가 필요하며 release는 HTTPS만 사용합니다. 키·토큰·서명키를 Git에 넣지 마세요.
 
-## 현재 제약과 검증 상태
+## 검증과 남은 조건
 
-초기 조사 기준은 Vehicle SDK 2.3.2·Emulator 2.1.0이다. Service 버전은 소개와 샘플의 표기가 달라 설치값을 기록해야 한다. 시트는 각도·거리 설정으로 추정하지 않고 방향 이동과 STOP을 사용한다. 조명 권한은 함수별 선언을 따른다. 크루즈 목표 속도는 실제 속도 시험을 대체하지 못한다. 세부 근거와 해결 작업은 05·10·11·13 문서에 있다.
+11월2일 A05 실행 설명·이력 개선의 로컬 검증을 마쳤고11월3일 문서와 TODO를 정리했다. [A05 최종 장부](evidence/A05/verification-2026-11-02.md)가 아래 과거 기록보다 우선한다. core98·앱64·서버50, 전체 AVD26개(표적7개 포함)와 별도 실제 프로세스 복구1개가 통과했다. debug/test/unsigned release 빌드, offline lint0오류1경고이며 소스126개/APK3개 해시도 재개 시 일치했다. 로컬 HTTP의 모의 설명 응답을 검증했고 실제 AI는 호출하지 않았다. A06~A08의 기능/시험과 아래 실제 환경 검증은 남아 있다.
 
-문서 정합성 검사는 앱 시험과 별개다. Windows 명령, Android 빌드, AI 호출, 차량 읽기·쓰기·정지, release 시연의 실제 시험 결과는 아직 없다.
+11월1일에는 승인 원문 감사 후 A01/A02/A03/A09를 보완하고 A04 타이머·음원을 검증했다. [당시 장부](evidence/plan-compliance-2026-10-30/verification-2026-11-01.md)와 [원문 대조 감사](evidence/plan-compliance-2026-10-30/report.md)에 core98·앱56·서버38, 확장 AVD21개·알림 권한 거부1개·실제 프로세스 복구1개 및 최초 시스템 watchdog 중단을 보존한다. 타이머 완료 알림, 남은 시간 표시, 시작 후 음원 오류 감시와4,096회 초과 저장·시험 차단을 추가했다.
 
-## 이번 문서 보완의 검사 결과
+아래 수치와 차량 증거는 **10월30일 APK의 과거 검증**이다.
 
-- 기존 루트 문서 12개 보완, Markdown 3개 추가. 전체 Markdown 16개의 UTF-8·로컬 링크·표 열·코드 블록·JSON 예시를 검사했다.
-- R01~R13, W01~W22, T01~T38의 정의·참조·대응과 작업 의존관계를 검사했다. 개발 출처 D01~D50은 공식 출처 색인에 연결했다.
-- 작업량 합계 114~167시간, 19일 가용95~133시간, 일별 하한 배치123시간(작업114+예비9)을 검산했다. 11/06 중간 목표의 시간 부족도 일정에 공개했다.
-- 공식 SDK 소스의 버전·145,042 bytes·SHA-256을 다시 확인했다. 파일에 SDK를 설치하거나 소스를 복제하지 않았다.
-- 원본 DOCX와 양식 메모는 유지했다. 앱 코드·환경 설치·Windows/AVD 실행·AI API 호출은 수행하지 않았다.
+[최신 구현 검증 기록](evidence/implementation/2026-10-29.md), [기능별 시험](evidence/audit-2026-10-29/feature-test-map.md), [보안 보고서](security_best_practices_report.md), [TODO](13_IMPLEMENTATION_TODO.md)를 참조하세요. core71개·앱25개·서버25개 단위/모의 시험과 debug·unsigned release 빌드가 통과했습니다. 공식 AVD의 편집·migration·수명/복구 시험 결과는 최신 장부에 별도로 기록합니다. 10월28일 APK의 실제 공조·조명·30분 타이머 증거와 최신 APK 결과를 혼합하지 않습니다.
 
-이 검사는 문서 품질에 대한 결과다. 제품 개발 TODO는 모두 NOT_STARTED, 앱 시험은 모두 NOT_RUN으로 유지한다.
+최신 APK의 앱 통합15개·프로세스 복구1개와 차량 재시험5개가 통과했습니다. 최초 차량 시험은 Console 준비 부재에서1PASS/4FAIL이었고, 공식 연결 복구 후 같은 APK에서 공조·조명 상태 반영을 확인했습니다. 실패 이력도 장부에 보존합니다.
 
-# pleos-automation
+실제 OpenAI 한국어 평가, Gleo 등록·callback, 공조의 초기 연결·오류 경로, 시트 이동·STOP, 좌석 점유 유효성, 주행 허용 내비/미디어, 외부 계정, release 전체 흐름10회 검증이 남아 있습니다. 공조·조명·시트 중 하나라도 미검증이면 전체 완료로 표시하지 않습니다. npm audit/OSV 일치0건은 모든 취약점이 없다는 뜻이 아니며 Kotlin KAPT 관련 버전 잔여 위험·lint 경고를 보안 보고서에 남겼습니다.
+
+## 구조와 문서
+
+`android/core/`는 순수 규칙 엔진, `android/app/`은 UI·Room·차량·서비스, `server/`는 AI와 외부 연결, `contracts/`는 JSON Schema와 카탈로그, `scripts/`는 설치·생성, `evidence/`는 실제 결과입니다. `.tools/`는 Git 제외 로컬 SDK·AVD·공식 샘플입니다.
+
+[작업 규칙](AGENTS.md) · [사실](01_FACT_CHECK.md) · [공모전](02_COMPETITION_GUIDE.md) · [요구사항](03_PRODUCT_PRD.md) · [설계](04_TECHNICAL_ARCHITECTURE.md) · [기능/API](05_CAPABILITY_MATRIX.md) · [일정](06_DEVELOPMENT_ROADMAP.md) · [검증](07_VALIDATION_AND_DEMO.md) · [신청 초안](08_APPLICATION_DRAFT.md) · [제출](09_SUBMISSION_CHECKLIST.md) · [위험](10_OPEN_QUESTIONS_AND_RISKS.md) · [출처](11_SOURCES.md) · [Windows 인수인계](12_WINDOWS_HANDOFF.md) · [TODO](13_IMPLEMENTATION_TODO.md)
+
+10월25일 문서는 초기 계획의 근거 기록입니다. 최신 승인으로 바뀐 범위와 현재 산출물은 각 문서의10월27~30일 추가 내용과 TODO를 우선합니다. 원본 DOCX는 변경하지 않았습니다.

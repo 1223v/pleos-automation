@@ -1,6 +1,8 @@
 # 공식 출처와 조사 이력
 
-모든 자료 확인 기준: **2026-10-25 KST**. 공모전은 브라우저 직접 탐색, 제품·SDK는 공식 사이트 검색과 본문 열람으로 확인했다. SDK 신청 페이지는 브라우저로 추가 교차 확인했다. 이번 보완에서 공식 SDK sources.jar와 Windows 이미지 XML을 메모리에서 읽었으며 SDK 설치는 하지 않았다. 검색 스니펫만의 정보는 확정 근거로 쓰지 않았다. 아래는 원문 복제가 아닌 출처 색인이다.
+최신 보완 확인일: **2026-10-28 KST**. D51 이후와 O/E 표는 구현에 사용한 공식 근거를 추가한 기록이다. 기존 C/P/D01~D50은 별도 표시가 없으면 **2026-10-25 초기 조사 이력**이며, 당시의 ‘미설치·미착수’ 문구는 현재 구현 상태를 뜻하지 않는다. 현재 버전과 실행 결과는 [구현 검증 기록](evidence/implementation/2026-10-28.md) 및 [TODO](13_IMPLEMENTATION_TODO.md)를 따른다.
+
+공모전은 브라우저 직접 탐색, 제품·SDK는 공식 사이트 검색과 본문 열람으로 조사했다. 검색 스니펫만의 정보는 확정 근거로 쓰지 않는다. 문서(DOC), 배포 소스(SOURCE), 계정 권한(ACCOUNT), 실제 실행(RUNTIME)을 구분하며, 아래 URL이 공개됐다는 사실은 계정 사용 가능성이나 실제 차량 제어 성공의 증거가 아니다.
 
 ## 공모전
 
@@ -93,7 +95,7 @@ C18의 원본은 [references](references/APPLICATION_FORM_NOTES.md)에 해시와
 
 ## Windows 인수인계·SDK 소스 추가 근거
 
-아래는 2026-10-25 KST 추가 확인 자료다. DOC는 문서 확인, SOURCE는 배포 아티팩트/공식 코드 확인을 뜻한다. ACCOUNT·RUNTIME·RELEASE 증거는 아직 없다. 최신 웹 문서를 읽은 사실이 특정 설치 버전의 모든 API가 호환됨을 보장하지 않는다.
+아래는 2026-10-25 KST 추가 확인 당시의 자료다. DOC는 문서 확인, SOURCE는 배포 아티팩트/공식 코드 확인을 뜻한다. 당시 ACCOUNT·RUNTIME·RELEASE 증거는 없었다. 후속 구현·설치 결과는 검증 장부에서 별도로 기록한다. 최신 웹 문서를 읽은 사실이 특정 설치 버전의 모든 API가 호환됨을 보장하지 않는다.
 
 | ID | 공식 자료 | 확인 수준·범위 |
 |---|---|---|
@@ -145,4 +147,113 @@ D47의 버전별 페이지는 웹 도구에서 열리지 않아 공식 URL을 HT
 4. 문서에 없는 동작은 격리된 시험으로 확인하고 공식 사실과 실험 결과를 분리한다.
 5. 실제 성공 여부는 07 검증 기록으로 연결한다. 링크를 추가한 것만으로 구현 TODO를 완료하지 않는다.
 
-AI 공급자·서버/저장/네트워크 라이브러리는 아직 선택하지 않았다. 선택 작업에서 공식 API·호환성·비용/보존 정책 근거를 추가하며 현재 후보를 실제 사용 중이라고 기록하지 않는다.
+초기에는 AI 공급자·서버/저장/네트워크 라이브러리가 미선정이었다. 10월 27일 승인된 구현에서는 OpenAI 및 아래 의존성을 사용한다. 실제 AI 호출은 키·일/월 예산·명시적 활성화 설정 전까지 보류하며, 문서 조사와 모의 시험은 실제 호출 평가를 대체하지 않는다.
+
+## 2026-10-28 구현 근거 보완 — Pleos·Android
+
+다음 표의 확인일은 모두 **2026-10-28 KST**다. 버전은 저장소 빌드 선언 또는 버전별 공식 문서의 값이며 ‘최신 권장 버전’이라는 뜻이 아니다. W03~05/W10~14는 차량·수명, W23~29는 시각 편집·Gleo·연결 확장에 연결된다.
+
+| ID | 공식 자료 / 적용 버전 | 확인 범위와 적용 경로 |
+|---|---|---|
+| D51 | [Vehicle 의존성](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/project-setup) / 2.3.2 | DOC: 공식 Maven 저장소와 `ai.pleos.playground:Vehicle:2.3.2`. D35 배포 소스와 함께 `android/app/build.gradle.kts`, `vehicle/VehiclePlatform.kt`의 타입 계약 기준. capability와 실제 SET 결과는 별도 검증 |
+| D52 | [NaviHelper 소개](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/intro), [설정](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/importing-sdk) / 3.0.5 | DOC: 초기화·리스너·목적지 요청·이벤트·정리 순서. 실제 이벤트는 Navigation 앱 상태/구현에 의존. `execution/RoutineRuntime.kt` |
+| D53 | [Gleo App Schema](https://document.pleos.ai/docs/pleos-only/app-integration-guide/guide/app-capability) / 웹 현행 | DOC: 최대 3 function, 대문자와 밑줄 이름, activity 또는 broadcast 진입, 영어 설명. `contracts/gleo-app-schema.json`, Gleo 진입점의 생성/수정/호출 계약 |
+| D54 | [Gleo callback](https://document.pleos.ai/docs/pleos-only/app-integration-guide/guide/action_callback), [예제](https://document.pleos.ai/docs/pleos-only/app-integration-guide/guide/examples) / 웹 현행 | DOC: functionName 일치, success/asking/fail, 영어 message, 7초 timeout. 응답 broadcast action과 packageName/response extras 확인. 사용자 확인이 남으면 asking이며 물리 실행 성공으로 응답하지 않음 |
+| D55 | [Gleo 스키마 전달](https://document.pleos.ai/docs/pleos-only/app-integration-guide/guide/deliver-schema) / 웹 현행 | DOC: APK의 **assets/schema.json** 이름 필수, function별 manifest action filter, 스키마 검토·승인 후 통합 활성화. 소스 초안 존재만으로 등록 완료를 주장하지 않음 |
+| D56 | [AGP 8.8 릴리스](https://developer.android.com/build/releases/agp-8-8-0-release-notes) / 8.8.2 | DOC: AGP 8.8의 최대 API35, Gradle8.10.2, Build Tools35.0.0, JDK17 기준. 루트 Android 빌드와 Wrapper |
+| D57 | [Compose BOM 매핑](https://developer.android.com/develop/ui/compose/bom/bom-mapping), [드래그](https://developer.android.com/develop/ui/compose/touch-input/pointer-input/drag-composables) / 선언 BOM2024.04.01 | DOC: BOM과 개별 모듈 버전 구분, pointer 입력 기반 이동. `ui/FlowCanvas.kt`. 웹 최신 매핑을 선언한 과거 BOM의 모든 resolved 버전으로 간주하지 않음 |
+| D58 | [Room 릴리스](https://developer.android.com/jetpack/androidx/releases/room#2.7.2) / 2.7.2 | DOC: 2.7.2 배포·수정 이력, 2.7 계열 Kotlin2.0 요구와 KSP. `data/RoutineDatabase.kt`, schema export |
+| D59 | [Media3 릴리스](https://developer.android.com/jetpack/androidx/releases/media3#1.5.1) / 1.5.1 | DOC: ExoPlayer·MediaSession 모듈과 해당 버전 이력. 자체 음원 재생·세션 소유권에 적용; 외부 앱 제어 권한이 생기는 것은 아님 |
+| D60 | [FGS 유형](https://developer.android.com/develop/background-work/services/fgs/service-types) / API34+ | DOC: 유형별 manifest·권한, specialUse의 사용 설명, mediaPlayback 구분. `RoutineService`와 알림·자동 감시. 선언만으로 스토어 심사나 장시간 실행을 보장하지 않음 |
+| D61 | [Package visibility](https://developer.android.com/training/package-visibility/declaring) / target30+ | DOC: 패키지 탐색 필터와 queries. 설치 앱 또는 미디어 서비스 발견과 실제 명령 지원을 구분 |
+| D62 | [Activity](https://developer.android.com/jetpack/androidx/releases/activity#1.10.1), [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0), [Core](https://developer.android.com/jetpack/androidx/releases/core#1.16.0) / 선언 1.10.1·2.9.0·1.16.0 | DOC: AndroidX 공식 릴리스 이력. UI·수명·권한 요청에 사용. 이 행의 버전은 앱 Gradle 선언값 |
+| D63 | [Coroutines 1.9.0](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.9.0), [Serialization 1.7.3](https://github.com/Kotlin/kotlinx.serialization/releases/tag/v1.7.3) | DOC/SOURCE: 공식 릴리스 태그. 엔진 취소·병렬·JSON 경계에 사용. serialization1.7.3 릴리스의 기본 빌드 Kotlin은2.0.20이며 프로젝트 플러그인2.0.0과 동일한 버전이라고 기록하지 않음 |
+| D64 | [Gradle Windows worker 이슈](https://github.com/gradle/gradle/issues/30304) / Gradle8.10.2 환경 참고 | SOURCE/이슈: 비ASCII 경로 관련 진단 참고. 로컬 ASCII GRADLE_USER_HOME 보정의 실제 결과는 검증 장부에 따로 기록하며 모든 Windows 실패의 원인으로 일반화하지 않음 |
+
+Gleo 예제 본문은 개별 `putExtra` 전달을 설명하지만 코드에는 `ACTION_PARAM` JSON 문자열을 사용한다. 두 표현의 차이를 수신 파서에서 제한된 형태로 처리하되, 등록된 Gleo 런타임의 실제 입력·callback 시험은 별도다. 스키마 파일 이름과 내부 action 이름을 혼동하지 않는다.
+
+로컬에 내려받은 배포 소스를 10월28일 SHA-256으로 다시 식별했다. Vehicle2.3.2는 D35의 `62b5dd2c4c0523fd13c2e64040cd775bc89a14ce54f35a37560d0eb4eb3fab40`과 일치하며, NaviHelper3.0.5 sources.jar는 `915feb7246215e6999f4695ba6b51cf31e4c6a5d8a8c1b36f16a3ba353569201`이다. 파일 위치는 Git 제외 `android/platform/cache/`이며 해시 확인은 설치 AVD의 동작 결과를 뜻하지 않는다.
+
+## 2026-10-28 구현 근거 보완 — AI·서버
+
+| ID | 공식 자료 / 적용 버전 | 확인 범위와 구현 판단 |
+|---|---|---|
+| O01 | [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol) / `gpt-6.1-sol` | DOC: 표준 100만 토큰당 입력$2, 캐시입력$0.10, 캐시쓰기$2.50, 출력$10. 272K 초과 입력은 별도 할증. `server/src/config.ts`, `budget.ts`; 모델 변경 전 가격/평가 재확인 |
+| O02 | [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses) / Responses API | DOC: strict JSON Schema·required·additionalProperties:false, 지원 스키마 부분집합. `planner-response.schema.json`, `server/src/planner.ts`; 형식 적합성이 의미·권한·실행 승인을 보장하지 않음 |
+| O03 | [데이터 제어](https://developers.openai.com/api/docs/guides/your-data) / 확인일 정책 | DOC: 기본 API 학습 사용과 보존 정책 구분, Responses의 store 설정·abuse monitoring·별도 자격 조건. `store:false`를 무보존/ZDR 계정 승인으로 표현하지 않음 |
+| O04 | [공식 SDK](https://developers.openai.com/api/docs/libraries) / 설치 `openai`7.45.0 | DOC+로컬 배포 메타데이터: 공식 TypeScript SDK, 설치 package.json의 버전·Node>=22 계약, `server/package-lock.json` 고정. GitHub v7.45.0 태그 URL은 웹 도구로 열리지 않아 태그 원문 확인 완료로 기록하지 않음 |
+| D65 | [Node SQLite](https://nodejs.org/download/release/v24.12.0/docs/api/sqlite.html) / Node24.12.0 | DOC: DatabaseSync·prepare/exec·파일/메모리 DB, 이 버전 안정성은 Active development. `server/src/budget.ts` 영속 예산 예약. 비ASCII 경로 장애의 원인은 이 문서로 확정하지 않음 |
+| D66 | [Ajv strict mode](https://ajv.js.org/strict-mode.html) / 설치8.20.0 | DOC+로컬 배포 메타데이터: strict schema 컴파일과 알 수 없는 키워드 처리. `server/src/contracts.ts`; 그래프 의미 검사와 별도 |
+
+서버 선언/lock 기준 TypeScript7.0.2, @types/node24.19.2, Ajv8.20.0, OpenAI SDK7.45.0이다. 위 공식 문서는 API 계약의 근거이며 패키지 버전 전체의 실행 호환성 증거는 빌드·시험 장부에서 확인한다. 로컬 예산 장부는 캐시쓰기까지 고려해 입력 100만 토큰당 **$3**으로 보수적으로 예약하며 실제 청구서를 재현하는 회계 기능이 아니다. 실제 호출·계정·결제는 이 출처 조사에서 실행하지 않았다.
+
+## 2026-10-28 구현 근거 보완 — 연결 카탈로그
+
+모든 행은 확인일 **2026-10-28 KST**, 연결 대상 `contracts/connector-catalog.json` 및 `server/src/connectors.ts`, 작업 W27/R18/T43에 해당한다. 카탈로그는 확인한 공개 표면의 목록으로, 세계 모든 서비스 또는 모든 마켓 앱의 완전 목록이 아니다.
+
+| ID | 공식 자료 / API | 확인 범위·제약 |
+|---|---|---|
+| E01 | [Calendar events.list](https://developers.google.com/workspace/calendar/api/v3/reference/events/list) / v3 | DOC: OAuth 읽기 scope, timeMin/timeMax·응답 목록. 계정 연결 및 실제 일정 읽기는 미검증 |
+| E02 | [Home Assistant REST](https://contributors.home-assistant.io/core/internals/rest-api/) / 2026-10-16 문서 | DOC: Bearer 인증, services action과 states 조회 구분. 상태 POST는 장치 제어가 아니므로 서비스 호출 뒤 상태 재조회 사용. 서버 관리자가 허용한 entity만 실행하는 제한은 제품 정책 |
+| E03 | [Kakao Local REST](https://developers.kakao.com/docs/ko/local/dev-guide) / v2 Local | DOC: 키워드 장소 검색·REST API 키·좌표 반환. 카카오내비 앱의 임의 조작 권한을 뜻하지 않음 |
+| E04 | [what3words](https://developer.what3words.com/public-api/docs) / API v3 | DOC: 세 단어 주소↔WGS84 좌표, HTTPS GET·API 키. 사용 요금·계정 가용성 별도 확인; 명시 활성화 전 호출 차단 |
+| E05 | [Spotify Developer Policy](https://developer.spotify.com/policy) / 확인일 정책 | DOC: voice-enabled SDA·음성 제어 어시스턴트 금지 항목 확인. 마켓 설치 가능성과 본 제품의 음성 자동화 허용을 구분하고 직접 음성 제어는 차단 |
+| E06 | [SmartThings API Access App Setup](https://developer.smartthings.com/docs/service-integrations/app-setup) / preview | DOC: 일부 기능 coming soon, 계정·공개HTTPS·유료 Developer/Business plan 선행 조건. 계정 생성·가입·결제·등록은 수행하지 않음 |
+| E07 | [Radioline business](https://business.radioline.co/) / 제휴 API | DOC: Automotive 앱과 API 접근 요청 경로. 공개 기능 소개를 사용 가능한 인증정보로 간주하지 않음 |
+| E08 | [Make My Day API](https://www.makemydayapp.com/api.php) / REST/JSON 소개 | DOC: 경로·EV 충전 계획 API, live API 접근 문의 필요. 직접 연결 계약과 런타임은 미확인 |
+
+P02/P03 공식 발표 본문을 10월28일 다시 확인했다. 신규 발표는 국내 마켓 총18종을 설명하지만 두 발표에서 이름을 확인한14종만 카탈로그에 열거했다. 마켓 입점은 외부 앱의 Intent·MediaSession·API 자동화 지원을 입증하지 않는다. Vehicle 카탈로그의20 getter에는 deprecated Gear도 포함되어 공식 샘플 UI의19 도메인과 수가 다르며, 제품의 기어 판정 경로는 AAOS property다.
+
+## 2026-10-28 표적 시험에서 확인한 버전 차이
+
+| ID | 근거 / 버전 | 확인 결과와 적용 |
+|---|---|---|
+| D67 | [CoroutineScope 1.9.0 소스](https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.9.0/kotlinx-coroutines-core/common/src/CoroutineScope.kt), [NonCancellable 1.9.0 소스](https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.9.0/kotlinx-coroutines-core/common/src/NonCancellable.kt) | UNIT: 구조화 병렬의 형제 취소 후 정리, 취소 중 STOP 대기. IO에서 취소된 Main으로 돌아올 때 cancellation이 다시 발생하므로 이미 저장한 terminal 실행 이력을 덮어쓰지 않음 |
+| D68 | [AAOS VehiclePropertyIds](https://developer.android.com/reference/android/car/VehiclePropertyIds), Vehicle SDK2.3.2 `HvacTemperatureConfigArray.kt` | DOC+SRC: 공조 전원 상태에 따른 property UNAVAILABLE 가능성, 목표 온도와 실내 현재 온도 구분, 설정 간격은 °C float로 반환됨. query 실패에서 쓰기 전 BLOCKED, 쓰기 후 timeout UNKNOWN |
+| D69 | [setAmbientLightBrightness](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/vehicle/ai.pleos.playground.vehicle.api/light/set-ambient-light-brightness), 2.3.2 `Light.kt`/`LightImpl.kt`/`PleosPermission.kt` | DOC+SRC+AVD: 인터페이스 CAR_LIGHTS와 구현 CONTROL_CAR_LIGHTS 불일치. 실제 SecurityException 재현 후 두 권한 선언. 색상 fixed-FF 계약과 달리 AVD 조회값은 RGB24(0xDB854B). 색상 비교에서 생략된 alpha만 FF로 정규화하며 부분 alpha는 임의 보정하지 않음 |
+| D70 | Vehicle SDK2.3.2 `BaseServiceConnector.kt:118~134`, `disconnectService:84~96`, `Vehicle.release:323` (D51 배포 소스) | SRC: 연결 준비 전·DeadObjectException의 호출을 queue에 저장하고 재연결 후 소비. 공개 release는 연결 해제와 queue clear로 연결되지만 MOVE와 STOP 사이의 경쟁·실패 안전성은 입증되지 않음. production seatPolicy 잠금 유지 |
+| D71 | [Virtual Console 셋업](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/use-vehicle-emulator), [AAOS 에뮬레이터](https://developer.android.com/training/cars/testing/emulator) | DOC+AVD: 8088 포워딩, 실제 Console가 제공하는 HTML·catalog·state를 확인. `emulator_active=false`/DDS 준비 false, 공조 준비 요청은 emulator_inactive 응답. 실제 속도는 cruise target과 다른 경로이나 SDK 반영 미검증. 로컬 HTTP 시험 경로를 제품 API로 사용하지 않음 |
+
+확인일은 모두 **2026-10-28 KST**다. SDK 소스는 Git 제외 로컬 cache의 공식 배포 archive이며 위 발견과 시험 결과는 [10월28일 검증 장부](evidence/implementation/2026-10-28.md)에 연결한다. 브라우저용 세션 보조 프로세스는 자동 승인 검토에서 거부되어 실행되지 않았다.
+
+| ID | 공식 근거 / 버전 | 확인 범위 |
+|---|---|---|
+| D72 | [ActivityScenario 시험 가이드](https://developer.android.com/guide/components/activities/testing), [SystemClock Android14 소스](https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-14.0.0_r1/core/java/android/os/SystemClock.java) | 2026-10-28 DOC+SRC: CREATED로 Activity stop 시험, elapsedRealtime은 deep sleep 포함 단조 시각. SystemClock 웹 reference는 timeout이어서 AVD OS에 맞는 공식 AOSP 소스를 사용했다. 30분 시험은 실제 elapsedRealtime으로 별도 측정하고 가짜 시간·시뮬레이션을 사용하지 않는다. 이 시험은 차량 전원 suspend 검증을 대신하지 않는다. |
+| D73 | [Package visibility](https://developer.android.com/training/package-visibility/declaring), [PackageManager](https://developer.android.com/reference/android/content/pm/PackageManager) / API28~35 | 2026-10-28 DOC: queries의 MAIN/LAUNCHER intent와 queryIntentActivities로 공개 실행 진입점을 검색. 설치 앱 목록은 해당 Android 사용자/앱 가시성 범위이며 기능 자동화 권한·MediaSession 연결·실제 화면 전환 성공을 의미하지 않는다. 패키지명을 추측하지 않으며 QUERY_ALL_PACKAGES를 추가하지 않는다. |
+| D74 | [SharedPreferences.Editor](https://developer.android.com/reference/android/content/SharedPreferences.Editor#commit()) / API1~35 | 2026-10-28 DOC: commit의 동기 디스크 저장 결과를 IO dispatcher에서 확인. Gleo의 asking 응답은 IO 전에 보내며 저장·실행 성공을 뜻하지 않는다. 생성·수정 요청만 로컬 보관, CONTROL 미보관, 요청 ID가 바뀐 뒤 과거 요청의 지우기가 새 요청을 삭제하지 않도록 비교한다. |
+| D75 | [공식 설정](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/configure-pleos-connect-emulator), [이미지 피드](https://nexus-playground.pleos.ai/repository/raw-releases/connect-avd/2.x/crp-sys-img.xml), [Emulator 릴리스](https://document.pleos.ai/docs/pleos-only/release-note/emulator-261015), [SDK 릴리스](https://document.pleos.ai/docs/pleos-only/release-note/sdk-261015) | 2026-10-28 재확인: 공개 릴리스는 Emulator2.1.0(10월19일), Vehicle2.3.2/NaviHelper3.0.5. 피드 revision2의 SHA-1/크기는 설치 이미지와 일치. Cold boot 필수, quick boot에서는 VHAL 사용 불가라고 명시. 실제 실행은 -no-snapshot으로 full boot였으므로 현재 실패를 Quick boot로 단정하지 않음. |
+| D76 | [Android GPU 가속](https://developer.android.com/studio/run/emulator-acceleration), [CLI 옵션](https://developer.android.com/studio/run/emulator-commandline), 설치37.2.12의 `-help-gpu`/`-help-no-snapshot` | 2026-10-28 DOC+CLI: host는 호스트 GPU 드라이버, software는 소프트웨어 렌더러. -no-snapshot은 로드·저장을 막아 full boot. 현재 Windows GPU는 nvidia-smi에서 RTX3060 12288MiB/610.88. WMI AdapterRAM은32비트 값이므로 실제VRAM으로 판정하지 않음. GPU 선택만으로 DDS/공조 정상화를 보장하지 않는다. |
+| D77 | [Console 기능표](https://document.pleos.ai/docs/pleos-only/app-test-guide/virtual-console-guide) | 2026-10-28 재확인: 목표 온도16~30°C/0.5°C, 좌석 점유·열선/통풍 제공. 공개 카드 표에는 시트 앞뒤/등받이 위치 이동 조작이 없다. 이는 SDK API 부재의 증거가 아니며 실제 이동 지원은 별도 확인한다. |
+| D78 | [Compose UI test](https://developer.android.com/reference/kotlin/androidx/compose/ui/test/package-summary), [Instrumentation.sendStatus](https://developer.android.com/reference/android/app/Instrumentation#sendStatus(int,%20android.os.Bundle)) | 2026-10-28 DOC: hasText는 편집 가능한 텍스트도 검색하므로 목록 행 시험에서 hasSetTextAction을 제외한다. sendStatus의 stream 결과를 호스트에 전달해 프로세스 종료 시험의 READY 이후에만 force-stop한다. Logcat 순환이나 수동 도구 호출 지연을 동기화 수단으로 사용하지 않는다. |
+| D79 | [Room Transaction](https://developer.android.com/reference/androidx/room/Transaction), [Compose effects](https://developer.android.com/develop/ui/compose/side-effects), [Android14 CarShellCommand](https://android.googlesource.com/platform/packages/services/Car/+/refs/heads/android14-dev/service/src/com/android/car/CarShellCommand.java) | 2026-10-28 DOC+SRC: Room2.7.2 트랜잭션으로 그래프·요청을 함께 저장. LaunchedEffect 키 변경 시 기존 작업 취소·재시작을 반영하고 DB 완료 전 저장 성공을 표시하지 않는다. 공식 이미지의 cmd car_service help 실행은 requires non-user build로 거부됐으며 injected event 명령의 존재와 해당 이미지 접근 권한을 구분한다. |
+| D80 | [Node 보안 공지](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases), [24.22.1 릴리스](https://nodejs.org/en/blog/release/v24.22.1), [공식 해시](https://nodejs.org/dist/v24.22.1/SHASUMS256.txt) | 2026-10-29 DOC+BIN: 기존24.12.0을 프로젝트 로컬24.22.1 Windows x64로 패치. bootstrap은 SHA-256 및 ZIP 경로를 검사. 호스트 전역 설치는 변경하지 않음. |
+| D81 | [OpenAI client 버전 소스](https://github.com/openai/openai-node/blob/v7.45.0/src/client.ts) / 7.45.0 | 2026-10-29 SRC: 환경 OPENAI_BASE_URL보다 명시적 baseURL 우선. 서버에서 공식 원점 고정, maxRetries=0, timeout55초. 모의 fetch만 사용했으며 실제 계정 호출 증거가 아님. |
+| D82 | [HA Entity](https://contributors.home-assistant.io/core/entities/entity-class/), [REST API](https://contributors.home-assistant.io/core/internals/rest-api/) | 2026-10-29 DOC: unknown/unavailable은 유효한 반영 상태가 아니다. climate 현재 entity/range 확인과 변경 후 재조회 계약에 적용. 실제 HA 계정 시험은 미실행. |
+| D83 | [SystemClock](https://developer.android.com/reference/android/os/SystemClock), [CarPropertyValue](https://developer.android.com/reference/android/car/hardware/CarPropertyValue) / API34~35 | 2026-10-29 DOC: elapsedRealtime은 deep sleep 포함. Car property timestamp의 경과시계 nanoseconds를 보존하고 continuous speed freshness와 ONCHANGE gear 조회를 구분. 1초 재평가는 제품 정책이며 Android의 깨우기 보장이 아님. |
+| D84 | [Room migration](https://developer.android.com/training/data-storage/room/migrating-db-versions), [ActivityScenario](https://developer.android.com/reference/androidx/test/core/app/ActivityScenario) / Room2.7.2, test-core1.6.1 | 2026-10-29~30 DOC+AVD: destructive fallback 없이1→2 migration 등록. 실제 legacy SQLite fixture/재열기, snapshot·event 보존, Activity recreate 시험. |
+| D85 | [coroutines Android dispatcher](https://github.com/Kotlin/kotlinx.coroutines/blob/1.9.0/ui/kotlinx-coroutines-android/src/HandlerDispatcher.kt), [Timeout](https://github.com/Kotlin/kotlinx.coroutines/blob/1.9.0/kotlinx-coroutines-core/common/src/Timeout.kt) / 1.9.0 | 2026-10-29 SRC: 단순 delay를 절전 포함 시계로 간주하지 않는다. 경과시계 주입 및 단계별 deadline 확인. 외부 timeout과 전체 실행 한도, 사용자 취소를 구분한다. |
+| D86 | [Activity task](https://developer.android.com/guide/components/activities/tasks-and-back-stack), [Compose lifecycle](https://developer.android.com/develop/ui/compose/lifecycle), [Instrumentation](https://developer.android.com/reference/android/app/Instrumentation#callActivityOnNewIntent(android.app.Activity,%20android.content.Intent)) | 2026-10-30 DOC+AVD: singleTask의 onNewIntent 전달과 composition identity를 구분. 새 entry로 전체 composition을 폐기하지 않는다. 동일 UI task의 입력/Intent callback으로 저장 전 입력 손실2건 RED→GREEN 확인. |
+| D87 | [OSV querybatch](https://google.github.io/osv.dev/post-v1-querybatch/), [Guava 보안 권고](https://github.com/google/guava/security/advisories/GHSA-xxph-c9ww-hj94), [33.7.2 릴리스](https://github.com/google/guava/releases/tag/v33.7.2) | 2026-10-29~30 DOC+DEP: resolved Maven 좌표를 조회해33.3.1-android의 CVE-2026-102554 확인. 기존 전이 의존성에33.7.2-android constraint 적용. Java 원시 역직렬화 경로 악용 여부와 패키지 취약 여부는 별개. |
+| D88 | [Gradle daemon 권고](https://github.com/gradle/gradle/security/advisories/GHSA-xwqc-3h47-hg64), [worker 권고](https://github.com/gradle/gradle/security/advisories/GHSA-mvvg-497x-hmj8), [SSL 저장소 권고](https://github.com/gradle/gradle/security/advisories/GHSA-j5m7-59rp-24f5), [8.14.6](https://docs.gradle.org/8.14.6/release-notes.html), [SHA-256](https://services.gradle.org/distributions/gradle-8.14.6-bin.zip.sha256) | 2026-10-30 DOC+BIN: 8.10.2가 영향 범위. 앞의2건은 동일 호스트 접근, 마지막은 저장소 교란·후순위 저장소 제어가 전제. 8.14.6 고정 해시로 패치. 프로젝트 코드 취약점과 빌드 도구 취약점을 구분. |
+| D89 | [Corretto17.0.21.0.11](https://github.com/corretto/corretto-17/releases/tag/17.0.21.0.11), [changelog](https://github.com/corretto/corretto-17/blob/17.0.21.0.11/CHANGELOG.md), [공식 해시](https://corretto.aws/downloads/latest_sha256/amazon-corretto-17-x64-windows-jdk.zip) | 2026-10-30 DOC+BIN: Windows x64 ZIP을 공식 SHA-256으로 검증해 .tools에 설치. JDK17.0.21+11-LTS 실행 확인. 최신 해시 endpoint를 설치 시 동적으로 신뢰하지 않고 확인한 버전·해시를 bootstrap에 고정. |
+| D90 | [JetBrains 보안 공지](https://www.jetbrains.com/privacy-security/issues-fixed/), [KAPT 수정 소스](https://github.com/JetBrains/kotlin/commit/bf51df665b458fda7c3eaf436c4d88dc119d7ec6), [배포 권고](https://github.com/advisories/GHSA-r937-wjx7-w2jp) | 2026-10-30 SRC: CVE-2026-53914는 Kotlin2.4.20 미만 공지이나 연결된 수정은 KAPT incremental cache 역직렬화다. 현재 프로젝트는 KSP2이며 kapt plugin/task 설정 없음. 이 경로의 도달성 미확인과 취약 버전 존재를 구분하고 빌드 캐시를 신뢰 경계로 남긴다. Kotlin/Compose/KSP 일괄 교체를 임의로 완료 처리하지 않는다. |
+| D91 | [Console 셋업](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/use-vehicle-emulator), [제어 사용법](https://document.pleos.ai/docs/pleos-only/app-test-guide/virtual-console-guide) / Emulator2.1.0 | 2026-10-30 DOC+AVD: 공식8088 forward 및 브라우저 연결 절차 재확인. 준비 없는 최초 probe1PASS/4FAIL 후 동일 APK/동일 판정으로5PASS. SDK 목표 온도·밝기·색상 관찰과 Console 최종 표시 확인. 초기 실패를 앱 코드 수정으로 해결했다고 표현하지 않음. |
+
+
+## 2026-10-31~11-01 감사 수정의 공식 근거
+
+| ID | 공식 근거 / 버전 | 확인 범위 |
+|---|---|---|
+| D92 | [Job.kt](https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.9.0/kotlinx-coroutines-core/common/src/Job.kt), [Timeout.kt](https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.9.0/kotlinx-coroutines-core/common/src/Timeout.kt) / coroutines1.9.0 | 10월31일~11월1일 SRC: 협력 취소·Job.isActive와 timeout 경계를 확인. 실행을 소유한 Job이 취소/종료된 경우 승인 증표를 재사용하지 않으며 확인 뒤에도 ensureActive 검사. 실제 시트 교정 증거를 뜻하지 않는다. |
+| D93 | [HA REST](https://contributors.home-assistant.io/core/internals/rest-api/), [Google Calendar events.list](https://developers.google.com/workspace/calendar/api/v3/reference/events/list), [Kakao Local](https://developers.kakao.com/docs/ko/local/dev-guide), [what3words API](https://developer.what3words.com/public-api/docs) / 공개 REST, Calendar v3, W3W v3 | 10월31일 DOC: HA 조명/공조 사전 entity 상태와 변경 후 조회, 빈 일정 목록과 잘못된 items 구분, 장소 x/y 문자열 좌표와 W3W lat/lng 숫자 좌표 계약. 실제 계정 호출 없이 IO 모의 시험으로 검증. |
+| D94 | [Compose UI test](https://developer.android.com/reference/kotlin/androidx/compose/ui/test/package-summary), [ActivityScenario](https://developer.android.com/reference/androidx/test/core/app/ActivityScenario) / 설치 Compose BOM2024.04.01, test-core1.6.1 | 11월1일 DOC+AVD: assertIsNotEnabled/performScrollTo 및 수동 Activity 수명으로 초안을 보존하는 저장 차단 회귀시험. 문서 최신 페이지를 설치 버전 자체의 증거로 혼동하지 않으며 설치된 API로 실제 컴파일/실행 확인. |
+
+4,096회 노드 방문 한도와 최악 경로 계산은 사용자가 확정한 제품 계약이다. 외부 SDK의 제한으로 출처를 붙이지 않는다. Pleos Vehicle2.3.2 자체 Binder 재연결/대기 명령 큐는 D70의 버전 소스 계약이며 Android Car 연결 세대 관찰과 별개다. 공개 SDK 연결 observer 부재와 실제 재연결 무효화 미검증은 A03의 잠금 해제 전 조건으로 유지한다.
+
+
+| ID | 공식 근거 / 버전 | 확인 범위 |
+|---|---|---|
+| D95 | [URLConnection Java17](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URLConnection.html), [coroutines Builders 1.9.0](https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.9.0/kotlinx-coroutines-core/common/src/Builders.common.kt) | 11월1일 DOC+SRC: 요청 객체/헤더 준비와 실제 IO 구분. IO 진입 뒤 첫 outputStream/responseCode 접근 직전에 승인과 취소를 검사하며 재전송하지 않는다. |
+| D96 | [Android 알림](https://developer.android.com/develop/ui/compose/notifications/create-notification), [Media3 Player1.5.1](https://raw.githubusercontent.com/androidx/media/1.5.1/libraries/common/src/main/java/androidx/media3/common/Player.java), [AudioFocusManager1.5.1](https://raw.githubusercontent.com/androidx/media/1.5.1/libraries/exoplayer/src/main/java/androidx/media3/exoplayer/AudioFocusManager.java) | 11월1일 DOC+SRC: API33+ 알림 권한·채널, Media3 단일 application thread/listener, transient focus suppression·permanent focus loss 계약. Media3가 일시정지/복귀를 관리하며 앱은 강제 재생하지 않는다. TIMER 완료 기록 뒤 알림을 보내며 권한 거부를 물리 실행 실패로 바꾸지 않는다. |
+| D97 | [Room migration](https://developer.android.com/training/data-storage/room/migrating-db-versions), 설치 Room2.7.2·기존 schema1/2 | 11월1일 DOC+설치 버전 컴파일: 명시적인2→3 컬럼 추가와1→3 연결 migration, 이전 원인 null 보존. 문서의 최신 Room API를 설치 버전 계약으로 대체하지 않는다. 데이터 보존은 별도 계측시험으로 확인한다. |
+| D98 | [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses), [openai-node7.45.0 Responses](https://raw.githubusercontent.com/openai/openai-node/v7.45.0/src/resources/responses/responses.ts) | 11월1일 DOC+SRC: 설명 전용 strict JSON Schema·Responses format, store:false·재시도0·기존 예산 예약. 설치 SDK 소스 및 차단된 모의 transport로 요청 계약 검증. 실제 AI 품질/계정 사용 가능 증거는 아니다. |

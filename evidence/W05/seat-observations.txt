@@ -1,0 +1,30 @@
+--------- beginning of main
+10-27 17:13:49.670 10006 10168 I RoutineSeatEvidence: axis=FORE_AFT area=ROW_1_LEFT elapsedRealtimeMs=164669 REAL source=REAL gear=P speedMps=0.0 uxRestricted=false
+10-27 17:13:54.860 10006 10168 I RoutineSeatEvidence: axis=FORE_AFT area=ROW_1_LEFT elapsedRealtimeMs=169859 TEST_FAILED_OR_SKIPPED type=TimeoutCancellationException detail=Timed out waiting for 2000 ms
+10-27 17:13:57.934 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=172934 REAL source=REAL gear=P speedMps=0.0 uxRestricted=false
+10-27 17:13:57.972 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=172972 CAP moveAccess=READ_WRITE moveArea=true positionAccess=READ_WRITE positionBounds=AreaBounds(minValue=0, maxValue=100)
+10-27 17:13:58.029 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173029 BEFORE command=FORWARD rawPosition=0 range=0..100 unit=UNSPECIFIED
+10-27 17:13:58.044 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173044 REQUEST command=FORWARD
+10-27 17:13:58.165 10006 10035 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173164 ACK command=FORWARD ok=true areaMatch=true value=FORWARD
+10-27 17:13:58.274 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173274 DURING command=FORWARD rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:58.318 10006 10228 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173318 STOP_DEADLINE reason=deadline sinceMoveMs=275 plannedMs=250 maximumMs=300
+10-27 17:13:58.318 10006 10228 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173318 REQUEST command=STOP
+10-27 17:13:58.342 10006 10035 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173342 ACK command=STOP ok=true areaMatch=true value=STOP
+10-27 17:13:58.512 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173512 AFTER_STOP sample=1 rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:58.707 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173706 AFTER_STOP sample=2 rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:58.896 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173896 AFTER_STOP sample=3 rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:58.910 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173910 RESULT command=FORWARD moved=false stopObserved=true healthy=true timelyMoveAck=true timelyStop=true before=0 during=[0] after=[0, 0, 0] verdict=FAIL_OR_UNKNOWN
+10-27 17:13:58.919 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=173919 BEFORE command=BACKWARD rawPosition=0 range=0..100 unit=UNSPECIFIED
+10-27 17:13:59.040 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174040 REQUEST command=BACKWARD
+10-27 17:13:59.046 10006 10035 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174046 ACK command=BACKWARD ok=true areaMatch=true value=BACKWARD
+10-27 17:13:59.108 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174108 DURING command=BACKWARD rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:59.188 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174188 DURING command=BACKWARD rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:59.269 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174269 DURING command=BACKWARD rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:59.333 10006 10216 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174333 STOP_DEADLINE reason=deadline sinceMoveMs=293 plannedMs=250 maximumMs=300
+10-27 17:13:59.333 10006 10216 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174333 REQUEST command=STOP
+10-27 17:13:59.342 10006 10035 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174342 ACK command=STOP ok=true areaMatch=true value=STOP
+10-27 17:13:59.583 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174583 AFTER_STOP sample=1 rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:59.780 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174780 AFTER_STOP sample=2 rawPosition=0 unit=UNSPECIFIED
+10-27 17:13:59.962 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=174962 AFTER_STOP sample=3 rawPosition=0 unit=UNSPECIFIED
+10-27 17:14:00.009 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=175009 RESULT command=BACKWARD moved=false stopObserved=true healthy=true timelyMoveAck=true timelyStop=true before=0 during=[0, 0, 0] after=[0, 0, 0] verdict=FAIL_OR_UNKNOWN
+10-27 17:14:00.010 10006 10168 I RoutineSeatEvidence: axis=BACKREST area=ROW_1_LEFT elapsedRealtimeMs=175010 TEST_FAILED_OR_SKIPPED type=AssertionError detail=Both directions must show raw position changes; ACK alone is insufficient

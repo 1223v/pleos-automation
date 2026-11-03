@@ -1,0 +1,20 @@
+{
+  "ghsa_id": "GHSA-mvvg-497x-hmj8",
+  "cve_id": null,
+  "html_url": "https://github.com/gradle/gradle/security/advisories/GHSA-mvvg-497x-hmj8",
+  "published_at": "2026-10-07T21:51:52Z",
+  "updated_at": "2026-10-07T21:51:52Z",
+  "severity": "high",
+  "vulnerabilities": [
+    {
+      "package": {
+        "ecosystem": "maven",
+        "name": "org.gradle:gradle-core"
+      },
+      "vulnerable_version_range": "< 8.14.6, 9.0.0 to 9.8.0",
+      "patched_versions": "8.14.6, 9.8.1",
+      "vulnerable_functions": []
+    }
+  ],
+  "checkedAt": "2026-10-30"
+}

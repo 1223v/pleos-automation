@@ -1,0 +1,26 @@
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✖ official SDK explanation wire request uses supported strict schema and never exposes vehicle tools (30.8917ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 447.71
+
+✖ failing tests:
+
+test at dist\test\run-explanations.test.js:201:1
+✖ official SDK explanation wire request uses supported strict schema and never exposes vehicle tools (30.8917ms)
+  Error [AppError]: AI 요청 실패 · 결과가 불명확한 요청은 자동 재호출하지 않습니다.
+      at Planner.complete (file:///C:/pleos-automation/server/dist/src/planner.js:83:19)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:220:26)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'AI_REQUEST_FAILED',
+    status: 502
+  }

@@ -1,0 +1,7 @@
+--------- beginning of main
+10-28 00:23:41.547  6367  6670 I RoutineEvidence: PREPARE HVAC_POWER area=ROW_1_LEFT, ROW_1_RIGHT, ROW_2_LEFT, ROW_2_CENTER, ROW_2_RIGHT before=true target=true
+10-28 00:23:41.598  6367  6670 I RoutineEvidence: PREPARE HVAC_POWER observedOn=true
+10-28 00:23:42.211  6367  6367 I RoutineEvidence: WRITE SET_HVAC_TARGET ACKNOWLEDGED 요청 응답 수신 · 상태 재조회 중
+10-28 00:23:42.231  6367  6670 I RoutineEvidence: WRITE SET_HVAC_TARGET area=ROW_1_LEFT before=22.0 requested=22.0 VERIFIED observed=22.0 목표 상태 반영 확인
+10-28 00:23:42.346  6367  6367 I RoutineEvidence: WRITE SET_HVAC_TARGET ACKNOWLEDGED 요청 응답 수신 · 상태 재조회 중
+10-28 00:23:42.395  6367  6670 I RoutineEvidence: WRITE SET_HVAC_TARGET area=ROW_1_LEFT before=22.0 requested=23.0 VERIFIED observed=23.0 목표 상태 반영 확인

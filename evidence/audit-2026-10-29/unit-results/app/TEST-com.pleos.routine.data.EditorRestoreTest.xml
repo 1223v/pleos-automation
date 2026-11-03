@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.pleos.routine.data.EditorRestoreTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-30T00:34:20.468Z" time="0.032">
+  <testcase name="newEditRequestUsesTargetAndNewRequestExactlyOnce" classname="com.pleos.routine.data.EditorRestoreTest" time="0.029" />
+  <testcase name="controlAndInvalidRequestsNeverBecomeRestorableDrafts" classname="com.pleos.routine.data.EditorRestoreTest" time="0.0" />
+  <testcase name="missingTargetRetainsGraphAndRequestsReview" classname="com.pleos.routine.data.EditorRestoreTest" time="0.0" />
+  <testcase name="oldIntentCannotOverwriteNewerRetainedDraft" classname="com.pleos.routine.data.EditorRestoreTest" time="0.0" />
+  <testcase name="sameCreateRequestPreservesLatestTextAndGraph" classname="com.pleos.routine.data.EditorRestoreTest" time="0.0" />
+  <testcase name="sameEditRequestDoesNotReloadOriginalSavedRoutine" classname="com.pleos.routine.data.EditorRestoreTest" time="0.0" />
+  <testcase name="freshUnsavedRequestCanStillBeReviewedWithoutLosingStoredRequest" classname="com.pleos.routine.data.EditorRestoreTest" time="0.0" />
+  <testcase name="clearedRequestDoesNotComeBackFromRecreatedIntent" classname="com.pleos.routine.data.EditorRestoreTest" time="0.0" />
+  </testsuite>

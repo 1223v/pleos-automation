@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "functionName": { "type": "string", "enum": ["CREATE_ROUTINE", "EDIT_ROUTINE", "CONTROL_ROUTINE"] },
+    "status": { "type": "string", "enum": ["success", "asking", "fail"] },
+    "message": { "type": "string" },
+    "mode": { "type": "string", "enum": ["voice", "beep", "silent"] },
+    "data": { "type": "string" }
+  },
+  "required": ["functionName", "status", "message"],
+  "additionalProperties": false
+}

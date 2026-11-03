@@ -1,0 +1,4 @@
+--------- beginning of main
+10-28 00:16:19.591 19286 19536 I RoutineEvidence: PREPARE HVAC_POWER area=ROW_1_LEFT, ROW_1_RIGHT, ROW_2_LEFT, ROW_2_CENTER, ROW_2_RIGHT before=true target=true
+10-28 00:16:19.736 19286 19536 I RoutineEvidence: PREPARE HVAC_POWER observedOn=true
+10-28 00:16:20.634 19286 19536 I RoutineEvidence: WRITE SET_HVAC_TARGET area=ROW_1_LEFT before=null requested=22.0 BLOCKED observed=null 현재 공조 목표 온도를 읽을 수 없습니다. 차량의 공조 전원·연결을 확인하세요.

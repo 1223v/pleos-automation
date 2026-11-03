@@ -1,0 +1,74 @@
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ExecutionLimitUiTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.ExecutionLimitUiTest:
+INSTRUMENTATION_STATUS: test=excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ExecutionLimitUiTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #193 at (l=24.0, t=1002.0, r=187.0, b=1042.0)px
+Focused = 'false'
+Role = 'Button'
+Text = '[검토한 루틴 저장]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 22 siblings
+Selector used: (Text + EditableText contains '검토한 루틴 저장' (ignoreCase: false))
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:265)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:255)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:63)
+	at com.pleos.routine.ExecutionLimitUiTest.excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested(ExecutionLimitUiTest.kt:49)
+
+INSTRUMENTATION_STATUS: stream=
+Error in excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested(com.pleos.routine.ExecutionLimitUiTest):
+java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #193 at (l=24.0, t=1002.0, r=187.0, b=1042.0)px
+Focused = 'false'
+Role = 'Button'
+Text = '[검토한 루틴 저장]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 22 siblings
+Selector used: (Text + EditableText contains '검토한 루틴 저장' (ignoreCase: false))
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:265)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:255)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:63)
+	at com.pleos.routine.ExecutionLimitUiTest.excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested(ExecutionLimitUiTest.kt:49)
+
+INSTRUMENTATION_STATUS: test=excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 4.872
+There was 1 failure:
+1) excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested(com.pleos.routine.ExecutionLimitUiTest)
+java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #193 at (l=24.0, t=1002.0, r=187.0, b=1042.0)px
+Focused = 'false'
+Role = 'Button'
+Text = '[검토한 루틴 저장]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 22 siblings
+Selector used: (Text + EditableText contains '검토한 루틴 저장' (ignoreCase: false))
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:265)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:255)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:63)
+	at com.pleos.routine.ExecutionLimitUiTest.excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested(ExecutionLimitUiTest.kt:49)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

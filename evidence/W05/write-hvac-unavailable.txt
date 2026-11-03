@@ -1,0 +1,4 @@
+--------- beginning of main
+10-27 11:22:01.412  5965  5965 I RoutineEvidence: WRITE SET_HVAC_TARGET ACKNOWLEDGED 요청 응답 수신 · 상태 재조회 중
+10-27 11:22:01.552  5965  5965 W RoutineEvidence: WRITE SET_HVAC_TARGET error=Exception detail=android.car.hardware.property.PropertyNotAvailableException: Property ID: HVAC_TEMPERATURE_SET area ID: 0x1 - is not available because of vendor error code: 0
+10-27 11:22:01.553  5965  6259 I RoutineEvidence: WRITE SET_HVAC_TARGET UNKNOWN observed=null 차량 요청 또는 상태 조회 실패 · 자동 재전송 안 함

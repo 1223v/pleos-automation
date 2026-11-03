@@ -1,0 +1,62 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.6/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:compileKotlin UP-TO-DATE
+> Task :core:compileJava NO-SOURCE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:compileTestKotlin
+> Task :core:compileTestJava NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+
+> Task :core:test FAILED
+
+PlanComplianceTest > simulationChecksScheduledMinuteAndWeekdayInTriggerZone FAILED
+    java.lang.AssertionError at PlanComplianceTest.kt:25
+
+PlanComplianceTest > blockedSimulationRetainsTimeAlreadySpentWaiting FAILED
+    java.lang.AssertionError at PlanComplianceTest.kt:133
+
+PlanComplianceTest > simulationChecksConditionEnterBaseAsWellAsFilters FAILED
+    java.lang.AssertionError at PlanComplianceTest.kt:25
+
+PlanComplianceTest > seatDescriptionExplainsApprovalBeforeTheWholeRunOnce FAILED
+    java.lang.AssertionError at PlanComplianceTest.kt:172
+
+PlanComplianceTest > authorizationWaitRechecksUnknownSensorFilterBeforeFirstAction FAILED
+    java.lang.AssertionError at PlanComplianceTest.kt:25
+
+PlanComplianceTest > insertionUsesTheResultingNodeCountForEveryStructuredFragment FAILED
+    java.lang.IllegalArgumentException at PlanComplianceTest.kt:157
+
+PlanComplianceTest > unknownConditionAfterWaitRetainsSimulatedElapsedTime FAILED
+    java.lang.AssertionError at PlanComplianceTest.kt:142
+
+PlanComplianceTest > simulationRejectsUnoccupiedAndUnknownBoardingState FAILED
+    java.lang.AssertionError at PlanComplianceTest.kt:25
+
+PlanComplianceTest > authorizationWaitRechecksExpiredTimeFilterBeforeFirstAction FAILED
+    java.lang.AssertionError at PlanComplianceTest.kt:25
+
+12 tests completed, 9 failed
+
+[Incubating] Problems report is available at: file:///C:/pleos-automation/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':core:test'.
+> There were failing tests. See the report at: file:///C:/pleos-automation/android/core/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.6/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+3 actionable tasks: 2 executed, 1 up-to-date
+BUILD FAILED in 43s

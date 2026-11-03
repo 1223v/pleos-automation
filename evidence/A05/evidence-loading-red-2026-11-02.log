@@ -1,0 +1,74 @@
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunExplanationUiTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.RunExplanationUiTest:
+INSTRUMENTATION_STATUS: test=localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunExplanationUiTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #365 at (l=40.0, t=600.0, r=213.0, b=640.0)px
+Focused = 'false'
+Role = 'Button'
+Text = '[AI 실행 설명 요청]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 1 sibling
+Selector used: (Text + EditableText contains 'AI 실행 설명 요청' (ignoreCase: false))
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:265)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:255)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:63)
+	at com.pleos.routine.RunExplanationUiTest.localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun(RunExplanationUiTest.kt:48)
+
+INSTRUMENTATION_STATUS: stream=
+Error in localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun(com.pleos.routine.RunExplanationUiTest):
+java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #365 at (l=40.0, t=600.0, r=213.0, b=640.0)px
+Focused = 'false'
+Role = 'Button'
+Text = '[AI 실행 설명 요청]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 1 sibling
+Selector used: (Text + EditableText contains 'AI 실행 설명 요청' (ignoreCase: false))
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:265)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:255)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:63)
+	at com.pleos.routine.RunExplanationUiTest.localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun(RunExplanationUiTest.kt:48)
+
+INSTRUMENTATION_STATUS: test=localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 5.872
+There was 1 failure:
+1) localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun(com.pleos.routine.RunExplanationUiTest)
+java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #365 at (l=40.0, t=600.0, r=213.0, b=640.0)px
+Focused = 'false'
+Role = 'Button'
+Text = '[AI 실행 설명 요청]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 1 sibling
+Selector used: (Text + EditableText contains 'AI 실행 설명 요청' (ignoreCase: false))
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:265)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:255)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:63)
+	at com.pleos.routine.RunExplanationUiTest.localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun(RunExplanationUiTest.kt:48)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

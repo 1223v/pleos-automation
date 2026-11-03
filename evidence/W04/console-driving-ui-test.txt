@@ -1,0 +1,32 @@
+INSTRUMENTATION_STATUS: class=com.pleos.routine.DrivingRestrictionTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.DrivingRestrictionTest:
+INSTRUMENTATION_STATUS: test=actualConsoleDriveClosesEditorAndRetainsDraft
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=CONSOLE_READY parked=true editorOpen=true writes=0
+
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: stream=CONSOLE_MOVING source=REAL gear=D speedMps=1.6666667461395264 uxRestricted=true editorClosed=true draftPreserved=true
+
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: stream=CONSOLE_PASS parkedAgain=true editingRestored=true noRoutineStarted=true
+
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: class=com.pleos.routine.DrivingRestrictionTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=actualConsoleDriveClosesEditorAndRetainsDraft
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 55.094
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

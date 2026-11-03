@@ -1,0 +1,65 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✔ HA light unknown or unavailable state blocks before any service write (80.9241ms)
+✔ HA light mismatched or missing current state blocks before service write (5.1882ms)
+✔ HA light reads before write and verifies the selected on or off state afterwards (2.6591ms)
+✔ Calendar rejects malformed event collections and explicit error payloads (6.2507ms)
+✔ Calendar preserves omitted or empty items and valid optional event fields (29.6816ms)
+✔ Kakao rejects missing or malformed place lists and unusable destination coordinates (3.0593ms)
+✔ Kakao preserves empty results and valid place coordinates without optional metadata (1.3427ms)
+✔ what3words rejects absent malformed or out of range coordinates (1.5176ms)
+✔ what3words verifies numeric coordinates including zero and range boundaries (1.967ms)
+✔ workflow contract accepts exactly4096 visits and rejects4097 before provider compilation (53.8398ms)
+✔ deep nested repeats saturate rather than overflow the visit limit (1.4895ms)
+✔ IF alternatives use the maximum path instead of summing both (0.7872ms)
+✔ parallel branches add their visits even when each branch alone fits (1.5082ms)
+✔ explanation route is authenticated and disabled before any provider or reservation (97.7486ms)
+✔ explanation sends exact historic evidence and separate output contract, with shared budget (29.6439ms)
+✔ explanation validates references, types, source separation and extra keys before provider (46.0831ms)
+✔ explanation rejects hallucinated event references and command-bearing output (32.3352ms)
+✔ explanation accepts explicit omitted-event window without inventing omitted evidence (13.6835ms)
+✔ explanation cannot report real VERIFIED as simulated or simulated effects as real (13.4428ms)
+✔ explanations and drafts share one active-call gate in both directions (18.7022ms)
+✔ explanation reserves before calling and blocks insufficient budget (8.8227ms)
+✔ explanation provider failure retains uncertain reservation and sanitized error (21.2068ms)
+✔ explanation limits event count and request bytes before provider (10.7072ms)
+✔ a blocked historic draft remains explainable even when its action is not executable (6.6628ms)
+✔ known overspend blocks later reservations across restart and preserves known charge (84.5217ms)
+✔ settled costs cannot be settled again to refund spend (1.7749ms)
+✔ budget periods change at Korean midnight including month boundary (2.6794ms)
+✔ legacy UTC-day charges conservatively overlap both Korean dates and months (38.3855ms)
+✔ two ledger connections cannot reserve beyond one shared limit (70.5469ms)
+✔ malformed mode locale and create-only fields are rejected before provider or reservation (5.8273ms)
+✔ complete valid graph rejects approval and semantic malformed values (9.2614ms)
+✔ unavailable HA climate cannot write even when its old target matches (6.0463ms)
+✔ HA unavailable after write stays UNKNOWN and is never retried (1.1583ms)
+✔ actual SDK pins official origin and sends strict nonstored nonretry request (13.9992ms)
+✔ HTTP rejects browser and oversized final response, keeping error bounded (76.122ms)
+✔ invalid usage keeps reservation and locks the ledger (6.096ms)
+✔ real SDK does not retry network errors (1.9392ms)
+✔ HTTP MIME JSON body and request rate boundaries are enforced (76.4165ms)
+✔ connector stream overflow and redirect failure return sanitized errors (0.9925ms)
+✔ default and missing budgets block before provider creation/call (55.5528ms)
+✔ mock completion validates and duplicate request does not bill twice (6.5088ms)
+✔ uncertain reservations survive restart and enforce budget (60.9096ms)
+✔ provider failure keeps full reservation and hides provider secrets (2.078ms)
+✔ invalid AI output is never a draft (1.3129ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.8767ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (4.8545ms)
+✔ HTTP authentication and disabled AI do not call a provider (71.0849ms)
+✔ schema rejects unexpected execution approval (1.6489ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (12.4303ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1274.6238

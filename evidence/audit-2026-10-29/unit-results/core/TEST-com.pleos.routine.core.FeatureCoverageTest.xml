@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.pleos.routine.core.FeatureCoverageTest" tests="35" skipped="0" failures="0" errors="0" timestamp="2026-10-30T00:22:56.931Z" time="0.151">
+  <testcase name="numericConditionsDistinguishStrictAndInclusiveBoundaries" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.005" />
+  <testcase name="nonfiniteRejectedActionReturnsBlockedInsteadOfThrowingWhileBuildingResult" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.004" />
+  <testcase name="cancelNavigationNeedsNoDestinationButStillValidatesArea" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.011" />
+  <testcase name="seatHeatAcceptsOffAndWholeLevelsButRejectsFractionsAndNegativeLevels" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.004" />
+  <testcase name="weekdayUsesLocalDayAcrossUtcMidnightBoundary" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.003" />
+  <testcase name="cumulativeWaitLimitBlocksBeforeOverrunningNodeAndItsFollowingAction" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.003" />
+  <testcase name="localAudioRejectsExternalOrUnbundledSources" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.002" />
+  <testcase name="editingAfterUndoDiscardsRedoWithoutChangingSavedSnapshots" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.003" />
+  <testcase name="patchRejectsDuplicateIdentityMismatchedReplacementAndOperationCountOverflow" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.007" />
+  <testcase name="stopLocalAudioNeedsNoTrackButStillValidatesEnvelope" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.002" />
+  <testcase name="numericConditionsKeepStaleMissingInvalidAndForeignInputsUnknown" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.007" />
+  <testcase name="cloningAndSerializationOrderKeepSemanticHashStable" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.005" />
+  <testcase name="seatMovementRequiresExplicitAxisAndDirectionForBothAxes" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.005" />
+  <testcase name="ambientBrightnessAcceptsBothEndpointsAndRejectsValuesOutsidePercentRange" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.005" />
+  <testcase name="graphInsertionAndRemovalPreserveConditionalPortsAndOtherPaths" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.002" />
+  <testcase name="calendarReadNeedsNoPhysicalTargetButStillRejectsInvalidEnvelope" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.003" />
+  <testcase name="fourParallelBranchesJoinAtLongestDurationButFifthBranchIsRejected" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.007" />
+  <testcase name="placeSearchRequiresNonblankQuery" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.002" />
+  <testcase name="mediaControlRequiresConnectedTarget" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.002" />
+  <testcase name="ambientColorRequiresOpaqueArgbIndependentlyFromBrightness" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.004" />
+  <testcase name="gearAndOccupancyComparisonsKeepUnknownSeparateFromFalse" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.001" />
+  <testcase name="sixtyFourNodeGraphRunsButSixtyFifthNodeIsRejected" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.016" />
+  <testcase name="invalidFinalPatchAndLateOperationFailureLeaveOriginalAndHistoryUntouched" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.001" />
+  <testcase name="actionTimingTriggerAndRoutingChangesInvalidateSimulationHash" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.013" />
+  <testcase name="timeWindowIncludesStartExcludesEndAndUsesConfiguredZone" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.001" />
+  <testcase name="navigationRequiresNamedDestinationWithinCoordinateBounds" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.003" />
+  <testcase name="malformedConditionsAreRejectedBeforeTheyCanBecomeExecutionRules" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.007" />
+  <testcase name="hvacRequiresFiniteTargetWithoutInventingDeviceRange" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.001" />
+  <testcase name="openAppRequiresSelectedTarget" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.001" />
+  <testcase name="what3wordsResolveRequiresNonblankAddress" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.001" />
+  <testcase name="parallelLocksCrossActionResourceConflictsButAllowsIndependentReads" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.002" />
+  <testcase name="waitAndTimerAllowFullTwoHoursButRejectZeroNegativeAndOverflowDurations" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.003" />
+  <testcase name="twentyRepeatIterationsRunExactlyOnceEachButZeroAndTwentyOneAreRejected" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.003" />
+  <testcase name="patchCanReplaceAnEntireConnectionAtomicallyAndRemoveAttachedEdges" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.003" />
+  <testcase name="homeAssistantCallRequiresSelectedTarget" classname="com.pleos.routine.core.FeatureCoverageTest" time="0.002" />
+  </testsuite>

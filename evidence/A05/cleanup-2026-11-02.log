@@ -1,0 +1,1 @@
+No readable connection preferences; fixture finally restoration is covered by test teardown

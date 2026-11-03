@@ -1,0 +1,41 @@
+EEE
+======================================================================
+ERROR: test_checksum_mismatch_does_not_create_destination (scripts.test_bootstrap_node.BootstrapNodeTests.test_checksum_mismatch_does_not_create_destination)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\pleos-automation\scripts\test_bootstrap_node.py", line 13, in setUp
+    spec.loader.exec_module(self.module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 758, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 895, in get_code
+  File "<frozen importlib._bootstrap_external>", line 953, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\pleos-automation\\scripts\\bootstrap_node.py'
+
+======================================================================
+ERROR: test_traversal_absolute_windows_paths_and_links_rejected_before_extraction (scripts.test_bootstrap_node.BootstrapNodeTests.test_traversal_absolute_windows_paths_and_links_rejected_before_extraction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\pleos-automation\scripts\test_bootstrap_node.py", line 13, in setUp
+    spec.loader.exec_module(self.module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 758, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 895, in get_code
+  File "<frozen importlib._bootstrap_external>", line 953, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\pleos-automation\\scripts\\bootstrap_node.py'
+
+======================================================================
+ERROR: test_verified_archive_installs_only_beneath_destination (scripts.test_bootstrap_node.BootstrapNodeTests.test_verified_archive_installs_only_beneath_destination)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\pleos-automation\scripts\test_bootstrap_node.py", line 13, in setUp
+    spec.loader.exec_module(self.module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 758, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 895, in get_code
+  File "<frozen importlib._bootstrap_external>", line 953, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\pleos-automation\\scripts\\bootstrap_node.py'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+FAILED (errors=3)

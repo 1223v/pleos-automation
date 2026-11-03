@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-01 KST",
+  "buildLog": "final-build-retest-2026-11-01.log",
+  "artifacts": [
+    {
+      "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "b28bc6a589d09365bdd093b6ca519dd0c960a9dbc2e56d7f498f0673faad4459",
+      "bytes": 70939413
+    },
+    {
+      "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "sha256": "e23e824a61bccb7c6b278a3ea52d17fb8cb39726cbffc95c31528b2c5e70be31",
+      "bytes": 2858883
+    },
+    {
+      "path": "android/app/build/outputs/apk/release/app-release-unsigned.apk",
+      "sha256": "a2714da0a2e08e3f051d177d79a2e66647b9e2c44383de8d001c6f49aaed2818",
+      "bytes": 52667016
+    }
+  ]
+}

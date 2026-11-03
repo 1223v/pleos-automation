@@ -1,5 +1,44 @@
 # Windows 개발 인수인계
 
+## 2026-11-02 A05
+
+11월3일 재개 확인: A05.1~4 로컬 구현·검증 완료, 다음 구현은 A06이다. 소스126개/APK3개는11월2일 검증본과 해시가 같다. 전체 AVD26개(표적7개 포함), 별도 프로세스 복구1개 통과를 기록했으므로 기존 A05 재현·구현·회귀를 처음부터 반복하지 않는다. 새 변경 또는 실패가 생기면 영향 범위에 맞게 재시험한다.
+
+현재 Room3이며 기존 DB를 삭제하지 말고1→2→3 migration을 사용한다. A05 표적 시험은 `RunHistoryUiTest`, `RunExplanationUiTest`, `JournalMigrationTest`다. 로컬 설명 HTTP 시험만 `-e a05Fixture true`와18787 reverse/fixture가 필요하다. [fixture](evidence/A05/local-explanation-fixture.mjs)는 loopback·모의 provider·외부 fetch 차단을 사용한다. 먼저 server에서 빌드한 뒤 프로젝트 Node로 실행하며 실제 API 키는 넣지 않는다. 시험 후 직접 시작한 fixture 프로세스와18787 reverse만 정리한다. [실제 명령·결과](evidence/A05/verification-2026-11-02.md)를 따른다.
+
+## 2026-11-01 재개 인수인계
+
+[현재 장부](evidence/plan-compliance-2026-10-30/verification-2026-11-01.md), [TODO](13_IMPLEMENTATION_TODO.md)를 우선한다. local도구 버전은 아래10월30일과 동일하다. 새 APK3개/소스115개 해시, core98/app56/server38 단위·모의 시험, debug/test/unsigned release와 offline lint 결과를 기록했다. AVD21PASS/알림권한거부1PASS이며 GNSS stopNmea의 system_server watchdog 최초 중단을 보존했다. 재개 시 장치·user10·진행 중 시험을 확인하고 다른 계측과 동시에 실행하지 않는다. 알림 거부 시험은 원래 권한을 확인한 뒤 복원하며 사용자 데이터를 지우지 않는다. 전체 제품 검증은 아직 미완료다.
+
+
+## 2026-10-30 재개 기준
+
+현재 브랜치는 `codex/consistency-tdd-security`이며 기존 미커밋·untracked 구현을 보존한 상태다. 전체를 일괄 add/reset하지 않는다. 최신 결과는 [10월29~30일 장부](evidence/implementation/2026-10-29.md), [보안 보고](security_best_practices_report.md)를 따른다. 아래10월28일 환경 버전은 과거 증거다.
+
+프로젝트 로컬 Node24.22.1, Corretto17.0.21.0.11, SHA-256 고정 Gradle8.14.6으로 검증했다. 전역 JDK/Node는 바꾸지 않았으므로 [README](README.md)의 `JAVA_HOME`, `Path`, `GRADLE_USER_HOME` 설정을 해당 PowerShell 프로세스에 적용한다. SDK·AVD·serial/user는 아래 기존 경로를 사용하되 매 실행마다 실제 부팅/사용자를 확인한다.
+
+차량 쓰기 probe 전 `adb -s emulator-5556 forward --list`와 실제 Console 탭을 확인한다.8088 forward가 없으면 다른 프로세스의 포트 사용이 없는지 확인한 뒤 `adb -s emulator-5556 forward tcp:8088 tcp:8088`를 설정하고 브라우저에서 Console을 연다.10월30일에는 이 준비 전1PASS/4FAIL, 복구 후 동일 APK5PASS였다. DDS ONLINE만으로 성공을 판정하지 않고 요청 뒤 SDK 상태와 Console 표시를 함께 확인한다. 내장 Console 탭은 최종 상태 확인용으로 유지했다.
+
+Windows에서 Kotlin daemon이 이전 classes.jar를 잡았던 사례가 있어 `--no-daemon '-Pkotlin.compiler.execution.strategy=in-process' --max-workers=2`로 시험한다. 동시에 두 Gradle 빌드를 실행하지 않는다. 새 의존성/Gradle 최초 다운로드 이후에는 `--offline`으로 재현할 수 있다. 경고0건이라고 주장하지 않는다.
+
+계측 전 debug/test APK를 각각 `adb -s emulator-5556 install -r`로 갱신한다. 사용자10의 `am instrument --user 10 -w -r -e class ...`를 사용하고, 실제 차량 쓰기·시트 probe·장시간 시험은 해당 명시적 인자와 선행 조건이 필요하다. 프로세스 복구는 `python scripts/run_process_recovery.py --evidence-dir evidence/audit-2026-10-29/app`로 별도 증거 경로를 지정한다. READY 후 시험 앱만 중단하며, 사용자 초안/활성 루틴이 있으면 시험을 건너뛴다.
+
+## 2026-10-28 실제 환경으로 재개
+
+작업 폴더 `C:\pleos-automation`, SDK `.tools/android-sdk`, AVD `.tools/avd/PleosRoutine.avd`, 장치 `emulator-5556`, 현재 사용자10이다. JDK17/Gradle8.10.2, Node24.12.0, Android14/Pleos v2.1.0/Vehicle Service2.3.22를 실제 확인했다. [README 실행](README.md)과 [증거 기록](evidence/implementation/2026-10-28.md)이 아래 초기 명령 예시보다 우선한다.
+
+PowerShell 프로세스에서 `GRADLE_USER_HOME=C:\pleos-automation\.tools\gradle-home`을 설정한다. 한글 사용자 경로의 JDK17 worker argfile 문제를 피한다. 기존 HOME/CODEX_HOME은 변경하지 않는다. AVD는 `ANDROID_AVD_HOME=C:\pleos-automation\.tools\avd`로 실행하며 `avdmanager`가 사용자 기본 폴더에 생성한 ini를 작업 AVD 폴더로 복사했다. 공식 zip 내부 태그는 android-automotive다.
+
+앱 실행은 AVD 홈 초기화 후 MAIN/LAUNCHER Intent 또는 런처 아이콘을 사용한다. UI·SDK 설치·빌드·모의 시험을 이미 수행했으므로 아래 ‘문서만/명령 미실행/Git 없음’은 **초기 이력**이다. 현재 Git 변경을 확인하고 다른 작업을 되돌리지 않는다. SDK/AVD/키/캐시를 인수인계 저장소에 포함하지 않는다.
+
+현재 debug·unsigned release 빌드는 통과했고, 공조 목표 온도·조명 밝기·색상은 실제 상태 변경을 관찰했다. 시트 이동·STOP 때문에 전체 [제어 게이트](evidence/W05/control-gate.md) 미통과다. `am instrument`의 `-e` 인자는 runner component 앞에 두며, 별도 명시 인자가 없는 vehicle write/seat/30분/복구 probe는 skipped다. skipped를 PASS로 세지 않는다. 실행 중인 장시간 시험이 있으면 APK 재설치·앱 강제 종료로 중단하지 않는다.
+
+실제30분 시험은 이미 통과했으며 [별도 APK 해시](evidence/W14/long-timer-apk-hashes.json)와 [측정값](evidence/W14/long-timer-persisted-result.txt)을 확인한다. 프로세스 복구 시험은 test APK 설치 뒤 `python scripts/run_process_recovery.py`로 READY→해당 앱 force-stop→다른 PID의 검증을 동기화한다. 이 명령은 현재 사용자10의 공식 Pleos AVD에서 실행 중인 시험용 루틴을 의도적으로 중단한다. 사용자 초안과 ID가 다른 시험 fixture를 삭제하지 않는다.
+
+`python scripts/configure_local_avd.py`는 작업 폴더의 정확한 AVD 설정만 출력하며 `--apply`로 Cold boot를 저장한다. 이미 실행 중인 AVD는 바꾸지 않는다. 재시작에는 `-no-snapshot`도 유지한다. 검증 후 `--apply --gpu host`로 hw.gpu.enabled=yes / mode=host도 저장했다. 실행 예시는 `-avd PleosRoutine -no-window -no-audio -no-snapshot -gpu host -port 5556`이다. GPU 로그의 external memory import 오류가 있었으나 후속 실제 앱 화면은 표시됐다. 최신 비교 결과는 검증 장부를 따른다. Console의 HTTP 접근 성공이나 DDS ready만으로 SDK 목표 온도·시트 상태 반영을 통과 처리하지 않는다.
+
+Console은 현재 내장 브라우저 탭에서 직접 조작할 수 있다. Windows Chrome의 URL 식별 오류를 내장 브라우저 전체의 불가로 확대하지 않는다. [주행 입력 검증](evidence/W04/console-driving-verification.md)에서 D/ACCEL→실제 AAOS 속도/UX 제한→BRAKE/정지/P를 확인했다. 이 이미지의 `cmd car_service` 시험 명령은 non-user build 제약으로 거부돼 사용하지 않는다. Console의 Cruise Target Speed를 실제 속도로 대체하지 않는다.
+
 확인일: **2026-10-25 KST**. 이 문서는 후속 개발 절차다. **이번 작업에서는 Windows PC의 설치 상태를 확인하지 않았으며 아래 PowerShell·Gradle·ADB 명령, APK 설치, 에뮬레이터 시험도 실행하지 않았다. PowerShell 런타임도 없어 파서 기반 구문 검증은 미실행이며 문서의 명령은 정적 검토만 수행했다.** 현재는 문서만 있고 앱·서버·Git 저장소는 없다. 개발 실행이 요청되면 [구현 TODO](13_IMPLEMENTATION_TODO.md)의 환경·제어 검증 작업부터 진행한다.
 
 ## 1. 전달할 파일과 작업 위치

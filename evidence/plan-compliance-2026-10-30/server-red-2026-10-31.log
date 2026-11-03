@@ -1,0 +1,139 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✖ HA light unknown or unavailable state blocks before any service write (55.4486ms)
+✖ HA light mismatched or missing current state blocks before service write (0.8958ms)
+✖ HA light reads before write and verifies the selected on or off state afterwards (2.6324ms)
+✖ Calendar rejects malformed event collections and explicit error payloads (1.4021ms)
+✔ Calendar preserves omitted or empty items and valid optional event fields (1.3904ms)
+✖ Kakao rejects missing or malformed place lists and unusable destination coordinates (0.4784ms)
+✔ Kakao preserves empty results and valid place coordinates without optional metadata (0.6237ms)
+✖ what3words rejects absent malformed or out of range coordinates (0.447ms)
+✔ what3words verifies numeric coordinates including zero and range boundaries (0.49ms)
+✔ known overspend blocks later reservations across restart and preserves known charge (84.4887ms)
+✔ settled costs cannot be settled again to refund spend (1.1115ms)
+✔ budget periods change at Korean midnight including month boundary (1.6786ms)
+✔ legacy UTC-day charges conservatively overlap both Korean dates and months (65.2333ms)
+✔ two ledger connections cannot reserve beyond one shared limit (58.0985ms)
+✔ malformed mode locale and create-only fields are rejected before provider or reservation (5.3762ms)
+✔ complete valid graph rejects approval and semantic malformed values (10.6716ms)
+✔ unavailable HA climate cannot write even when its old target matches (4.6077ms)
+✔ HA unavailable after write stays UNKNOWN and is never retried (1.2225ms)
+✔ actual SDK pins official origin and sends strict nonstored nonretry request (12.1247ms)
+✔ HTTP rejects browser and oversized final response, keeping error bounded (58.2156ms)
+✔ invalid usage keeps reservation and locks the ledger (5.3922ms)
+✔ real SDK does not retry network errors (2.2846ms)
+✔ HTTP MIME JSON body and request rate boundaries are enforced (71.3944ms)
+✔ connector stream overflow and redirect failure return sanitized errors (1.2159ms)
+✔ default and missing budgets block before provider creation/call (77.7146ms)
+✔ mock completion validates and duplicate request does not bill twice (2.6492ms)
+✔ uncertain reservations survive restart and enforce budget (54.6978ms)
+✔ provider failure keeps full reservation and hides provider secrets (1.4518ms)
+✔ invalid AI output is never a draft (1.2585ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.8091ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (3.2535ms)
+✔ HTTP authentication and disabled AI do not call a provider (82.2421ms)
+✔ schema rejects unexpected execution approval (1.5579ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (11.8003ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 28
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3673.0368
+
+✖ failing tests:
+
+test at dist\test\connector-results.test.js:15:1
+✖ HA light unknown or unavailable state blocks before any service write (55.4486ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/connector-results.test.js:19:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at dist\test\connector-results.test.js:23:1
+✖ HA light mismatched or missing current state blocks before service write (0.8958ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/connector-results.test.js:27:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at dist\test\connector-results.test.js:31:1
+✖ HA light reads before write and verifies the selected on or off state afterwards (2.6324ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   'GET',
+      'POST',
+      'GET'
+    ]
+  
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/connector-results.test.js:45:16)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'POST', 'GET' ],
+    expected: [ 'GET', 'POST', 'GET' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\connector-results.test.js:48:1
+✖ Calendar rejects malformed event collections and explicit error payloads (1.4021ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (malformedOutput).
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/connector-results.test.js:50:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at dist\test\connector-results.test.js:65:1
+✖ Kakao rejects missing or malformed place lists and unusable destination coordinates (0.4784ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (malformedOutput).
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/connector-results.test.js:69:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at dist\test\connector-results.test.js:79:1
+✖ what3words rejects absent malformed or out of range coordinates (0.447ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (malformedOutput).
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/connector-results.test.js:81:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

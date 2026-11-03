@@ -1,0 +1,41 @@
+Observed during final-avd-2026-11-01.log; Android guest time PDT, host KST.
+No application failure root cause inferred beyond this system_server trace.
+Subject: Blocked in handler on  on foreground thread (android.fg) for 66s
+"android.fg" prio=5 tid=12 Native
+  | group="main" sCount=1 ucsCount=0 flags=1 obj=0x155c11b8 self=0x7f227c0bdad0
+  | sysTid=798 nice=0 cgrp=foreground sched=0/0 handle=0x7f200bef2cf0
+  | state=S schedstat=( 19915125182 23272353362 81409 ) utm=101 stm=1889 core=3 HZ=100
+  | stack=0x7f200bdf0000-0x7f200bdf2000 stackSize=1035KB
+  | held mutexes=
+  native: #00 pc 000b8517  /apex/com.android.runtime/lib64/bionic/libc.so (__ioctl+7) (BuildId: fa337969c798946280caa45e2d71a2e7)
+  native: #01 pc 0006b428  /apex/com.android.runtime/lib64/bionic/libc.so (ioctl+216) (BuildId: fa337969c798946280caa45e2d71a2e7)
+  native: #02 pc 0005f0d0  /system/lib64/libbinder.so (android::IPCThreadState::talkWithDriver+288) (BuildId: 03953aee9b44f2d039463aaa5076fb83)
+  native: #03 pc 0006059e  /system/lib64/libbinder.so (android::IPCThreadState::waitForResponse+46) (BuildId: 03953aee9b44f2d039463aaa5076fb83)
+  native: #04 pc 000602c6  /system/lib64/libbinder.so (android::IPCThreadState::transact+214) (BuildId: 03953aee9b44f2d039463aaa5076fb83)
+  native: #05 pc 00078204  /system/lib64/libbinder.so (android::BpBinder::transact+180) (BuildId: 03953aee9b44f2d039463aaa5076fb83)
+  native: #06 pc 00049e3d  /system/lib64/android.hardware.gnss-V3-cpp.so (android::hardware::gnss::BpGnss::stopNmea+461) (BuildId: 049de20d3b07664417b7de2b91ed4e78)
+  native: #07 pc 000361f0  /system/lib64/libservices.core-gnss.so (android::gnss::GnssHal::stopNmea+80) (BuildId: 46226fc033850c38ead6290273fe530d)
+  at com.android.server.location.gnss.hal.GnssNative.native_stop_nmea_message_collection(Native method)
+  at com.android.server.location.gnss.hal.GnssNative.-$$Nest$smnative_stop_nmea_message_collection(GnssNative.java:0)
+  at com.android.server.location.gnss.hal.GnssNative$GnssHal.stopNmeaMessageCollection(GnssNative.java:1436)
+  at com.android.server.location.gnss.hal.GnssNative.stopNmeaMessageCollection(GnssNative.java:816)
+  at com.android.server.location.gnss.GnssNmeaProvider.unregisterWithService(GnssNmeaProvider.java:79)
+  at com.android.server.location.listeners.ListenerMultiplexer.updateService(ListenerMultiplexer.java:437)
+  - locked <0x0d115844> (a java.lang.Object)
+  at com.android.server.location.listeners.ListenerMultiplexer$UpdateServiceBuffer.close(ListenerMultiplexer.java:806)
+  at com.android.server.location.listeners.ListenerMultiplexer.updateRegistrations(ListenerMultiplexer.java:529)
+  - locked <0x0d115844> (a java.lang.Object)
+  at com.android.server.location.gnss.GnssListenerMultiplexer.onAppForegroundChanged(GnssListenerMultiplexer.java:427)
+  at com.android.server.location.gnss.GnssListenerMultiplexer.$r8$lambda$35sLJ--uVkQZo3RsS05k5v4fstk(GnssListenerMultiplexer.java:0)
+  at com.android.server.location.gnss.GnssListenerMultiplexer$$ExternalSyntheticLambda10.onAppForegroundChanged(R8$$SyntheticClass:0)
+  at com.android.server.location.injector.AppForegroundHelper.notifyAppForeground(AppForegroundHelper.java:71)
+  at com.android.server.location.injector.SystemAppForegroundHelper.lambda$onAppForegroundChanged$0(SystemAppForegroundHelper.java:59)
+  at com.android.server.location.injector.SystemAppForegroundHelper.$r8$lambda$5uB0h0rLYhVesF_M48mOHETYIBQ(SystemAppForegroundHelper.java:0)
+  at com.android.server.location.injector.SystemAppForegroundHelper$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:0)
+  at android.os.Handler.handleCallback(Handler.java:958)
+  at android.os.Handler.dispatchMessage(Handler.java:99)
+  at android.os.Looper.loopOnce(Looper.java:205)
+  at android.os.Looper.loop(Looper.java:294)
+  at android.os.HandlerThread.run(HandlerThread.java:67)
+  at com.android.server.ServiceThread.run(ServiceThread.java:46)
+

@@ -11,9 +11,9 @@ USE CODEX NATIVE SUBAGENTS FOR INDEPENDENT PARALLEL SUBTASKS WHEN THAT IMPROVES 
 
 ## 현재 작업과 완료 목표
 
-- 이번 승인 범위는 **Markdown 작성·보완**이다. 앱 코드 작성, SDK 설치, 프로젝트 신청, 외부 서비스 결제·발송은 하지 않는다.
+- 2026-10-27 사용자가 확정 계획의 구현을 요청했다. 승인 범위는 앱·서버 코드, 계획에 명시한 의존성·공식 SDK 설치, 로컬 시험·수정이다. 외부 서비스 결제·발송·계정 신청과 마켓 제출은 포함하지 않는다. OpenAI 실제 호출은 키·예산 설정 전까지 보류한다.
 - 후속 개발은 사용자가 개발 실행을 요청한 범위에서 수행한다. 그때 승인된 읽기·구현·시험·수정은 매 단계 재승인 없이 진행한다.
-- 개발 목표는 **2026-11-13**, 개발자 1명·하루 5~7시간, Windows x64의 공식 Pleos Connect Emulator다. 일정과 차단 조건은 [개발 일정](06_DEVELOPMENT_ROADMAP.md)을 따른다.
+- 개발 대상은 Windows x64의 공식 Pleos Connect Emulator다. 사용자의 최신 결정에 따라 11월 13일보다 기능 완성과 검증을 우선한다. 일정과 차단 조건은 [개발 일정](06_DEVELOPMENT_ROADMAP.md)을 따른다.
 - 필수 범위는 자연어 루틴 생성·검토·저장, 차량 상태 조건, 공조 목표 온도, 앰비언트 밝기·색상, 시트 앞뒤·등받이 제한 이동과 STOP, 타이머·자체 음원·실행 이력이다.
 - 공조·조명·시트 중 하나라도 공식 에뮬레이터에서 검증되지 않았으면 전체 구현 완료로 표시하지 않는다. 지원/권한 부족을 이유로 사용자 동의 없이 필수 기능을 선택 기능으로 내리지 않는다.
 
@@ -30,7 +30,7 @@ USE CODEX NATIVE SUBAGENTS FOR INDEPENDENT PARALLEL SUBTASKS WHEN THAT IMPROVES 
 
 ## 기능과 안전 계약
 
-- AI는 `draft / needs_clarification / unsupported` 초안을 생성한다. 지원 여부·권한·실행 승인·SDK 호출은 앱이 결정한다. 공급자는 후속 필수 선정 작업이며 모델·가격·정책을 추정해서 고정하지 않는다.
+- AI는 `draft / needs_clarification / unsupported` 초안을 생성한다. 지원 여부·권한·실행 승인·SDK 호출은 앱이 결정한다. 공급자는 OpenAI, 음성 진입점은 Gleo로 결정했다. 실제 API 호출은 키·예산·호출 활성화 설정 전까지 차단한다.
 - 차량 제어는 capability·접근 방식·영역·범위·단위를 확인하고 타입이 있는 공식 API로 수행한다. `CONTROL_*` 권한명을 관례로 만들어 쓰지 않는다.
 - 공조 목표 온도와 현재 실내 온도, 앰비언트 밝기와 색상을 각각 구분한다.
 - 시트는 **실행할 때마다 사용자 확인**을 받고 제한 이동한다. `MoveControl.BACKWARD / STOP / FORWARD` 계약에 맞추며 조회 위치값을 근거 없이 각도·거리로 표시하지 않는다.

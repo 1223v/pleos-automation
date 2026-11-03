@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.pleos.routine.core.WorkflowTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-10-27T18:23:03" hostname="DESKTOP-T0JPHJN" time="0.181">
+  <properties/>
+  <testcase name="staleAndNonzeroSpeedNeverAuthorize" classname="com.pleos.routine.core.WorkflowTest" time="0.0"/>
+  <testcase name="timeFilterCannotCreateBoardingEvent" classname="com.pleos.routine.core.WorkflowTest" time="0.037"/>
+  <testcase name="unknownTemperatureBlocksWithoutInventingFalse" classname="com.pleos.routine.core.WorkflowTest" time="0.006"/>
+  <testcase name="repeatAndParallelUseStructuredScopes" classname="com.pleos.routine.core.WorkflowTest" time="0.009"/>
+  <testcase name="coldAndWarmHaveIndependentNavigation" classname="com.pleos.routine.core.WorkflowTest" time="0.018"/>
+  <testcase name="layoutDoesNotInvalidateSemanticTest" classname="com.pleos.routine.core.WorkflowTest" time="0.006"/>
+  <testcase name="patchIsOptimisticAndUndoPreservesOriginal" classname="com.pleos.routine.core.WorkflowTest" time="0.012"/>
+  <testcase name="failureStopsAndPreservesUnknown" classname="com.pleos.routine.core.WorkflowTest" time="0.005"/>
+  <testcase name="simulationCannotReachRealAdapter" classname="com.pleos.routine.core.WorkflowTest" time="0.005"/>
+  <testcase name="typedJsonRoundTrip" classname="com.pleos.routine.core.WorkflowTest" time="0.053"/>
+  <testcase name="parallelResourceCollisionRejected" classname="com.pleos.routine.core.WorkflowTest" time="0.003"/>
+  <testcase name="serverAndAndroidShareOneJsonContract" classname="com.pleos.routine.core.WorkflowTest" time="0.018"/>
+  <testcase name="malformedCycleAndDanglingConnectionRejected" classname="com.pleos.routine.core.WorkflowTest" time="0.0"/>
+  <testcase name="initialTrueAndUnknownToTrueDoNotFire" classname="com.pleos.routine.core.WorkflowTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

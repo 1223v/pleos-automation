@@ -1,0 +1,51 @@
+{
+  "core": {
+    "tests": 71,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "app": {
+    "tests": 25,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "severity": {
+      "Warning": 15
+    },
+    "ids": {
+      "GradleDependency": 14,
+      "DataExtractionRules": 1
+    }
+  },
+  "server": {
+    "tests": 25,
+    "failures": 0,
+    "skipped": 0
+  },
+  "instrumentation": {
+    "tests": 15,
+    "failures": 0,
+    "skipped": 0,
+    "log": "app/final-instrumentation.log"
+  },
+  "processRecovery": {
+    "verificationTests": 1,
+    "prefixEvents": 4,
+    "log": "app/process-recovery-host.log"
+  },
+  "vehicleInitial": {
+    "tests": 5,
+    "failures": 4,
+    "log": "app/vehicle-regression.log"
+  },
+  "vehicleRetest": {
+    "tests": 5,
+    "failures": 0,
+    "skipped": 0,
+    "log": "app/vehicle-console-retest.log",
+    "precondition": "Official port forward restored and Console connected; same APK, no code or pass-threshold change"
+  }
+}

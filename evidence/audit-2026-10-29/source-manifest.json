@@ -1,0 +1,394 @@
+[
+  {
+    "path": ".gitignore",
+    "sha256": "cb9c722fb737cc4cc3e72428663d4d0ab75b9f93f70e66af524a39455af984ab"
+  },
+  {
+    "path": ".node-version",
+    "sha256": "d9f318747a126ce2247661af67852b185def7789492eabfad7bba322be087c33"
+  },
+  {
+    "path": "android/app/build.gradle.kts",
+    "sha256": "175ef6bc59b0a7f68498e67473959f489ec09e64e68f7051f1d4aa00cbe15141"
+  },
+  {
+    "path": "android/app/schemas/com.pleos.routine.data.RoutineDatabase/1.json",
+    "sha256": "34bc516efb04ded2c91514eedecdab4ad48bbb8dc015b94347ec87b2f4adc01b"
+  },
+  {
+    "path": "android/app/schemas/com.pleos.routine.data.RoutineDatabase/2.json",
+    "sha256": "ba1880eb60b27aafb3ca0c0137f4a25e98f1762beb5843b854a4e7c9b101ded4"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/ConnectionDraftTest.kt",
+    "sha256": "6a27dc2deaf15987f69b39d323a1e96d575c9eb933ab20e38537126277df80e1"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/ConnectionUiTest.kt",
+    "sha256": "8b4e1317bff2e7ae00bdcc5901654562cbe8c37034c92e001f4c24b7aa984ebb"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/DrivingRestrictionTest.kt",
+    "sha256": "5e10dbd2aa8ebdc2cf38eab2a2e8176e0c68a12a90ac681f55498f410ad91e6d"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/EditorFlowTest.kt",
+    "sha256": "cfef797db1c1708f489dbca30e59e50025ea07728b3a19ceef69b2988e969c95"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/GleoRestoreTest.kt",
+    "sha256": "d9f9a3b4bd59e92d1a9ef11136445088b4de88dae57ab4a7d969f6255b1ce913"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/JournalMigrationTest.kt",
+    "sha256": "7907a5ff597530f44e682f1735e7debed859c59155069072701bde7e4ddd3267"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/LongTimerTest.kt",
+    "sha256": "c43c878e4ae74daf9795dc2dc26de891f9d0d56114845fd4b7890ef6856a9b43"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/PlatformProbeTest.kt",
+    "sha256": "ab9def6b55716dd6752486adbcbaed45e75b20648da11ae02302ed0df8bb798d"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/RuntimeLifecycleTest.kt",
+    "sha256": "a06e6364b7bd575d029be43e8a0eddcc9e7afdf02e1d5d6d5d1026e48d9989ef"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/RuntimeRecoveryTest.kt",
+    "sha256": "6f366f4c9e6ee56f17d16dfb7da4acab63e9895d74c0828b37222f1e5a120bc9"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/SeatCalibrationProbeTest.kt",
+    "sha256": "fffbb3e789d83ecdff38a90cf440e7685aea575fba06a8cc014b852f158d9d9a"
+  },
+  {
+    "path": "android/app/src/androidTest/java/com/pleos/routine/VehicleWriteProbeTest.kt",
+    "sha256": "b5231f7e2fa416b0fa687aa54c3e054153011bb1162b2135a8348de7f419b5eb"
+  },
+  {
+    "path": "android/app/src/debug/AndroidManifest.xml",
+    "sha256": "3fd782b268f618ef0c725797e88fb9ebccd30fd33685f4f263f535cdad53b520"
+  },
+  {
+    "path": "android/app/src/debug/res/xml/debug_network_security.xml",
+    "sha256": "6b20e2b2836c97310b59cd03050e68b25453a521b6a28ea0e1c42b379c62f4d1"
+  },
+  {
+    "path": "android/app/src/main/AndroidManifest.xml",
+    "sha256": "729801b426147d4185749b0897b4f4dfcc54cb618823045a3a5aae8dafb328fc"
+  },
+  {
+    "path": "android/app/src/main/assets/AUDIO_LICENSE.md",
+    "sha256": "314b130629fd27dd073cb8217ca6387b3daf3b31191cf231227aa7503dd994b2"
+  },
+  {
+    "path": "android/app/src/main/assets/rest-tone.wav",
+    "sha256": "8ca97e81bb946eaa58fd59ba7298994d09256b0331772bd57386f8db348b428d"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/MainActivity.kt",
+    "sha256": "2be9833d25b35b4ca71b30dfaabf16f1adc1cb430a3c1bb25374cd3d3714d381"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/RoutineApplication.kt",
+    "sha256": "938131dbfffbcee73bf5eeca47247de49e8816f8848e1324b1d68245e3959fbc"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/data/ConnectionPolicy.kt",
+    "sha256": "517191baddada751ba549c89cf282fd2f47c5530e709f1d1dc9fcd2657c13cb5"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/data/EditorRestore.kt",
+    "sha256": "dab51448a6106c34715027faa4f26db015b5c19cb5f2fdca9adb787338cc2bc2"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/data/InstalledApps.kt",
+    "sha256": "76f462db14a68b08357d2d9d41b285c0ebe243c041fcdf214b1b017e9d4c8cad"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/data/PendingRequestStore.kt",
+    "sha256": "30dac8050d788d852fb068c88ad4c67b06a8d6356a57251f9aa5df269139a14a"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/data/PlannerClient.kt",
+    "sha256": "ca00444a462e2d39abb215c2cadb3206c8402ce7fd3cb1fcb83d16b395cfab15"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/data/RoutineDatabase.kt",
+    "sha256": "b8876a44188e3fd5ee951e212d861f7bc6fabae5af8bd75ac80691c1f94d4736"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/data/RunJournalRepository.kt",
+    "sha256": "840a02c94d640ea74fdd2032116e8dcd1680deca9e9aa373d959b6084a2f049d"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/execution/RoutineRuntime.kt",
+    "sha256": "33fedaa5e5b371774b91b412852b4578e60e7febb40b9f96f22853378dde42e7"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/execution/SeatRunAuthorization.kt",
+    "sha256": "6699313a7e3c37ec4e8b97fd7bf5ac499936c1ae30eade5b725fb9848b57ebc9"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/ui/Editors.kt",
+    "sha256": "e0edb4d5a5136b8c62948e5dad1a1a937942c8c509241ea1f3608683dea39908"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/ui/FlowCanvas.kt",
+    "sha256": "bf45149acff13037d2c88bc25db4c846ec6048e53765330ba5cbcba3b90d1b23"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/ui/InstalledAppPicker.kt",
+    "sha256": "dce497757a6af24d9a668501f58a1cdcf7c49b19533e2ab51c98618a605a5de3"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/vehicle/SeatMotionCoordinator.kt",
+    "sha256": "3a5ed7d95870f7fa33abe849de48ae7f60685b05161a225fe50c8f0d235c3060"
+  },
+  {
+    "path": "android/app/src/main/java/com/pleos/routine/vehicle/VehiclePlatform.kt",
+    "sha256": "018c8f6d939a487b9c1f925e53fddb67fd40ddca3bb9ff1e4bdb67ba6c1479fc"
+  },
+  {
+    "path": "android/app/src/main/res/drawable/ic_routine.xml",
+    "sha256": "421f6e391cd3024a9a8cad593f0aedc28e19e2e179cdf5ac9ae96b4979021d16"
+  },
+  {
+    "path": "android/app/src/main/res/values/styles.xml",
+    "sha256": "c6fd290beba1e35dde970eea1a68f67061106abcab4c05dd06802c1bc8243d15"
+  },
+  {
+    "path": "android/app/src/main/res/xml/data_extraction_rules.xml",
+    "sha256": "e51425f4a6bc1ca62ee0abd6e4b982f7f7732fb3f3b9a32fc0251b3fc6126d8b"
+  },
+  {
+    "path": "android/app/src/test/java/com/pleos/routine/data/ConnectionPolicyTest.kt",
+    "sha256": "02229b0e1659082907091054e1a54f3460c13ce1945be05d0f7468a62a766368"
+  },
+  {
+    "path": "android/app/src/test/java/com/pleos/routine/data/EditorRestoreTest.kt",
+    "sha256": "5fc6b1e093b1f0cb0f4515f63fe1a00edc6391b7d07bcb60c89808ee716c67ca"
+  },
+  {
+    "path": "android/app/src/test/java/com/pleos/routine/execution/SeatRunAuthorizationTest.kt",
+    "sha256": "f1b7f3fda47167b7cee923b277c4b1686d7b69add8a91190eb20fc7781988836"
+  },
+  {
+    "path": "android/app/src/test/java/com/pleos/routine/vehicle/SeatMotionCoordinatorTest.kt",
+    "sha256": "af2abca50ffa0ab3d5d80ed63718ac1f0a044847fcd675f7d705681b329d16d5"
+  },
+  {
+    "path": "android/build.gradle.kts",
+    "sha256": "eadff21ca119d30e7fe1397868ca1771adbf95fea8b971d62d3f3f300eb517c5"
+  },
+  {
+    "path": "android/core/build.gradle.kts",
+    "sha256": "d3cba5e831d06b76aaedf14798febddd0c09696d7bb3cf96287fc40f1ac3b85a"
+  },
+  {
+    "path": "android/core/src/main/kotlin/com/pleos/routine/core/Conditions.kt",
+    "sha256": "ba9bdd10f7a5ae51e1a9f231c948c6a4054cbb750a8eefd291ed78590b1d55af"
+  },
+  {
+    "path": "android/core/src/main/kotlin/com/pleos/routine/core/Engine.kt",
+    "sha256": "51eb8f30c5321ea5c3d02cfa009c73087b9dd21d21a8a7934ae427ce9a753c2b"
+  },
+  {
+    "path": "android/core/src/main/kotlin/com/pleos/routine/core/Examples.kt",
+    "sha256": "e93701832f2706c5d5365192d9f3eb529d57b8105164ce769a7c74e5438190d0"
+  },
+  {
+    "path": "android/core/src/main/kotlin/com/pleos/routine/core/ExecutionContract.kt",
+    "sha256": "cd31e3ddad5df7c4837acded7bd608b64fd9b20653f414f87eedd0038dceef8f"
+  },
+  {
+    "path": "android/core/src/main/kotlin/com/pleos/routine/core/GraphEditing.kt",
+    "sha256": "1f216a096e537062d65fadbcb048ad7d7626bf05d380423738bd069872b2f12c"
+  },
+  {
+    "path": "android/core/src/main/kotlin/com/pleos/routine/core/RuleDescriptions.kt",
+    "sha256": "5093843368487dfa74204d6f0f3bee99784813a98922dc4b4a2ecd80feb1bdfc"
+  },
+  {
+    "path": "android/core/src/main/kotlin/com/pleos/routine/core/Validation.kt",
+    "sha256": "18b6b934a5b1c09a2dd09e384d72cf0fe7ea619635ad36b888739f3d73cc7310"
+  },
+  {
+    "path": "android/core/src/main/kotlin/com/pleos/routine/core/Workflow.kt",
+    "sha256": "1a2989941b1234bcb4ca50c1e741c23cfe51c710fefa688413bf3b80ae8beba6"
+  },
+  {
+    "path": "android/core/src/test/kotlin/com/pleos/routine/core/ClockAndActivationTest.kt",
+    "sha256": "b9a36e3b7f132b2d5741d11127d78d82383a79ca5c427858261fa058c5ac18fa"
+  },
+  {
+    "path": "android/core/src/test/kotlin/com/pleos/routine/core/ExecutionSafetyTest.kt",
+    "sha256": "c381d0a0c29113fde09b79ef3f39a1ed25f5f2fc7bcb63be4b3e71db99fa819f"
+  },
+  {
+    "path": "android/core/src/test/kotlin/com/pleos/routine/core/FeatureCoverageTest.kt",
+    "sha256": "8319adc3900a97591be5d87049904ec0684f764778f1d56287cf84bf5b5f4a40"
+  },
+  {
+    "path": "android/core/src/test/kotlin/com/pleos/routine/core/JournalContractTest.kt",
+    "sha256": "7891dc3d1b82222097827a5e5f13c0d6c587a71d21c18b9586a7fa7edf1a4a99"
+  },
+  {
+    "path": "android/core/src/test/kotlin/com/pleos/routine/core/RuleDescriptionsTest.kt",
+    "sha256": "1f955a37bd9f776c636a447943089c3abf4a637b38328d727e3ebb7b7886d8ca"
+  },
+  {
+    "path": "android/core/src/test/kotlin/com/pleos/routine/core/SemanticRegressionTest.kt",
+    "sha256": "ee8e1a02bf4c5c5e1421e96d3fda164e93eb03d4d46cd4776a19177fc266ddd7"
+  },
+  {
+    "path": "android/core/src/test/kotlin/com/pleos/routine/core/WorkflowTest.kt",
+    "sha256": "b4b42aaa80829072e6f8b5acc5e4dd48909d4c53cef3f4e69e2f9419e97d04c8"
+  },
+  {
+    "path": "android/gradle.properties",
+    "sha256": "202559e338ba2d2a89a15bd7e266da7518e34906d806fc5afa2e66dfc8ec1a0b"
+  },
+  {
+    "path": "android/gradle/wrapper/gradle-wrapper.jar",
+    "sha256": "2db75c40782f5e8ba1fc278a5574bab070adccb2d21ca5a6e5ed840888448046"
+  },
+  {
+    "path": "android/gradle/wrapper/gradle-wrapper.properties",
+    "sha256": "dfca8a2f2c16bad3529398689eaf73ecdf8e20baf979ce0dab3fc24295b229de"
+  },
+  {
+    "path": "android/gradlew",
+    "sha256": "9cbbb4d68ff7fb5211c4d58f598ac9d8664c05fdcd1e5f59b7f2c3ac1ee00af0"
+  },
+  {
+    "path": "android/gradlew.bat",
+    "sha256": "0f3ed8f03b50934cb8c48b15a470d5c20a30a5385825e48b55bcc8ea3d8f8e18"
+  },
+  {
+    "path": "android/settings.gradle.kts",
+    "sha256": "91a28a3119a39bdbc575bf53a54bdc82857f3e40d299ba7cbde6cadecde038bb"
+  },
+  {
+    "path": "contracts/connector-catalog.json",
+    "sha256": "5e47ceb2cd5230989c75762b227ca84b781f5a6c4fa4704e7e8964e9ac29a24b"
+  },
+  {
+    "path": "contracts/fixtures/commute.json",
+    "sha256": "152d843a971b7c647184eaaaaf961712583a7dfb7c5ecf04c059fb6d1166d644"
+  },
+  {
+    "path": "contracts/gleo-app-schema.json",
+    "sha256": "df3df94108e5844b6a0fd8430ce2564271036ab40bc5ad28d2644a1895cc5b62"
+  },
+  {
+    "path": "contracts/gleo-callback-schema.json",
+    "sha256": "6d17e741148fe035a6b46d09b9667a3c28c2252e5e9f2615cac8c984f7032bf9"
+  },
+  {
+    "path": "contracts/planner-response.schema.json",
+    "sha256": "ecfbe023bb696593e9b9529a44ca524c248401f14055e1c72698ce0e25d0c548"
+  },
+  {
+    "path": "contracts/workflow.schema.json",
+    "sha256": "e31510fbe81ce238ae35a3b86b2c636749b3248ebc6756cc017a29c31df3bc2c"
+  },
+  {
+    "path": "scripts/bootstrap_android.py",
+    "sha256": "5166a61fab73b30ef03782f7171e192b61e213de8790526e320dbf244493da8b"
+  },
+  {
+    "path": "scripts/bootstrap_java.py",
+    "sha256": "e421dd55e16345900aadf08edea7cd1ebd3ca5727dd6e8a4c561c0209087e08b"
+  },
+  {
+    "path": "scripts/bootstrap_node.py",
+    "sha256": "687b3e298061a7282399994e3583402cfab479dda10820f0f064bd2a02645194"
+  },
+  {
+    "path": "scripts/configure_local_avd.py",
+    "sha256": "60253b9cdf48f7810ed4309fe0d16e88025941e99974b35049abdabcd9395e0f"
+  },
+  {
+    "path": "scripts/generate_contracts.py",
+    "sha256": "712ba989e3558034be0dd0e5f719556c7e8b17586d61d379072a47fde0457e4e"
+  },
+  {
+    "path": "scripts/run_process_recovery.py",
+    "sha256": "2e2c5de72f2b72cf9958f2caa23f2c213d97983164a8e0138413f76b55fa58f0"
+  },
+  {
+    "path": "scripts/test_bootstrap_node.py",
+    "sha256": "5dcc77abb6efd854c63f736755ad03edbba27a8ae7bf3f563cccde650f459ebb"
+  },
+  {
+    "path": "scripts/verify_docs.py",
+    "sha256": "5f52f252cc129fa6e530c1e83d883aa515d8eab0380095a14cf9199fea67e544"
+  },
+  {
+    "path": "server/.env.example",
+    "sha256": "c828ce2c8de572534424278f2a5941f584dcb5cc0361b256b38851c4ecd98252"
+  },
+  {
+    "path": "server/.gitignore",
+    "sha256": "86d71c1f8dbc487c5dd43f3cdf6c7e1f01ecfb4ddab18532b3e04cd106e88840"
+  },
+  {
+    "path": "server/README.md",
+    "sha256": "0fcd89b5d5f796ff69c2b5065262d298099cb6baab8e34c17d64295a56fc6843"
+  },
+  {
+    "path": "server/package-lock.json",
+    "sha256": "de96ad8a21d03f33959140f1af9d716b86c19d550ccca413487ceeb05107a201"
+  },
+  {
+    "path": "server/package.json",
+    "sha256": "63b2141c5f35677024b879f59d9d54c250c527f18c1203235fa2eb7de7d21535"
+  },
+  {
+    "path": "server/src/budget.ts",
+    "sha256": "451cead58bc106c070279ec7e31135b503de5423c4d55c270cfc8081bc3a3b1f"
+  },
+  {
+    "path": "server/src/config.ts",
+    "sha256": "56bce991c2c00d14fca7041639498dc8db00a615fdb241870b57217e0c21f52c"
+  },
+  {
+    "path": "server/src/connectors.ts",
+    "sha256": "f68d1156b47011a672f22acb5db346f90eaff74a3cdf7fdad7a946f911db61c6"
+  },
+  {
+    "path": "server/src/contracts.ts",
+    "sha256": "6b81081a502ce88cd64fd9823ac781e07c71854d06b61b6f25f62adb75ccfb94"
+  },
+  {
+    "path": "server/src/errors.ts",
+    "sha256": "8809b555ccb76598b7e613d24cf72f993c4d46d9dc2e3c9e04c18d0a5ff5e414"
+  },
+  {
+    "path": "server/src/http.ts",
+    "sha256": "3bf21e7983be2733ecccc7d8d94e4cccbed1b99c7dc18ed3728fe3a9f014a9c8"
+  },
+  {
+    "path": "server/src/main.ts",
+    "sha256": "44ecc4c183908c733dbe089991d5439f86cf097c075fee71027711c6f3149422"
+  },
+  {
+    "path": "server/src/planner.ts",
+    "sha256": "2b2110695d09b9d45260f50acd41ea4baf880185f4d4bfaed5815ea3e849dc2d"
+  },
+  {
+    "path": "server/test/security-regressions.test.ts",
+    "sha256": "aefd9b87e843c495ec206ecde54c75125edc3c5cbede5f08cd53394695ee1d9b"
+  },
+  {
+    "path": "server/test/server.test.ts",
+    "sha256": "fdd84d2793b5d0435a181750b29fdcaa0f961b076947a4ed06a470d195d1adb3"
+  },
+  {
+    "path": "server/tsconfig.json",
+    "sha256": "a7dc73ab7528c668204ff5a9608de48e1e64c0fcd3e6138afb30c8696eff6d0f"
+  }
+]

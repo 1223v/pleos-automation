@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.pleos.routine.execution.SeatRunAuthorizationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-30T00:34:20.503Z" time="0.217">
+  <testcase name="everyRunAsksOnceForAllPotentialSeatActions" classname="com.pleos.routine.execution.SeatRunAuthorizationTest" time="0.207" />
+  <testcase name="decliningBlocksEntireWorkflowAndSeatlessDoesNotPrompt" classname="com.pleos.routine.execution.SeatRunAuthorizationTest" time="0.006" />
+  <testcase name="absentCalibrationOrMovingVehicleNeverPromptsOrAuthorizes" classname="com.pleos.routine.execution.SeatRunAuthorizationTest" time="0.003" />
+  </testsuite>

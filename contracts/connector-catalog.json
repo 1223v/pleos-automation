@@ -1,0 +1,583 @@
+{
+  "version": 1,
+  "checkedAt": "2026-10-27",
+  "scope": "확인한 공개 SDK·공식 입점 발표·공식 API. 전 세계 모든 서비스의 완전 목록은 아님.",
+  "entries": [
+    {
+      "id": "vehicle.EvBattery",
+      "name": "Pleos 배터리",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.HVAC",
+      "name": "Pleos 공조",
+      "actions": [
+        "목표 온도"
+      ],
+      "status": "타입 연결 구현 · 런타임 검증 필요",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Door",
+      "name": "Pleos 도어",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Seat",
+      "name": "Pleos 시트",
+      "actions": [
+        "열선·제한 이동·STOP"
+      ],
+      "status": "타입 연결 구현 · 런타임 검증 필요",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Window",
+      "name": "Pleos 창문",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Display",
+      "name": "Pleos 디스플레이",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Odometer",
+      "name": "Pleos 주행 거리",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Light",
+      "name": "Pleos 조명",
+      "actions": [
+        "앰비언트 밝기·색상"
+      ],
+      "status": "타입 연결 구현 · 런타임 검증 필요",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Safety",
+      "name": "Pleos 안전 상태",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.CarInfo",
+      "name": "Pleos 차량 정보",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.DrivingMode",
+      "name": "Pleos 주행 모드",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Gear",
+      "name": "Pleos 기어",
+      "actions": [
+        "기어 읽기"
+      ],
+      "status": "타입 연결 구현 · 런타임 검증 필요",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.SteeringWheel",
+      "name": "Pleos 스티어링 휠",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Toll",
+      "name": "Pleos 통행료",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.TurnSignal",
+      "name": "Pleos 방향 지시등",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Wiper",
+      "name": "Pleos 와이퍼",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Tire",
+      "name": "Pleos 타이어",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.SideMirror",
+      "name": "Pleos 사이드 미러",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Brake",
+      "name": "Pleos 브레이크",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "vehicle.Fuel",
+      "name": "Pleos 연료",
+      "actions": [
+        "공식 SDK 기능 조회"
+      ],
+      "status": "공식 SDK 도메인 · 루틴 실행 미개방",
+      "note": "2.3.2 소스의 getter 기준. 문서 공개는 계정 권한의 증거가 아닙니다. 주행·제동·조향 제어는 일반 루틴 허용 목록에 없습니다.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/intro",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.0",
+      "name": "네이버 오토",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-group-redefines-in-vehicle-experience-with-pleos-connect-next-generation-infotainment-system",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.1",
+      "name": "네이버 지도",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-group-redefines-in-vehicle-experience-with-pleos-connect-next-generation-infotainment-system",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.2",
+      "name": "YouTube",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-group-redefines-in-vehicle-experience-with-pleos-connect-next-generation-infotainment-system",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.3",
+      "name": "Spotify",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "정책 차단",
+      "note": "Spotify 음성 제어는 사전 서면 승인 전 개방하지 않습니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-group-redefines-in-vehicle-experience-with-pleos-connect-next-generation-infotainment-system",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.4",
+      "name": "SBS고릴라",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-group-redefines-in-vehicle-experience-with-pleos-connect-next-generation-infotainment-system",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.5",
+      "name": "essential;",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-group-redefines-in-vehicle-experience-with-pleos-connect-next-generation-infotainment-system",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.6",
+      "name": "지니",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-group-redefines-in-vehicle-experience-with-pleos-connect-next-generation-infotainment-system",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.7",
+      "name": "카카오내비",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/42dot-pleos-connect-app-market-new-apps",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.8",
+      "name": "what3words",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/42dot-pleos-connect-app-market-new-apps",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.9",
+      "name": "Make My Day - Route Planner",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/42dot-pleos-connect-app-market-new-apps",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.10",
+      "name": "멜론",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/42dot-pleos-connect-app-market-new-apps",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.11",
+      "name": "Radioline",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/42dot-pleos-connect-app-market-new-apps",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.12",
+      "name": "RaiDIO Auto",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/42dot-pleos-connect-app-market-new-apps",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "market.13",
+      "name": "픽클",
+      "actions": [
+        "설치된 앱 열기 후보",
+        "미디어 세션 연결 가능 여부 확인"
+      ],
+      "status": "마켓 입점 확인 · 자동화 API는 별도",
+      "note": "마켓 18종 중 보도자료에서 이름을 확인한 14종입니다. 모바일 SDK가 Pleos 앱을 제어한다는 뜻은 아닙니다. 설치·세션 허용·공식 deep link를 별도로 확인해야 합니다.",
+      "source": "https://www.hyundaimotorgroup.com/ko/news/42dot-pleos-connect-app-market-new-apps",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "pleos.navigation",
+      "name": "Pleos 기본 내비",
+      "actions": [
+        "좌표 목적지 안내",
+        "경로 취소"
+      ],
+      "status": "NaviHelper 3.0.5 연결 구현",
+      "note": "목적지 이벤트와 좌표 일치로 확인. 차량 서비스·권한 필요.",
+      "source": "https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/destinations",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "local.audio",
+      "name": "앱 자체 음원",
+      "actions": [
+        "휴식 음원 반복 재생",
+        "중지"
+      ],
+      "status": "로컬 구현",
+      "note": "프로젝트 생성 음원, 다른 앱의 재생을 중지하지 않습니다.",
+      "source": "https://developer.android.com/media/media3/exoplayer/hello-world",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "google.calendar",
+      "name": "Google Calendar",
+      "actions": [
+        "앞으로 24시간 일정 읽기"
+      ],
+      "status": "서버 어댑터 · 계정 설정 필요",
+      "note": "calendar.events.readonly OAuth 권한. 인증 등록·실제 호출은 아직 수행하지 않았습니다.",
+      "source": "https://developers.google.com/workspace/calendar/api/v3/reference/events/list",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "home.assistant",
+      "name": "Home Assistant",
+      "actions": [
+        "선택한 조명 켜기·끄기",
+        "선택한 공조 목표 온도"
+      ],
+      "status": "서버 어댑터 · 허용 대상 설정 필요",
+      "note": "관리자가 설정한 HTTPS 호스트·entity 허용 목록만 사용합니다. 응답 뒤 상태를 재조회합니다.",
+      "source": "https://developers.home-assistant.io/docs/api/rest/",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "kakao.local",
+      "name": "카카오 Local",
+      "actions": [
+        "키워드 장소 검색"
+      ],
+      "status": "서버 어댑터 · 키 설정 필요",
+      "note": "검색 결과를 선택해 좌표로 사용합니다. 카카오내비 차량 앱 직접 제어와 별개입니다.",
+      "source": "https://developers.kakao.com/docs/latest/ko/local/dev-guide",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "what3words.api",
+      "name": "what3words API",
+      "actions": [
+        "세 단어 주소 → 좌표"
+      ],
+      "status": "서버 어댑터 · 별도 활성화 필요",
+      "note": "요금·계정 제한 확인 후 키와 명시적 활성화가 필요합니다.",
+      "source": "https://developer.what3words.com/public-api/docs",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "smartthings",
+      "name": "SmartThings",
+      "actions": [
+        "스마트홈 연결 후보"
+      ],
+      "status": "신규 등록 확인 필요",
+      "note": "연동 앱 등록 정책·유료 플랜 조건 때문에 현재 자동 연결을 제공하지 않습니다.",
+      "source": "https://developer.smartthings.com/docs/service-integrations/app-setup",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "radioline.api",
+      "name": "Radioline API",
+      "actions": [
+        "라디오·오디오 연동 후보"
+      ],
+      "status": "사업자 접근 신청 필요",
+      "note": "공개 문서만으로 키·재생 권한을 발급할 수 없습니다.",
+      "source": "https://business.radioline.co/",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    },
+    {
+      "id": "makemyday.api",
+      "name": "Make My Day API",
+      "actions": [
+        "경로 계획 후보"
+      ],
+      "status": "사업자 접근 신청 필요",
+      "note": "API 제공사와 접근 계약 확인 필요.",
+      "source": "https://www.makemydayapp.com/api.php",
+      "checkedAt": "2026-10-27",
+      "accountStatus": "미확인",
+      "runtimeStatus": "미검증"
+    }
+  ]
+}

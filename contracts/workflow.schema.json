@@ -1,0 +1,579 @@
+{
+  "$ref": "#/$defs/workflow",
+  "$defs": {
+    "condition": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "enum": [
+            "OUTSIDE_TEMPERATURE",
+            "GEAR",
+            "SPEED",
+            "SEAT_OCCUPIED",
+            "TIME_WINDOW",
+            "WEEKDAY"
+          ]
+        },
+        "operator": {
+          "type": "string",
+          "enum": [
+            "EQ",
+            "NE",
+            "LT",
+            "LTE",
+            "GT",
+            "GTE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "flag": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "startMinute": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "endMinute": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weekdays": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 7
+        }
+      },
+      "required": [
+        "field",
+        "operator",
+        "value",
+        "text",
+        "flag",
+        "startMinute",
+        "endMinute",
+        "weekdays"
+      ],
+      "additionalProperties": false
+    },
+    "trigger": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "VOICE",
+            "SEAT_OCCUPIED",
+            "TIME",
+            "CONDITION_ENTER"
+          ]
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/condition"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/condition"
+          },
+          "maxItems": 16
+        },
+        "minuteOfDay": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weekdays": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 7
+        },
+        "zoneId": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "condition",
+        "filters",
+        "minuteOfDay",
+        "weekdays",
+        "zoneId"
+      ],
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "NAVIGATE",
+            "CANCEL_NAVIGATION",
+            "SET_HVAC_TARGET",
+            "SET_AMBIENT_BRIGHTNESS",
+            "SET_AMBIENT_COLOR",
+            "SET_SEAT_HEAT",
+            "MOVE_SEAT_LIMITED",
+            "PLAY_LOCAL_AUDIO",
+            "STOP_LOCAL_AUDIO",
+            "OPEN_APP",
+            "MEDIA_CONTROL",
+            "CALENDAR_READ",
+            "HA_CALL",
+            "PLACE_SEARCH",
+            "WHAT3WORDS_RESOLVE"
+          ]
+        },
+        "area": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "targetId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "latitude": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "longitude": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "axis": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "FORE_AFT",
+                "BACKREST"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "direction": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "FORWARD",
+                "BACKWARD"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "area",
+        "value",
+        "text",
+        "targetId",
+        "latitude",
+        "longitude",
+        "axis",
+        "direction"
+      ],
+      "additionalProperties": false
+    },
+    "node": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "START",
+            "ACTION",
+            "IF",
+            "WAIT",
+            "TIMER",
+            "REPEAT",
+            "PARALLEL",
+            "JOIN",
+            "END"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        },
+        "action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/action"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/condition"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "durationSeconds": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "repeatCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "joinId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "position",
+        "action",
+        "condition",
+        "durationSeconds",
+        "repeatCount",
+        "joinId"
+      ],
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "source": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "target": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "port": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "target",
+        "port"
+      ],
+      "additionalProperties": false
+    },
+    "workflow": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "integer",
+          "enum": [
+            2
+          ]
+        },
+        "id": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "trigger": {
+          "$ref": "#/$defs/trigger"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node"
+          },
+          "maxItems": 64
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/edge"
+          },
+          "maxItems": 192
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "id",
+        "title",
+        "revision",
+        "trigger",
+        "nodes",
+        "edges"
+      ],
+      "additionalProperties": false
+    },
+    "operation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "REPLACE_NODE",
+            "ADD_NODE",
+            "REMOVE_NODE",
+            "CONNECT",
+            "DISCONNECT",
+            "CHANGE_TITLE",
+            "CHANGE_TRIGGER"
+          ]
+        },
+        "node": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/node"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nodeId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "edge": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/edge"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "edgeId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "trigger": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/trigger"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "node",
+        "nodeId",
+        "edge",
+        "edgeId",
+        "title",
+        "trigger"
+      ],
+      "additionalProperties": false
+    },
+    "patch": {
+      "type": "object",
+      "properties": {
+        "baseRevision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operation"
+          },
+          "maxItems": 128
+        }
+      },
+      "required": [
+        "baseRevision",
+        "operations"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

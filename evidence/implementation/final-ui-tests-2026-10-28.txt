@@ -1,0 +1,171 @@
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionDraftTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.ConnectionDraftTest:
+INSTRUMENTATION_STATUS: test=pendingDraftSurvivesStoreReopenButControlIsNeverPersisted
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionDraftTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=pendingDraftSurvivesStoreReopenButControlIsNeverPersisted
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionDraftTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=installedAppListContainsOnlyResolvableTargets
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionDraftTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=installedAppListContainsOnlyResolvableTargets
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionUiTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.ConnectionUiTest:
+INSTRUMENTATION_STATUS: test=retainedVoiceRequestReopensForReviewWithoutCallingAi
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionUiTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=retainedVoiceRequestReopensForReviewWithoutCallingAi
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionUiTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=catalogShowsInstalledAppsWithoutLaunchingThem
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionUiTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but found '2' nodes that satisfy: (Text + EditableText contains 'com.antutu.benchmark.full.lite' (ignoreCase: false))
+Nodes found:
+1) Node #466 at (l=24.0, t=394.0, r=1560.0, b=464.0)px
+EditableText = 'com.antutu.benchmark.full.lite'
+TextSelectionRange = 'TextRange(30, 30)'
+IsEditable = 'true'
+ImeAction = 'Default'
+Focused = 'true'
+Text = '[설치된 앱 검색]'
+Actions = [GetTextLayoutResult, SetText, InsertTextAtCursor, SetSelection, PerformImeAction, OnClick, OnLongClick, PasteText, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, MagnifierPositionInRoot]
+MergeDescendants = 'true'
+Has 17 siblings
+2) Node #485 at (l=36.0, t=514.0, r=248.0, b=534.0)px
+Text = '[com.antutu.benchmark.full.lite]'
+Actions = [SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+Has 2 siblings
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.ConnectionUiTest.catalogShowsInstalledAppsWithoutLaunchingThem(ConnectionUiTest.kt:26)
+
+INSTRUMENTATION_STATUS: stream=
+Error in catalogShowsInstalledAppsWithoutLaunchingThem(com.pleos.routine.ConnectionUiTest):
+java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but found '2' nodes that satisfy: (Text + EditableText contains 'com.antutu.benchmark.full.lite' (ignoreCase: false))
+Nodes found:
+1) Node #466 at (l=24.0, t=394.0, r=1560.0, b=464.0)px
+EditableText = 'com.antutu.benchmark.full.lite'
+TextSelectionRange = 'TextRange(30, 30)'
+IsEditable = 'true'
+ImeAction = 'Default'
+Focused = 'true'
+Text = '[설치된 앱 검색]'
+Actions = [GetTextLayoutResult, SetText, InsertTextAtCursor, SetSelection, PerformImeAction, OnClick, OnLongClick, PasteText, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, MagnifierPositionInRoot]
+MergeDescendants = 'true'
+Has 17 siblings
+2) Node #485 at (l=36.0, t=514.0, r=248.0, b=534.0)px
+Text = '[com.antutu.benchmark.full.lite]'
+Actions = [SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+Has 2 siblings
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.ConnectionUiTest.catalogShowsInstalledAppsWithoutLaunchingThem(ConnectionUiTest.kt:26)
+
+INSTRUMENTATION_STATUS: test=catalogShowsInstalledAppsWithoutLaunchingThem
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.pleos.routine.EditorFlowTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.EditorFlowTest:
+INSTRUMENTATION_STATUS: test=createSimulateSaveAndOpenWithoutProviderOrVehicleWrites
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.EditorFlowTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=createSimulateSaveAndOpenWithoutProviderOrVehicleWrites
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RuntimeLifecycleTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.RuntimeLifecycleTest:
+INSTRUMENTATION_STATUS: test=gleoSchemaIsPackagedUnderRequiredName
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RuntimeLifecycleTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=gleoSchemaIsPackagedUnderRequiredName
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 51.778
+There was 1 failure:
+1) catalogShowsInstalledAppsWithoutLaunchingThem(com.pleos.routine.ConnectionUiTest)
+java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but found '2' nodes that satisfy: (Text + EditableText contains 'com.antutu.benchmark.full.lite' (ignoreCase: false))
+Nodes found:
+1) Node #466 at (l=24.0, t=394.0, r=1560.0, b=464.0)px
+EditableText = 'com.antutu.benchmark.full.lite'
+TextSelectionRange = 'TextRange(30, 30)'
+IsEditable = 'true'
+ImeAction = 'Default'
+Focused = 'true'
+Text = '[설치된 앱 검색]'
+Actions = [GetTextLayoutResult, SetText, InsertTextAtCursor, SetSelection, PerformImeAction, OnClick, OnLongClick, PasteText, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, MagnifierPositionInRoot]
+MergeDescendants = 'true'
+Has 17 siblings
+2) Node #485 at (l=36.0, t=514.0, r=248.0, b=534.0)px
+Text = '[com.antutu.benchmark.full.lite]'
+Actions = [SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+Has 2 siblings
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.ConnectionUiTest.catalogShowsInstalledAppsWithoutLaunchingThem(ConnectionUiTest.kt:26)
+
+FAILURES!!!
+Tests run: 6,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

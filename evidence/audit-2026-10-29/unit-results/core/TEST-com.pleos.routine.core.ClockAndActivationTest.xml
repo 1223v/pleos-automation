@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.pleos.routine.core.ClockAndActivationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-30T00:22:56.557Z" time="0.236">
+  <testcase name="timerCountsSleepAndRechecksDeadlineWithinOneSecond" classname="com.pleos.routine.core.ClockAndActivationTest" time="0.213" />
+  <testcase name="disabledEventsAreNeverReplayedOnActivation" classname="com.pleos.routine.core.ClockAndActivationTest" time="0.022" />
+  </testsuite>

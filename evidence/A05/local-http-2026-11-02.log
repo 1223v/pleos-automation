@@ -1,0 +1,5 @@
+READY http://127.0.0.1:18787 MOCK_ONLY external_fetch_disabled
+MOCK_EXPLANATION calls=1 events=1
+MOCK_EXPLANATION calls=2 events=1
+MOCK_EXPLANATION calls=3 events=1
+MOCK_EXPLANATION calls=4 events=1

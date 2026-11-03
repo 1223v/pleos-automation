@@ -1,0 +1,14 @@
+.E..
+======================================================================
+ERROR: test_other_pinned_runtime_root_can_be_verified_without_changing_node_default (test_bootstrap_node.BootstrapNodeTests.test_other_pinned_runtime_root_can_be_verified_without_changing_node_default)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\pleos-automation\scripts\test_bootstrap_node.py", line 40, in test_other_pinned_runtime_root_can_be_verified_without_changing_node_default
+    self.module.extract_verified(archive, digest, root / 'jdk', prefix='jdk17')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: extract_verified() got an unexpected keyword argument 'prefix'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.112s
+
+FAILED (errors=1)

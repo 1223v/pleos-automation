@@ -1,0 +1,37 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✔ known overspend blocks later reservations across restart and preserves known charge (34.3355ms)
+✔ settled costs cannot be settled again to refund spend (0.8804ms)
+✔ budget periods change at Korean midnight including month boundary (1.4613ms)
+✔ legacy UTC-day charges conservatively overlap both Korean dates and months (28.3903ms)
+✔ two ledger connections cannot reserve beyond one shared limit (27.1538ms)
+✔ malformed mode locale and create-only fields are rejected before provider or reservation (3.2056ms)
+✔ complete valid graph rejects approval and semantic malformed values (6.484ms)
+✔ unavailable HA climate cannot write even when its old target matches (2.7642ms)
+✔ HA unavailable after write stays UNKNOWN and is never retried (0.7693ms)
+✔ actual SDK pins official origin and sends strict nonstored nonretry request (9.0706ms)
+✔ HTTP rejects browser and oversized final response, keeping error bounded (34.4384ms)
+✔ default and missing budgets block before provider creation/call (18.8426ms)
+✔ mock completion validates and duplicate request does not bill twice (2.3687ms)
+✔ uncertain reservations survive restart and enforce budget (24.7004ms)
+✔ provider failure keeps full reservation and hides provider secrets (1.2266ms)
+✔ invalid AI output is never a draft (0.8232ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.4953ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (2.5223ms)
+✔ HTTP authentication and disabled AI do not call a provider (32.2656ms)
+✔ schema rejects unexpected execution approval (0.919ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (6.871ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 498.3422

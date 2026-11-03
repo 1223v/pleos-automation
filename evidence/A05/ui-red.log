@@ -1,0 +1,167 @@
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.RunHistoryUiTest:
+INSTRUMENTATION_STATUS: test=oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (Text + EditableText contains 'A05 실행 당시 루틴' (ignoreCase: false))
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:394)
+	at androidx.compose.ui.test.Actions_androidKt.performClickImpl(Actions.android.kt:20)
+	at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:54)
+	at com.pleos.routine.RunHistoryUiTest.oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion$lambda$7(RunHistoryUiTest.kt:67)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$z92A5cdQ7Sv6WMCIjul7T4_Bna8(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion(RunHistoryUiTest.kt:54)
+
+INSTRUMENTATION_STATUS: stream=
+Error in oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion(com.pleos.routine.RunHistoryUiTest):
+java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (Text + EditableText contains 'A05 실행 당시 루틴' (ignoreCase: false))
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:394)
+	at androidx.compose.ui.test.Actions_androidKt.performClickImpl(Actions.android.kt:20)
+	at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:54)
+	at com.pleos.routine.RunHistoryUiTest.oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion$lambda$7(RunHistoryUiTest.kt:67)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$z92A5cdQ7Sv6WMCIjul7T4_Bna8(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion(RunHistoryUiTest.kt:54)
+
+INSTRUMENTATION_STATUS: test=oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=simulationStoresSnapshotAndHistoryDisplaysVersionAndCause
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<WorkflowDefinition(schemaVersion=2, id=history-ui-da907d1b-e60e-4191-9660-e46d69959247, title=A05 실행 당시 루틴, revision=7, trigger=TriggerDefinition(type=MANUAL, condition=null, filters=[], minuteOfDay=null, weekdays=[], zoneId=Asia/Seoul), nodes=[WorkflowNode(id=start, kind=START, label=시작, position=NodePosition(x=60.0, y=160.0), action=null, condition=null, durationSeconds=null, repeatCount=null, joinId=null), WorkflowNode(id=end, kind=END, label=완료, position=NodePosition(x=620.0, y=160.0), action=null, condition=null, durationSeconds=null, repeatCount=null, joinId=null)], edges=[WorkflowEdge(id=start-end, source=start, target=end, port=next)])> but was:<null>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause$lambda$3(RunHistoryUiTest.kt:47)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$PW3IH1YhQpGtvog2_78R6DjRbhM(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda6.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(RunHistoryUiTest.kt:39)
+
+INSTRUMENTATION_STATUS: stream=
+Error in simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(com.pleos.routine.RunHistoryUiTest):
+java.lang.AssertionError: expected:<WorkflowDefinition(schemaVersion=2, id=history-ui-da907d1b-e60e-4191-9660-e46d69959247, title=A05 실행 당시 루틴, revision=7, trigger=TriggerDefinition(type=MANUAL, condition=null, filters=[], minuteOfDay=null, weekdays=[], zoneId=Asia/Seoul), nodes=[WorkflowNode(id=start, kind=START, label=시작, position=NodePosition(x=60.0, y=160.0), action=null, condition=null, durationSeconds=null, repeatCount=null, joinId=null), WorkflowNode(id=end, kind=END, label=완료, position=NodePosition(x=620.0, y=160.0), action=null, condition=null, durationSeconds=null, repeatCount=null, joinId=null)], edges=[WorkflowEdge(id=start-end, source=start, target=end, port=next)])> but was:<null>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause$lambda$3(RunHistoryUiTest.kt:47)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$PW3IH1YhQpGtvog2_78R6DjRbhM(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda6.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(RunHistoryUiTest.kt:39)
+
+INSTRUMENTATION_STATUS: test=simulationStoresSnapshotAndHistoryDisplaysVersionAndCause
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=manualRunPersistsStartCauseBeforeFinishing
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<MANUAL> but was:<null>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.pleos.routine.RunHistoryUiTest.manualRunPersistsStartCauseBeforeFinishing$lambda$12(RunHistoryUiTest.kt:84)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$ibiJ3XCtv_SkT6zYzFCCRjCB3Xw(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda7.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.manualRunPersistsStartCauseBeforeFinishing(RunHistoryUiTest.kt:78)
+
+INSTRUMENTATION_STATUS: stream=
+Error in manualRunPersistsStartCauseBeforeFinishing(com.pleos.routine.RunHistoryUiTest):
+java.lang.AssertionError: expected:<MANUAL> but was:<null>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.pleos.routine.RunHistoryUiTest.manualRunPersistsStartCauseBeforeFinishing$lambda$12(RunHistoryUiTest.kt:84)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$ibiJ3XCtv_SkT6zYzFCCRjCB3Xw(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda7.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.manualRunPersistsStartCauseBeforeFinishing(RunHistoryUiTest.kt:78)
+
+INSTRUMENTATION_STATUS: test=manualRunPersistsStartCauseBeforeFinishing
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 16.107
+There were 3 failures:
+1) oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion(com.pleos.routine.RunHistoryUiTest)
+java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (Text + EditableText contains 'A05 실행 당시 루틴' (ignoreCase: false))
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:394)
+	at androidx.compose.ui.test.Actions_androidKt.performClickImpl(Actions.android.kt:20)
+	at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:54)
+	at com.pleos.routine.RunHistoryUiTest.oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion$lambda$7(RunHistoryUiTest.kt:67)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$z92A5cdQ7Sv6WMCIjul7T4_Bna8(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion(RunHistoryUiTest.kt:54)
+2) simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(com.pleos.routine.RunHistoryUiTest)
+java.lang.AssertionError: expected:<WorkflowDefinition(schemaVersion=2, id=history-ui-da907d1b-e60e-4191-9660-e46d69959247, title=A05 실행 당시 루틴, revision=7, trigger=TriggerDefinition(type=MANUAL, condition=null, filters=[], minuteOfDay=null, weekdays=[], zoneId=Asia/Seoul), nodes=[WorkflowNode(id=start, kind=START, label=시작, position=NodePosition(x=60.0, y=160.0), action=null, condition=null, durationSeconds=null, repeatCount=null, joinId=null), WorkflowNode(id=end, kind=END, label=완료, position=NodePosition(x=620.0, y=160.0), action=null, condition=null, durationSeconds=null, repeatCount=null, joinId=null)], edges=[WorkflowEdge(id=start-end, source=start, target=end, port=next)])> but was:<null>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause$lambda$3(RunHistoryUiTest.kt:47)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$PW3IH1YhQpGtvog2_78R6DjRbhM(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda6.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(RunHistoryUiTest.kt:39)
+3) manualRunPersistsStartCauseBeforeFinishing(com.pleos.routine.RunHistoryUiTest)
+java.lang.AssertionError: expected:<MANUAL> but was:<null>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.pleos.routine.RunHistoryUiTest.manualRunPersistsStartCauseBeforeFinishing$lambda$12(RunHistoryUiTest.kt:84)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$ibiJ3XCtv_SkT6zYzFCCRjCB3Xw(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda7.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:28)
+	at com.pleos.routine.RunHistoryUiTest.manualRunPersistsStartCauseBeforeFinishing(RunHistoryUiTest.kt:78)
+
+FAILURES!!!
+Tests run: 3,  Failures: 3
+
+
+INSTRUMENTATION_CODE: -1

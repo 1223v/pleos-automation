@@ -1,5 +1,7 @@
 # 기능별 공식 API 계약과 실행 게이트
 
+> **2026-10-28 업데이트:** Vehicle2.3.2/NaviHelper3.0.5 앱이 공식 API34 AVD에서 실행된다. Service 설치값은 **2.3.22**다. 앰비언트 합친 영역0~100, 열선·앞뒤 MOVE READ_WRITE를 [재조회](evidence/W03/avd-readonly-probe-2026-10-28.txt)했다. HVAC는 초기 timeout/unavailable 이후 host GPU Cold boot·활성 Console에서22→23°C 목표값 변경 후 조회를 통과했다. SDK 온도 범위15~30°C/0.5°C와 Console 카드16~30°C는 각각의 관찰로 구분한다. 밝기·색상 상태 변경도 통과했으나 시트 두 축 위치 변화는 미관찰이다. capability와 실제 쓰기·이동·정지를 [구현 검증](evidence/implementation/2026-10-28.md) 및 [제어 게이트](evidence/W05/control-gate.md)에 구분한다. 아래 미착수 표기는 10월25일 초기 이력이다.
+
 확인일: **2026-10-25 KST**. 문서·공식 SDK 소스 확인과 앱 실행 검증은 다르다. 현재 코드·SDK 설치·계정 권한·AVD 실행은 미착수/미확인이다. **공조·조명·시트는 모두 필수 요구사항**이며 권한을 확보하지 못하면 완료 기준을 낮추지 않는다.
 
 ## 사용자 지정 두 페이지의 적용

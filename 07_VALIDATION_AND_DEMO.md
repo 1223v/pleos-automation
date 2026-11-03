@@ -1,5 +1,33 @@
 # 요구사항 검증 및 시연 계획
 
+## 2026-11-02 A05 후속 검증 — 11월3일 기록 확정
+
+[A05 장부](evidence/A05/verification-2026-11-02.md)가 실행 설명·이력 개선의 현재 근거다. 서버50·core98·앱64 시험과 debug/test/unsigned release 빌드, offline lint0오류1경고를 확인했다. 전체 AVD26개와 별도 실제 프로세스 복구1개가 통과했다. 표적7개는 전체26개에 포함되므로 중복 합산하지 않는다. 이력 경합/복구 로딩의 RED→GREEN, Room1/2→3 보존, 앱→로컬 HTTP→모의 설명 응답을 포함한다.11월3일 소스126개/APK3개 해시 일치를 확인하고 기록을 확정했으며 앱 시험을 다시 실행한 것은 아니다. 실제 OpenAI 설명 정확도·시트·최종 release10회는 포함하지 않는다.
+
+## 2026-11-01 후속 검증
+
+[새 검증 장부](evidence/plan-compliance-2026-10-30/verification-2026-11-01.md)의 A01~A04/A09 RED→GREEN과 실제 명령·APK를 기준으로 한다. core98/app56/server38 단위·모의 시험을 확인했고 동일 APK AVD21개·알림 권한 거부1개가 통과했다. debug/test/unsigned release 빌드와 offline lint0오류1경고도 확인했다. 최초 AVD GNSS watchdog 중단과 재시험을 함께 기록한다.4,096회 사전 한도·가상 시작 자격·HTTP 최종 승인·TIMER 완료 알림/표시·늦은 음원 오류를 기존 R/W/T에 연결했다. 아래10월30일 차량/복구 결과를 새 APK에 재사용하지 않는다. 실제 SDK 자체 재연결·시트·AI·최신30분/절전·release10회는 별도 게이트다.
+
+## 2026-10-30 정합성 개선 검증
+
+[최신 장부](evidence/implementation/2026-10-29.md), [기능별 시험 연결](evidence/audit-2026-10-29/feature-test-map.md), [보안 보고](security_best_practices_report.md)를 우선한다. core71·app25·서버25·설치 도구5개 시험, debug/test/unsigned release 빌드가 통과했다. lint는0오류15경고다. 기존 코드의 회귀시험 보강과 결함을 먼저 재현한 RED→GREEN을 구분한다.
+
+공식 AVD 최신 APK의 Gleo/편집·Room migration·수명·연결15개가 통과했다. 실제 프로세스 종료 뒤 다른 PID에서 snapshot/revision/hash·event prefix4개 보존, UNKNOWN 및5초간 재실행 없음도1PASS다. 시험별 명령·버전·해시는 장부에 연결한다.
+
+공조/조명 재검증은 최초5개 중1PASS/4FAIL이었다.8088 forward와 열린 Console이 없음을 확인하고 공식 절차로 복구한 뒤, 앱 코드·판정 기준·APK를 바꾸지 않고 **5PASS**했다. 공조22→23°C, 밝기20→30%, 색상#FFDB854B→#FF4B85DB의 SDK 재조회와 Console 표시를 관찰했다. [초기 실패](evidence/audit-2026-10-29/app/vehicle-regression.log), [재시험](evidence/audit-2026-10-29/app/vehicle-console-retest.log), [실제 관찰](evidence/audit-2026-10-29/app/vehicle-console-observations.log). Console/포워드 준비가 없는 환경의 실패를 삭제하거나 항상 동작하는 것으로 일반화하지 않는다.
+
+시트 두 축 이동/STOP·주행 중 중단·실제 AI·Gleo 등록/callback·동일 release10회는 미통과/미실행이다. 절전 포함 타이머는 fake elapsed clock으로 확인했으며 실제 deep sleep 또는 최신 APK30분 연속 검증은 아니다. 제품 전체 완료 조건은 유지한다.
+
+## 2026-10-28 실행 현황
+
+[구현 증거 장부](evidence/implementation/2026-10-28.md)에 실제 버전·명령·성공/실패를 기록한다. Kotlin core UNIT 23개, 서버 모의/로컬 HTTP 시험 10개가 통과했다. 공식 AVD의 읽기 probe, 조명 밝기·색상 변경 후 조회, 빈 흐름 생성→시뮬레이션→저장, Gleo schema 패키징, 화면 이탈 후 자체 음원·타이머 유지와 취소 이력이 통과했다. 실제 30분 타이머는1,800,001ms, 프로세스 종료 후 다른 PID의 UNKNOWN 복구·정의/초안 보존·5초간 재실행 없음도 통과했다. 연결 UI6개 중 최초1개 선택자 실패는 수정 후 단독 재시험 통과했다. 공조는 초기 unavailable 이후 host GPU Cold boot·활성 Console에서22→23°C 변경 후 조회를 통과했다. 초기 capability timeout은 남아 있으며 시트 두 축은 위치 변화 미관찰로 미통과다. 이 결과는 상위 T01~T45 전체 또는 최종 release의 통과가 아니다.
+
+확장 시험 T39 그래프 직접 편집/Undo/해시, T40 분기/반복/병렬/충돌/취소, T41 AI 비활성/패치/인증/예산, T42 실제·가상 분리/3°C·12°C, T43 연결 상태 구분, T44 초기 참/unknown/앱전환/부팅, T45 외기/점유/열선/내비를 W23~W29에 연결한다. 앱 전환은 취소 사유가 아니라 실행 유지 시험으로 변경한다. 주행 UI 제한·실제 차량 쓰기 제한은 별도다.
+
+추가 [Console 주행 전환](evidence/W04/console-driving-verification.md) T03,T04,T15,T32: 실제 속도1.67m/s 이상·D·UX 제한 수신, 편집 창 닫힘·초안 보존, 정지/P 후 편집 복귀 **1PASS**. Pleos 시스템의 앱 차단 화면도 확인했다. 실행 중 물리 제어·시트 STOP 시험을 대신하지 않는다.
+
+아래 NOT_RUN 선언은 초기 계획의 기준선이다. 현재 통과 범위는 증거 장부만으로 판단하며 실제 AI/시트/release10회 미통과를 그대로 남긴다.
+
 기준일: **2026-10-25 KST**. 아래 앱 시험은 모두 **`NOT_RUN`(미실행)** 이다. 이번 문서 편집·링크 점검을 앱 구현 검증으로 바꾸지 않는다. 최종 판정 환경은 **Windows의 공식 Pleos Connect Emulator에서 실행하는 release APK**다. 공조·조명·시트 중 하나라도 필수 시험을 통과하지 못하면 전체 구현 완료가 아니다.
 
 ## 검증 수준과 증거 규칙

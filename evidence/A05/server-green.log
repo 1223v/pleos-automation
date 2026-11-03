@@ -1,0 +1,64 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✔ HA light unknown or unavailable state blocks before any service write (34.9628ms)
+✔ HA light mismatched or missing current state blocks before service write (0.9428ms)
+✔ HA light reads before write and verifies the selected on or off state afterwards (2.4021ms)
+✔ Calendar rejects malformed event collections and explicit error payloads (5.9627ms)
+✔ Calendar preserves omitted or empty items and valid optional event fields (1.3295ms)
+✔ Kakao rejects missing or malformed place lists and unusable destination coordinates (2.3801ms)
+✔ Kakao preserves empty results and valid place coordinates without optional metadata (0.788ms)
+✔ what3words rejects absent malformed or out of range coordinates (1.5371ms)
+✔ what3words verifies numeric coordinates including zero and range boundaries (0.7758ms)
+✔ workflow contract accepts exactly4096 visits and rejects4097 before provider compilation (34.3277ms)
+✔ deep nested repeats saturate rather than overflow the visit limit (1.5139ms)
+✔ IF alternatives use the maximum path instead of summing both (0.9836ms)
+✔ parallel branches add their visits even when each branch alone fits (1.5473ms)
+✔ explanation route is authenticated and disabled before any provider or reservation (70.7725ms)
+✔ explanation sends exact historic evidence and separate output contract, with shared budget (28.2489ms)
+✔ explanation validates references, types, source separation and extra keys before provider (39.5682ms)
+✔ explanation rejects hallucinated event references and command-bearing output (21.9512ms)
+✔ explanation accepts explicit omitted-event window without inventing omitted evidence (10.9352ms)
+✔ explanation cannot report real VERIFIED as simulated or simulated effects as real (6.5391ms)
+✔ explanations and drafts share one active-call gate in both directions (12.4152ms)
+✔ explanation reserves before calling and blocks insufficient budget (6.7848ms)
+✔ explanation provider failure retains uncertain reservation and sanitized error (7.9341ms)
+✔ explanation limits event count and request bytes before provider (7.0211ms)
+✔ known overspend blocks later reservations across restart and preserves known charge (61.7895ms)
+✔ settled costs cannot be settled again to refund spend (1.4891ms)
+✔ budget periods change at Korean midnight including month boundary (1.727ms)
+✔ legacy UTC-day charges conservatively overlap both Korean dates and months (65.3742ms)
+✔ two ledger connections cannot reserve beyond one shared limit (40.1844ms)
+✔ malformed mode locale and create-only fields are rejected before provider or reservation (4.9313ms)
+✔ complete valid graph rejects approval and semantic malformed values (9.5978ms)
+✔ unavailable HA climate cannot write even when its old target matches (3.8233ms)
+✔ HA unavailable after write stays UNKNOWN and is never retried (1.1409ms)
+✔ actual SDK pins official origin and sends strict nonstored nonretry request (10.0644ms)
+✔ HTTP rejects browser and oversized final response, keeping error bounded (45.4307ms)
+✔ invalid usage keeps reservation and locks the ledger (4.257ms)
+✔ real SDK does not retry network errors (2.0181ms)
+✔ HTTP MIME JSON body and request rate boundaries are enforced (60.811ms)
+✔ connector stream overflow and redirect failure return sanitized errors (0.932ms)
+✔ default and missing budgets block before provider creation/call (23.6999ms)
+✔ mock completion validates and duplicate request does not bill twice (3.9455ms)
+✔ uncertain reservations survive restart and enforce budget (61.1734ms)
+✔ provider failure keeps full reservation and hides provider secrets (1.7333ms)
+✔ invalid AI output is never a draft (1.1168ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.7519ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (3.6613ms)
+✔ HTTP authentication and disabled AI do not call a provider (47.4165ms)
+✔ schema rejects unexpected execution approval (1.6449ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (10.2068ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 48
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 813.8339

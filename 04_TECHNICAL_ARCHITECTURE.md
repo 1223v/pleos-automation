@@ -1,5 +1,60 @@
 # AI 루틴 앱 기술 설계와 구현 계약
 
+## 2026-11-02 A05 실행 설명과 이력
+
+Room3은 실행 당시 규칙·revision·의미 해시와 nullable 시작 원인을 저장한다. 실제 실행은 단계 journal을 유지하고 가상 실행도 snapshot을 함께 보존한다.2→3은 startCause 추가,1→3은 기존 migration 연결이며 과거 누락 값은 null로 남긴다.
+
+`RunHistory`는 당시 metadata가 일치하는 snapshot으로 표시·편집·설명 입력을 만든다. 현재 저장본과 다르면 복사본을 열고, 이미 수집한 화면 상태를 동기적으로 선택하여 오래된 DB 응답이 새 편집을 덮어쓰지 않게 한다. 복구 journal 로딩 완료 전에는 설명/조건 편집을 보류한다.
+
+`POST /v1/run-explanations`는 `{requestId,locale,workflow,run,startCause,omittedEventCount}`를 받으며 최대128개 이벤트(앞32/뒤96)의 원래 순번과 생략 건수를 유지한다. 생성 API와 동일한 인증·예산·동시 요청 제한을 사용하고 설명 전용 strict 출력 `{runId,summary,details,limitations}`의 run/node/event 참조를 검증한다. 실행 자격이 없는 BLOCKED 기록도 설명할 수 있도록 입력 schema/참조와 실행 의미 검증을 분리한다. AI 텍스트는 참고 표시이며 원래 상태·승인·규칙을 갱신하지 않는다. [A05 증거](evidence/A05/verification-2026-11-02.md)
+
+## 2026-10-30 코드에서 확인한 구조와 계약
+
+| 실제 경로 | 책임·연결 |
+|---|---|
+| `android/core/src/main/kotlin/com/pleos/routine/core/` | Workflow 모델·검증·편집/패치·트리거·실행 엔진·순수 시뮬레이터. Android/네트워크 IO와 분리 |
+| `android/app/src/main/java/com/pleos/routine/MainActivity.kt` | Compose 편집과 Gleo 진입. singleTask/onNewIntent는 현재 편집 상태를 유지하며 요청만 재평가 |
+| `android/app/src/main/java/com/pleos/routine/data/` | Room2, 요청 보관, 실행 정의 snapshot과 순번 event journal, 서버 주소 정책 |
+| `android/app/src/main/java/com/pleos/routine/execution/` | 서비스가 실행 수명 소유. 실행 전 전체 시트 승인, journal 영속화 후 진행, 취소·복구 연결 |
+| `android/app/src/main/java/com/pleos/routine/vehicle/` | 공식 SDK typed 호출, 상태 시각·연결 세대, MOVE/STOP 조정. 실제 교정 전 seatPolicy=null |
+| `server/src/` | strict DTO·그래프 검증, OpenAI 공식 원점, KST 비용 예약/영속 차단, 허용한 커넥터·HTTP 경계 |
+| `contracts/`, `scripts/`, `evidence/` | 스키마·Gleo/연결 카탈로그, 재현 명령, UNIT/AVD 증거 |
+
+```mermaid
+flowchart LR
+    G[Gleo·텍스트] --> E[검토·편집]
+    E --> P[PlannerClient → 인증 서버 → AI 초안]
+    P --> E
+    E --> D[Room 루틴·작업 초안]
+    D --> R[RoutineRuntime]
+    S[실제 차량 상태] --> R
+    R --> A[전체 실행 승인]
+    A --> C[core 엔진·선택 경로 검사]
+    C --> J[순서가 보장되는 Room journal]
+    J --> V[차량·음원·내비·커넥터]
+    V --> J
+```
+
+시트 포함 실행은 어떤 부작용보다 먼저 이번 실행 전체의 확인을 받는다. 개별 MOVE 직전에는 상태·영역·교정 범위를 다시 검사하며 STOP은 독립 감시 경로를 갖는다. 늦은 STOP 응답·연결 세대 변경·관찰 실패는 journal을 지우지 않고 UNKNOWN으로 남긴다. 제품 잠금 해제에는 실제 AVD 두 축의 이동·정지 증거가 필요하다.
+
+엔진은 선택된 ACTION만 preflight하므로 미선택 열선의 capability 실패가 독립 내비를 막지 않는다. 활성 정의를 동기화하여 비활성 중 이벤트를 재생하지 않고, 결합 조건 전체의 진입을 판단하며 cooldown은 실제 시작 때 소비한다. `elapsedRealtime` 기반의 경과 시간을 사용하고 WAIT/TIMER/전체 2시간 한도를 최대 1초 간격으로 재평가한다.
+
+Room1→2는 기존 행을 보존한다. 실행 시작 시 동일 runId에 정의·revision·semanticHash를 저장하고, 각 단계는 순번·응답·관찰값을 영속화한 다음 진행한다. journal 실패는 병렬 형제의 후속 부작용도 차단한다. 프로세스 재시작은 RUNNING을 UNKNOWN으로 바꾸며 물리 명령을 재전송하지 않는다. 초안의 그래프·텍스트·원본 요청 ID는 한 트랜잭션에 저장한다.
+
+서버 예산은 Asia/Seoul 일/월 기준이며 timestamp 없는 기존 UTC 행은 겹치는 기간에 보수적으로 산입한다. 비용 초과/잘못된 사용량은 예약·확인 비용을 보존하고 DB에 차단을 저장한다. HTTP 요청128KiB/응답256KiB, 인증·Origin 거부, 공급자 원점 고정과 외부 호출 기본 비활성은 서버에서 강제한다. 실제 검증은 [최신 장부](evidence/implementation/2026-10-29.md)를 따른다.
+
+## 2026-10-27 구현 아키텍처
+
+실제 구조는 `android/core`, `android/app`, `server`, `contracts`, `scripts`, `evidence`다. core는 Kotlin 직렬화 모델·검증·패치·의미 해시·엔진·순수 시뮬레이터를 갖는다. app은 Compose/Room/Vehicle SDK/NaviHelper/Media3 및 foreground 실행 서비스를 연결한다. Node24 서버는 OpenAI Responses strict 출력과 SQLite 비용 예약을 담당한다. 실행·권한·승인 권한은 앱에만 있다.
+
+실행 형식은 [schemaVersion 2](contracts/workflow.schema.json)다. START/ACTION/IF/WAIT/TIMER/REPEAT/PARALLEL/JOIN/END와 명시적 port 연결을 사용한다. 64노드·4병렬·20반복·2시간·최악 경로4,096회 노드 방문을 제한한다. 시트·공조 등 겹칠 수 있는 영역은 보수적인 서브시스템 자원 잠금으로 충돌을 막는다. 편집 패치는 기준 revision을 확인한다. 제목·카드 위치 변경은 테스트 의미 해시를 바꾸지 않는다.
+
+4,096회는 사용자 추가 확정 계약이다. 앱 core와 서버는 구조 검증을 통과한 그래프에서 반복 본문×횟수, 병렬 분기 합, IF 분기 최대를 계산한다. START/END 및 실제 방문한 제어 노드는1회로 센다. 반복 본문의 종단 JOIN은 방문하지 않으며 병렬의 JOIN은 합류 후1회 방문한다. 중첩 산술은4,097에서 포화시켜 overflow를 막는다. 초과 가능하면 검토 저장·시험 전에 거부하고 런타임 카운터도 유지한다. 작업 초안 자동 보관은 유효 루틴 저장과 구분한다.
+
+실행 결과는 REQUESTED/ACKNOWLEDGED/VERIFIED/UNKNOWN 등을 구분하고 시뮬레이션에는 SIMULATED를 사용한다. 서비스가 실행을 소유하므로 화면 전환 자체는 취소 사유가 아니다. 안전 조건 상실·취소·시간 초과에서는 STOP을 우선하고 무조건 rollback하지 않는다. 재부팅은 활성 규칙의 새 이벤트만 감시한다. 실제 통합 검증 상태는 [증거 기록](evidence/implementation/2026-10-27.md)에 있다.
+
+**이하 구조·JSON·활성 세션/7동작 제한은 초기 설계 이력이다. 현재 코드 계약은 위 스키마 v2와 core를 따른다.** 시트 확인·STOP·불명 결과 보존 등 안전 계약은 계속 유효하다.
+
 기준: **2026-10-25 KST**. 아래 디렉터리·타입·API는 제품 내부의 제안 설계다. 실제 앱·서버 코드는 아직 없다. Pleos SDK의 정확한 함수·단위·권한은 [기능 표](05_CAPABILITY_MATRIX.md)를 따른다. 요구사항 ID는 [PRD](03_PRODUCT_PRD.md), 실행 순서는 [TODO](13_IMPLEMENTATION_TODO.md)가 기준이다.
 
 ## 현재 구조와 향후 구조

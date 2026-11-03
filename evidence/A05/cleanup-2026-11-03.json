@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-11-03T08:57:04.8261143+09:00",
+  "device": "emulator-5556",
+  "user": 10,
+  "preferencesReadExit": 0,
+  "fixtureEndpointOrTokenRemaining": false,
+  "fixtureProcessCount": 0,
+  "loopback18787Listening": false,
+  "reverse18787Remaining": false,
+  "scope": "Read-only verification after booting existing AVD without wipe; preference values omitted"
+}

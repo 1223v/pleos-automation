@@ -1,0 +1,28 @@
+INSTRUMENTATION_STATUS: stream=READY pid=10386 routine=recovery-18abb9fc-54ae-47b6-9fef-be499e649002 journal=RUNNING audioPlaying=true pendingDraftSaved=true
+Stopped only com.pleos.routine after READY; prepare ends intentionally.
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RuntimeRecoveryTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.RuntimeRecoveryTest:
+INSTRUMENTATION_STATUS: test=newProcessRecoversUnknownWithoutReplaying
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=PASS pid=12515 journal=UNKNOWN definitionRestored=true pendingDraftRestored=true noReplayObservedMs=5000 audioPlaying=false
+
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RuntimeRecoveryTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=newProcessRecoversUnknownWithoutReplaying
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 10.787
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-30T00:34:20.724Z" time="0.098">
+  <testcase name="oldPendingMoveNeverReplays" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.014" />
+  <testcase name="missingPositionDuringMoveStopsImmediatelyAndIsUnknown" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.02" />
+  <testcase name="cancellationSendsStopEvenWhenParkingLost" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.009" />
+  <testcase name="blockedPositionQueryCannotDelayWatchdogStop" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.006" />
+  <testcase name="missingOrLateMoveAckRetainsRecoveryJournalDespiteStableStop" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.008" />
+  <testcase name="lateStopAckNeverClearsJournalDespiteStablePosition" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.007" />
+  <testcase name="reconnectInvalidatesAckAndDoesNotClearJournal" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.005" />
+  <testcase name="finalSafetyCheckAfterJournalPreventsMove" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.003" />
+  <testcase name="boundedBothDirectionsObserveMovementAndStopThenClear" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.008" />
+  <testcase name="reachingDirectionalBoundaryStopsBeforeNextSample" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.006" />
+  <testcase name="movementAgainstCalibratedDirectionStopsAndIsUnknown" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.007" />
+  <testcase name="endpointAndUncalibratedDirectionBlockBeforeJournal" classname="com.pleos.routine.vehicle.SeatMotionCoordinatorTest" time="0.004" />
+  </testsuite>

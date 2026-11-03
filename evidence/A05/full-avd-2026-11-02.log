@@ -1,0 +1,464 @@
+INSTRUMENTATION_STATUS: class=com.pleos.routine.EditorFlowTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.EditorFlowTest:
+INSTRUMENTATION_STATUS: test=createSimulateSaveAndOpenWithoutProviderOrVehicleWrites
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.EditorFlowTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=createSimulateSaveAndOpenWithoutProviderOrVehicleWrites
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.EditorFlowTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=typedRequestSurvivesActivityRecreationWithoutAiCall
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.EditorFlowTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=typedRequestSurvivesActivityRecreationWithoutAiCall
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.GleoRestoreTest:
+INSTRUMENTATION_STATUS: test=retainedEditRequestAndSameIntentDoNotReloadSavedOriginalAfterRecreation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=retainedEditRequestAndSameIntentDoNotReloadSavedOriginalAfterRecreation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=retainedCreateRequestDoesNotReplaceLatestEditsAfterRecreation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=retainedCreateRequestDoesNotReplaceLatestEditsAfterRecreation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=newRequestDiscardsResponseFromPreviousPendingProposal
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=newRequestDiscardsResponseFromPreviousPendingProposal
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=controlRequestBeforeAutosavePreservesLiveEditor
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=controlRequestBeforeAutosavePreservesLiveEditor
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=staleRequestBeforeAutosavePreservesLiveEditor
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoRestoreTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=staleRequestBeforeAutosavePreservesLiveEditor
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionDraftTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.ConnectionDraftTest:
+INSTRUMENTATION_STATUS: test=pendingDraftSurvivesStoreReopenButControlIsNeverPersisted
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionDraftTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=pendingDraftSurvivesStoreReopenButControlIsNeverPersisted
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionDraftTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=installedAppListContainsOnlyResolvableTargets
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionDraftTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=installedAppListContainsOnlyResolvableTargets
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionUiTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.ConnectionUiTest:
+INSTRUMENTATION_STATUS: test=retainedVoiceRequestReopensForReviewWithoutCallingAi
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionUiTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=retainedVoiceRequestReopensForReviewWithoutCallingAi
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionUiTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=catalogShowsInstalledAppsWithoutLaunchingThem
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ConnectionUiTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=catalogShowsInstalledAppsWithoutLaunchingThem
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.JournalMigrationTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.JournalMigrationTest:
+INSTRUMENTATION_STATUS: test=legacyDataAndInterruptedEventsSurviveMigrationAndRecovery
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.JournalMigrationTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=legacyDataAndInterruptedEventsSurviveMigrationAndRecovery
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.JournalMigrationTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=journalRejectsDuplicateSequenceAndMismatchedTerminal
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.JournalMigrationTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=journalRejectsDuplicateSequenceAndMismatchedTerminal
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RuntimeLifecycleTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.RuntimeLifecycleTest:
+INSTRUMENTATION_STATUS: test=gleoSchemaIsPackagedUnderRequiredName
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RuntimeLifecycleTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=gleoSchemaIsPackagedUnderRequiredName
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RuntimeLifecycleTest
+INSTRUMENTATION_STATUS: current=15
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=ownAudioAndTimerSurviveHiddenActivityAndCancelCleanly
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RuntimeLifecycleTest
+INSTRUMENTATION_STATUS: current=15
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=ownAudioAndTimerSurviveHiddenActivityAndCancelCleanly
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ExecutionLimitUiTest
+INSTRUMENTATION_STATUS: current=16
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.ExecutionLimitUiTest:
+INSTRUMENTATION_STATUS: test=excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.ExecutionLimitUiTest
+INSTRUMENTATION_STATUS: current=16
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=excessiveRepeatDraftRemainsEditableButCannotBeSavedOrTested
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.TimerNotificationTest
+INSTRUMENTATION_STATUS: current=17
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.TimerNotificationTest:
+INSTRUMENTATION_STATUS: test=realTimerCompletesWithNotificationAfterActivityIsHidden
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.TimerNotificationTest
+INSTRUMENTATION_STATUS: current=17
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realTimerCompletesWithNotificationAfterActivityIsHidden
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.TimerNotificationTest
+INSTRUMENTATION_STATUS: current=18
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=cancelledTimerDoesNotPublishCompletion
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.TimerNotificationTest
+INSTRUMENTATION_STATUS: current=18
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=cancelledTimerDoesNotPublishCompletion
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.TimerNotificationTest
+INSTRUMENTATION_STATUS: current=19
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=waitDoesNotPublishTimerCompletion
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.TimerNotificationTest
+INSTRUMENTATION_STATUS: current=19
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=waitDoesNotPublishTimerCompletion
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.AudioPlatformTest
+INSTRUMENTATION_STATUS: current=20
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.AudioPlatformTest:
+INSTRUMENTATION_STATUS: test=controlledFocusClientPausesResumesAndPermanentlyStopsOwnAudio
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.AudioPlatformTest
+INSTRUMENTATION_STATUS: current=20
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=controlledFocusClientPausesResumesAndPermanentlyStopsOwnAudio
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.AudioPlatformTest
+INSTRUMENTATION_STATUS: current=21
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=missingBundledAssetFailsAndReleasesActualPlayer
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.AudioPlatformTest
+INSTRUMENTATION_STATUS: current=21
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=missingBundledAssetFailsAndReleasesActualPlayer
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=22
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.RunHistoryUiTest:
+INSTRUMENTATION_STATUS: test=delayedHistoryReadCannotOverwriteNewerRequest
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=22
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=delayedHistoryReadCannotOverwriteNewerRequest
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=23
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=23
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=oldHistoryShowsObservedValueAndOpensItsConditionWithoutOverwritingSavedVersion
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=24
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=simulationStoresSnapshotAndHistoryDisplaysVersionAndCause
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=24
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but found '2' nodes that satisfy: (Text + EditableText contains '가상 입력 테스트' (ignoreCase: false) as substring)
+Nodes found:
+1) Node #7048 at (l=24.0, t=190.0, r=1658.0, b=368.0)px
+Focused = 'false'
+Text = '[A05 실행 당시 루틴, 시뮬레이션 · COMPLETED · 버전 7, 시작 원인: 가상 입력 테스트, 2026-11-02T20:29:18.914+09:00[Asia/Seoul]]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 5 siblings
+2) Node #7088 at (l=24.0, t=1130.0, r=1658.0, b=1308.0)px
+Focused = 'false'
+Text = '[새 루틴, 시뮬레이션 · COMPLETED · 버전 1, 시작 원인: 가상 입력 테스트, 2026-11-02T20:26:28.800+09:00[Asia/Seoul]]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 5 siblings
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause$lambda$3(RunHistoryUiTest.kt:53)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$PW3IH1YhQpGtvog2_78R6DjRbhM(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda1.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:30)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(RunHistoryUiTest.kt:41)
+
+INSTRUMENTATION_STATUS: stream=
+Error in simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(com.pleos.routine.RunHistoryUiTest):
+java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but found '2' nodes that satisfy: (Text + EditableText contains '가상 입력 테스트' (ignoreCase: false) as substring)
+Nodes found:
+1) Node #7048 at (l=24.0, t=190.0, r=1658.0, b=368.0)px
+Focused = 'false'
+Text = '[A05 실행 당시 루틴, 시뮬레이션 · COMPLETED · 버전 7, 시작 원인: 가상 입력 테스트, 2026-11-02T20:29:18.914+09:00[Asia/Seoul]]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 5 siblings
+2) Node #7088 at (l=24.0, t=1130.0, r=1658.0, b=1308.0)px
+Focused = 'false'
+Text = '[새 루틴, 시뮬레이션 · COMPLETED · 버전 1, 시작 원인: 가상 입력 테스트, 2026-11-02T20:26:28.800+09:00[Asia/Seoul]]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 5 siblings
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause$lambda$3(RunHistoryUiTest.kt:53)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$PW3IH1YhQpGtvog2_78R6DjRbhM(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda1.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:30)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(RunHistoryUiTest.kt:41)
+
+INSTRUMENTATION_STATUS: test=simulationStoresSnapshotAndHistoryDisplaysVersionAndCause
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=25
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=manualRunPersistsStartCauseBeforeFinishing
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=25
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=manualRunPersistsStartCauseBeforeFinishing
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunExplanationUiTest
+INSTRUMENTATION_STATUS: current=26
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.RunExplanationUiTest:
+INSTRUMENTATION_STATUS: test=localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunExplanationUiTest
+INSTRUMENTATION_STATUS: current=26
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=26
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=localHttpExplanationDisplaysEvidenceWithoutChangingUnknownRun
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 182.133
+There was 1 failure:
+1) simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(com.pleos.routine.RunHistoryUiTest)
+java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but found '2' nodes that satisfy: (Text + EditableText contains '가상 입력 테스트' (ignoreCase: false) as substring)
+Nodes found:
+1) Node #7048 at (l=24.0, t=190.0, r=1658.0, b=368.0)px
+Focused = 'false'
+Text = '[A05 실행 당시 루틴, 시뮬레이션 · COMPLETED · 버전 7, 시작 원인: 가상 입력 테스트, 2026-11-02T20:29:18.914+09:00[Asia/Seoul]]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 5 siblings
+2) Node #7088 at (l=24.0, t=1130.0, r=1658.0, b=1308.0)px
+Focused = 'false'
+Text = '[새 루틴, 시뮬레이션 · COMPLETED · 버전 1, 시작 원인: 가상 입력 테스트, 2026-11-02T20:26:28.800+09:00[Asia/Seoul]]'
+Actions = [OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution, ClearTextSubstitution, GetTextLayoutResult]
+MergeDescendants = 'true'
+Has 5 siblings
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause$lambda$3(RunHistoryUiTest.kt:53)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$PW3IH1YhQpGtvog2_78R6DjRbhM(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda1.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:30)
+	at com.pleos.routine.RunHistoryUiTest.simulationStoresSnapshotAndHistoryDisplaysVersionAndCause(RunHistoryUiTest.kt:41)
+
+FAILURES!!!
+Tests run: 26,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

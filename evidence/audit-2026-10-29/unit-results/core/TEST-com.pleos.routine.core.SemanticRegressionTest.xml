@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.pleos.routine.core.SemanticRegressionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-30T00:22:57.157Z" time="0.016">
+  <testcase name="discardedCandidateDoesNotStartCooldown" classname="com.pleos.routine.core.SemanticRegressionTest" time="0.003" />
+  <testcase name="coldBranchRunsNavigationBeforeHeatPreflightFails" classname="com.pleos.routine.core.SemanticRegressionTest" time="0.007" />
+  <testcase name="warmBranchNeverPreflightsUnavailableHeat" classname="com.pleos.routine.core.SemanticRegressionTest" time="0.004" />
+  <testcase name="conditionEnterFiresWhenLastFilterBecomesTrue" classname="com.pleos.routine.core.SemanticRegressionTest" time="0.001" />
+  </testsuite>

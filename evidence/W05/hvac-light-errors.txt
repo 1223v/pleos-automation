@@ -1,0 +1,6 @@
+--------- beginning of main
+10-27 17:12:39.352  4079  4079 W RoutineEvidence: WRITE SET_AMBIENT_BRIGHTNESS error=SecurityException detail=setAmbientLightBrightness need Permission
+10-27 17:12:39.355  4079  4353 I RoutineEvidence: WRITE SET_AMBIENT_BRIGHTNESS area=ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT before=70.0 requested=20.0 UNKNOWN observed=null 차량 요청 또는 상태 조회 실패 · 자동 재전송 안 함
+10-27 17:12:42.997  4079  4079 W RoutineEvidence: WRITE SET_AMBIENT_COLOR error=SecurityException detail=setAmbientLightBrightnessColor need Permission
+10-27 17:12:42.998  4079  4353 I RoutineEvidence: WRITE SET_AMBIENT_COLOR area=ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT before=1.6777215E7 requested=#FFDB854B UNKNOWN observed=null 차량 요청 또는 상태 조회 실패 · 자동 재전송 안 함
+10-27 17:12:47.375  4079  4353 I RoutineEvidence: PREPARE HVAC_POWER area=ROW_1_LEFT, ROW_1_RIGHT, ROW_2_LEFT, ROW_2_CENTER, ROW_2_RIGHT before=false target=true

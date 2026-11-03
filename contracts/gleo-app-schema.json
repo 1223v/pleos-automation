@@ -1,0 +1,11 @@
+{
+  "packageName": "com.pleos.routine",
+  "appDescription": "A vehicle routine builder that lets users create, review, edit and test visual automation workflows.",
+  "invokeWord": "루틴",
+  "version": "0.1.0",
+  "actionCalls": [
+    { "type": "function", "function": { "name": "CREATE_ROUTINE", "component": "activity", "description": "Open a natural language routine request for draft creation and user review.", "parameters": { "type": "object", "properties": { "requestText": { "type": "string", "description": "The user's requested situation and actions." } }, "required": ["requestText"] } } },
+    { "type": "function", "function": { "name": "EDIT_ROUTINE", "component": "activity", "description": "Open a saved routine and a requested change for user review before applying a patch.", "parameters": { "type": "object", "properties": { "routineId": { "type": "string", "description": "The exact identifier of the routine to edit." }, "requestText": { "type": "string", "description": "The requested change to the routine." } }, "required": ["routineId", "requestText"] } } },
+    { "type": "function", "function": { "name": "CONTROL_ROUTINE", "component": "activity", "description": "Open a saved routine control request for explicit confirmation in the app.", "parameters": { "type": "object", "properties": { "routineId": { "type": "string", "description": "The exact identifier of the routine to control." }, "operation": { "type": "string", "enum": ["start", "stop", "enable", "disable"], "description": "The requested routine operation." } }, "required": ["routineId", "operation"] } } }
+  ]
+}

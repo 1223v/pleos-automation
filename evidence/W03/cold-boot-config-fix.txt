@@ -1,0 +1,14 @@
+{
+  "config": "C:\\pleos-automation\\.tools\\avd\\PleosRoutine.avd\\config.ini",
+  "before": {
+    "fastboot.forceColdBoot": "no",
+    "fastboot.forceFastBoot": "yes",
+    "fastboot.forceChosenSnapshotBoot": "no"
+  },
+  "after": {
+    "fastboot.forceColdBoot": "yes",
+    "fastboot.forceFastBoot": "no",
+    "fastboot.forceChosenSnapshotBoot": "no"
+  },
+  "applied": true
+}

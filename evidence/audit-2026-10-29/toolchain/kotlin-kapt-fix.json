@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-30",
+  "sha": "bf51df665b458fda7c3eaf436c4d88dc119d7ec6",
+  "url": "https://github.com/JetBrains/kotlin/commit/bf51df665b458fda7c3eaf436c4d88dc119d7ec6",
+  "title": "KAPT: Deserialize only a handful of classes from KAPT incremental cache",
+  "files": [
+    "plugins/kapt/kapt-base/src/org/jetbrains/kotlin/kapt/base/KaptContext.kt",
+    "plugins/kapt/kapt-base/src/org/jetbrains/kotlin/kapt/base/incremental/cache.kt",
+    "plugins/kapt/kapt-base/test/org/jetbrains/kotlin/kapt/base/test/incremental/InheritedAnnotationTest.kt",
+    "plugins/kapt/kapt-base/test/org/jetbrains/kotlin/kapt/base/test/incremental/JavaClassCacheManagerTest.kt",
+    "plugins/kapt/kapt-base/test/org/jetbrains/kotlin/kapt/base/test/incremental/ReferencedContantsTest.kt",
+    "plugins/kapt/kapt-base/test/org/jetbrains/kotlin/kapt/base/test/incremental/TestComplexIncrementalAptCache.kt",
+    "plugins/kapt/kapt-base/test/org/jetbrains/kotlin/kapt/base/test/incremental/TestSimpleIncrementalAptCache.kt"
+  ]
+}

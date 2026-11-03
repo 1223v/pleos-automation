@@ -1,0 +1,199 @@
+✖ explanation route is authenticated and disabled before any provider or reservation (52.7374ms)
+✖ explanation sends exact historic evidence and separate output contract, with shared budget (14.3753ms)
+✖ explanation validates references, types, source separation and extra keys before provider (7.4017ms)
+✖ explanation rejects hallucinated event references and command-bearing output (7.0148ms)
+✖ explanation accepts explicit omitted-event window without inventing omitted evidence (4.9259ms)
+✖ explanation cannot report real VERIFIED as simulated or simulated effects as real (5.6537ms)
+✖ explanation reserves before calling and blocks insufficient budget (6.042ms)
+✖ explanation provider failure retains uncertain reservation and sanitized error (4.6248ms)
+✖ explanation limits event count and request bytes before provider (6.8071ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4907.6594
+
+✖ failing tests:
+
+test at dist\test\run-explanations.test.js:32:1
+✖ explanation route is authenticated and disabled before any provider or reservation (52.7374ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 503
+  
+      at loadConfig.SERVER_AUTH_TOKEN (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:37:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:34:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\run-explanations.test.js:43:1
+✖ explanation sends exact historic evidence and separate output contract, with shared budget (14.3753ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 200
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:49:16
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:46:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\run-explanations.test.js:60:1
+✖ explanation validates references, types, source separation and extra keys before provider (7.4017ms)
+  AssertionError [ERR_ASSERTION]: {"requestId":"explanation-001","locale":"ko-KR","workflow":{"schemaVersion":2,"id":"contract-commute","title":"출근 계약 시험","revision":1,"trigger":{"type":"SEAT_OCCUPIED","condition":null,"filters":[{"field":"WEEKDAY","operator":"LTE","value":null,"text":null,"flag":null,"startMinute":null,"endMinute":null,"weekdays":[1,2,3,4,5]},{"field":"TIME_WINDOW","operator":"LTE","value":null,"text":null,"flag":null,"startMinute":420,"endMinute":540,"weekdays":[]}],"minuteOfDay":null,"weekdays":[],"zoneId":"Asia/Seoul"},"nodes":[{"id":"start","kind":"START","label":"탑승","position":{"x":40,"y":160},"action":null,"condition":null,"durationSeconds":null,"repeatCount":null,"joinId":null},{"id":"navigation","kind":"ACTION","label":"시험 목적지 안내","position":{"x":300,"y":160},"action":{"type":"NAVIGATE","area":"ROW_1_LEFT","value":null,"text":"서울시청 공개 좌표 · 시험용","targetId":null,"latitude":37.5665,"longitude":126.978,"axis":null,"direction":null},"condition":null,"durationSeconds":null,"repeatCount":null,"joinId":null},{"id":"cold","kind":"IF","label":"5도 이하","position":{"x":560,"y":160},"action":null,"condition":{"field":"OUTSIDE_TEMPERATURE","operator":"LTE","value":5,"text":null,"flag":null,"startMinute":null,"endMinute":null,"weekdays":[]},"durationSeconds":null,"repeatCount":null,"joinId":null},{"id":"heat","kind":"ACTION","label":"앞줄 왼쪽 열선","position":{"x":820,"y":60},"action":{"type":"SET_SEAT_HEAT","area":"ROW_1_LEFT","value":2,"text":null,"targetId":null,"latitude":null,"longitude":null,"axis":null,"direction":null},"condition":null,"durationSeconds":null,"repeatCount":null,"joinId":null},{"id":"end","kind":"END","label":"완료","position":{"x":1080,"y":160},"action":null,"condition":null,"durationSeconds":null,"repeatCount":null,"joinId":null}],"edges":[{"id":"e1","source":"start","target":"navigation","port":"next"},{"id":"e2","source":"navigation","target":"cold","port":"next"},{"id":"e3","source":"cold","target":"heat","port":"true"},{"id":"e4","source":"cold","target":"end","port":"false"},{"id":"e5","source":"heat","target":"end","port":"next"}]},"startCause":"SIMULATION","omittedEventCount":0,"run":{"runId":"run-001","workflowId":"contract-commute","revision":1,"semanticHash":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","simulation":true,"status":"COMPLETED","elapsedMillis":0,"events":[{"runId":"run-001","nodeId":"cold","status":"PENDING","message":"관찰값 12°C · 기준 LTE 5 · FALSE","elapsedMillis":0,"iterations":[],"branches":[],"sequence":1,"observedValue":null}]},"approved":true}
+  
+  404 !== 400
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:77:20
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:62:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 400,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\run-explanations.test.js:83:1
+✖ explanation rejects hallucinated event references and command-bearing output (7.0148ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 502
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:95:20
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:92:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\run-explanations.test.js:100:1
+✖ explanation accepts explicit omitted-event window without inventing omitted evidence (4.9259ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 200
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:106:16
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:101:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\run-explanations.test.js:111:1
+✖ explanation cannot report real VERIFIED as simulated or simulated effects as real (5.6537ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 400
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:118:16
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:113:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 400,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\run-explanations.test.js:156:1
+✖ explanation reserves before calling and blocks insufficient budget (6.042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 429
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:162:16
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:160:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 429,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\run-explanations.test.js:168:1
+✖ explanation provider failure retains uncertain reservation and sanitized error (4.6248ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 502
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:171:16
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:169:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\run-explanations.test.js:178:1
+✖ explanation limits event count and request bytes before provider (6.8071ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 400
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:183:16
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:180:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 400,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

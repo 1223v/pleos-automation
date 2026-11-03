@@ -1,0 +1,241 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✖ known overspend blocks later reservations across restart and preserves known charge (125.1407ms)
+✖ settled costs cannot be settled again to refund spend (0.5933ms)
+✖ budget periods change at Korean midnight including month boundary (0.7345ms)
+✖ legacy UTC-day charges conservatively overlap both Korean dates and months (18.3439ms)
+✔ two ledger connections cannot reserve beyond one shared limit (24.6982ms)
+✖ malformed mode locale and create-only fields are rejected before provider or reservation (1.9683ms)
+✖ complete valid graph rejects approval and semantic malformed values (3.2598ms)
+✖ unavailable HA climate cannot write even when its old target matches (3.5969ms)
+✖ HA unavailable after write stays UNKNOWN and is never retried (0.8504ms)
+✖ actual SDK pins official origin and sends strict nonstored nonretry request (9.9428ms)
+✖ HTTP rejects browser and oversized final response, keeping error bounded (46.9761ms)
+✔ default and missing budgets block before provider creation/call (4.7202ms)
+✔ mock completion validates and duplicate request does not bill twice (2.5781ms)
+✔ uncertain reservations survive restart and enforce budget (19.7599ms)
+✔ provider failure keeps full reservation and hides provider secrets (0.7832ms)
+✔ invalid AI output is never a draft (0.6059ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.5437ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (3.1291ms)
+✔ HTTP authentication and disabled AI do not call a provider (38.2896ms)
+✔ schema rejects unexpected execution approval (1.1208ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (7.908ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 11
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3337.2416
+
+✖ failing tests:
+
+test at dist\test\security-regressions.test.js:29:1
+✖ known overspend blocks later reservations across restart and preserves known charge (125.1407ms)
+  Error: EPERM, Permission denied: 'C:\pleos-automation\server\.data\tests\security-0a7O8H'
+      at rmSync (node:fs:1282:18)
+      at tempDb (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:26:9)
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:29:99)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: 1,
+    code: 'EPERM',
+    path: 'C:\\pleos-automation\\server\\.data\\tests\\security-0a7O8H',
+    syscall: 'rm'
+  }
+
+test at dist\test\security-regressions.test.js:44:1
+✖ settled costs cannot be settled again to refund spend (0.5933ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:49:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at dist\test\security-regressions.test.js:56:1
+✖ budget periods change at Korean midnight including month boundary (0.7345ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '2026-10-31'
+  - '2026-11-01'
+           ^
+  
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:63:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '2026-10-31',
+    expected: '2026-11-01',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\security-regressions.test.js:72:1
+✖ legacy UTC-day charges conservatively overlap both Korean dates and months (18.3439ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '2026-10-31'
+  - '2026-11-01'
+           ^
+  
+      at file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:81:16
+      at tempDb (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:22:9)
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:72:90)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '2026-10-31',
+    expected: '2026-11-01',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\security-regressions.test.js:101:1
+✖ malformed mode locale and create-only fields are rejected before provider or reservation (1.9683ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:107:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at dist\test\security-regressions.test.js:116:1
+✖ complete valid graph rejects approval and semantic malformed values (3.2598ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:127:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at dist\test\security-regressions.test.js:131:1
+✖ unavailable HA climate cannot write even when its old target matches (3.5969ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:135:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at dist\test\security-regressions.test.js:138:1
+✖ HA unavailable after write stays UNKNOWN and is never retried (0.8504ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'VERIFIED'
+  - 'UNKNOWN'
+  
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:143:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'VERIFIED',
+    expected: 'UNKNOWN',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dist\test\security-regressions.test.js:146:1
+✖ actual SDK pins official origin and sends strict nonstored nonretry request (9.9428ms)
+  Error: Connection error.
+      at OpenAI.makeRequest (file:///C:/pleos-automation/server/node_modules/openai/client.mjs:932:19)
+      at async openAIProvider (file:///C:/pleos-automation/server/dist/src/planner.js:13:22)
+      ... 2 lines matching cause stack trace ...
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    status: undefined,
+    headers: undefined,
+    requestID: undefined,
+    error: undefined,
+    code: undefined,
+    param: undefined,
+    type: undefined,
+    cause: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+    
+      assert.ok(String(url).startsWith('https://api.openai.com/v1/'))
+    
+        at globalThis.fetch (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:152:16)
+        at OpenAI.fetchWithTimeout (file:///C:/pleos-automation/server/node_modules/openai/client.mjs:1104:105)
+        at OpenAI.fetchWithAuth (file:///C:/pleos-automation/server/node_modules/openai/client.mjs:1080:49)
+        at OpenAI.makeRequest (file:///C:/pleos-automation/server/node_modules/openai/client.mjs:874:34)
+        at async openAIProvider (file:///C:/pleos-automation/server/dist/src/planner.js:13:22)
+        at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:160:23)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: '==',
+      diff: 'simple'
+    }
+  }
+
+test at dist\test\security-regressions.test.js:171:1
+✖ HTTP rejects browser and oversized final response, keeping error bounded (46.9761ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 502
+  
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/security-regressions.test.js:184:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 502,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

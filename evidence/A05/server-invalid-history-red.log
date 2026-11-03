@@ -1,0 +1,35 @@
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✖ a blocked historic draft remains explainable even when its action is not executable (79.5074ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 576.5441
+
+✖ failing tests:
+
+test at dist\test\run-explanations.test.js:189:1
+✖ a blocked historic draft remains explainable even when its action is not executable (79.5074ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:196:16
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async withServer (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:25:9)
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:190:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

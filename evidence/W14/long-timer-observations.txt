@@ -1,0 +1,43 @@
+--------- beginning of main
+10-27 19:10:51.931 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=480079 activityVisible=false timerDone=false
+10-27 19:11:52.334 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=540463 activityVisible=false timerDone=false
+10-27 19:12:52.274 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=600407 activityVisible=false timerDone=false
+10-27 19:13:52.765 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=660908 activityVisible=false timerDone=false
+--------- beginning of main
+10-27 19:12:52.274 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=600407 activityVisible=false timerDone=false
+10-27 19:13:52.765 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=660908 activityVisible=false timerDone=false
+10-27 19:14:52.081 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=720229 activityVisible=false timerDone=false
+10-27 19:15:52.605 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=780753 activityVisible=false timerDone=false
+--------- beginning of main
+10-27 19:13:52.765 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=660908 activityVisible=false timerDone=false
+10-27 19:14:52.081 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=720229 activityVisible=false timerDone=false
+10-27 19:15:52.605 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=780753 activityVisible=false timerDone=false
+10-27 19:16:51.931 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=840079 activityVisible=false timerDone=false
+--------- beginning of main
+10-27 19:16:51.931 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=840079 activityVisible=false timerDone=false
+10-27 19:17:52.440 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=900588 activityVisible=false timerDone=false
+10-27 19:18:52.861 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=960998 activityVisible=false timerDone=false
+--------- beginning of main
+10-27 19:22:52.722 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1200869 activityVisible=false timerDone=false
+10-27 19:23:52.443 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1260591 activityVisible=false timerDone=false
+10-27 19:24:51.919 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1320068 activityVisible=false timerDone=false
+--------- beginning of main
+10-27 19:23:52.443 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1260591 activityVisible=false timerDone=false
+10-27 19:24:51.919 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1320068 activityVisible=false timerDone=false
+10-27 19:25:52.156 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1380304 activityVisible=false timerDone=false
+10-27 19:26:52.549 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1440689 activityVisible=false timerDone=false
+--------- beginning of main
+10-27 19:25:52.156 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1380304 activityVisible=false timerDone=false
+10-27 19:26:52.549 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1440689 activityVisible=false timerDone=false
+10-27 19:27:51.898 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1500046 activityVisible=false timerDone=false
+10-27 19:28:52.272 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1560420 activityVisible=false timerDone=false
+--------- beginning of main
+10-27 19:26:52.549 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1440689 activityVisible=false timerDone=false
+10-27 19:27:51.898 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1500046 activityVisible=false timerDone=false
+10-27 19:28:52.272 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1560420 activityVisible=false timerDone=false
+10-27 19:29:52.642 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1620783 activityVisible=false timerDone=false
+--------- beginning of main
+10-27 19:27:51.898 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1500046 activityVisible=false timerDone=false
+10-27 19:28:52.272 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1560420 activityVisible=false timerDone=false
+10-27 19:29:52.642 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1620783 activityVisible=false timerDone=false
+10-27 19:30:52.044 12873 13058 I RoutineTimerEvidence: PROGRESS elapsedMs=1680193 activityVisible=false timerDone=false

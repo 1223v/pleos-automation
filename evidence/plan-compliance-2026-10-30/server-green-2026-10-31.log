@@ -1,0 +1,50 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✔ HA light unknown or unavailable state blocks before any service write (32.2818ms)
+✔ HA light mismatched or missing current state blocks before service write (0.9161ms)
+✔ HA light reads before write and verifies the selected on or off state afterwards (1.9272ms)
+✔ Calendar rejects malformed event collections and explicit error payloads (4.3139ms)
+✔ Calendar preserves omitted or empty items and valid optional event fields (1.2668ms)
+✔ Kakao rejects missing or malformed place lists and unusable destination coordinates (2.0204ms)
+✔ Kakao preserves empty results and valid place coordinates without optional metadata (0.5103ms)
+✔ what3words rejects absent malformed or out of range coordinates (0.9616ms)
+✔ what3words verifies numeric coordinates including zero and range boundaries (0.4425ms)
+✔ known overspend blocks later reservations across restart and preserves known charge (60.8295ms)
+✔ settled costs cannot be settled again to refund spend (1.0767ms)
+✔ budget periods change at Korean midnight including month boundary (1.8079ms)
+✔ legacy UTC-day charges conservatively overlap both Korean dates and months (42.3072ms)
+✔ two ledger connections cannot reserve beyond one shared limit (39.5098ms)
+✔ malformed mode locale and create-only fields are rejected before provider or reservation (4.6463ms)
+✔ complete valid graph rejects approval and semantic malformed values (7.3234ms)
+✔ unavailable HA climate cannot write even when its old target matches (2.7764ms)
+✔ HA unavailable after write stays UNKNOWN and is never retried (0.7461ms)
+✔ actual SDK pins official origin and sends strict nonstored nonretry request (7.4569ms)
+✔ HTTP rejects browser and oversized final response, keeping error bounded (37.7317ms)
+✔ invalid usage keeps reservation and locks the ledger (4.2663ms)
+✔ real SDK does not retry network errors (1.3107ms)
+✔ HTTP MIME JSON body and request rate boundaries are enforced (52.4286ms)
+✔ connector stream overflow and redirect failure return sanitized errors (0.8591ms)
+✔ default and missing budgets block before provider creation/call (18.4569ms)
+✔ mock completion validates and duplicate request does not bill twice (2.3438ms)
+✔ uncertain reservations survive restart and enforce budget (50.895ms)
+✔ provider failure keeps full reservation and hides provider secrets (1.2266ms)
+✔ invalid AI output is never a draft (0.8214ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.5966ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (3.1942ms)
+✔ HTTP authentication and disabled AI do not call a provider (35.752ms)
+✔ schema rejects unexpected execution approval (1.6279ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (10.6283ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 654.174

@@ -1,0 +1,2 @@
+Markdown files: 24, local file links: 184, JSON examples: 1
+Errors: 0

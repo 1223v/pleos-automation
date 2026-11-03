@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-30",
+  "branch": "codex/consistency-tdd-security",
+  "sourceManifestSha256": "c0283e03458ebaae59bed1a6f77fbeb64ff87e25ad0cdf48d845ca4526816218",
+  "artifacts": [
+    {
+      "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+      "bytes": 70897301,
+      "sha256": "37b94b3a545d899500ff42d7f63442e8f340895bb207e9cd5a6d9731cc14af52"
+    },
+    {
+      "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "bytes": 2781971,
+      "sha256": "7424981e9a6c527ad6924d3f722cf19ebd500fd6ffe7ad0dd9dd1521073cd08b"
+    },
+    {
+      "path": "android/app/build/outputs/apk/release/app-release-unsigned.apk",
+      "bytes": 52601480,
+      "sha256": "52341126c7a4b1510490f15e0fbcaaf67177834a88d58fc06cd47a45cbcebe22"
+    }
+  ]
+}

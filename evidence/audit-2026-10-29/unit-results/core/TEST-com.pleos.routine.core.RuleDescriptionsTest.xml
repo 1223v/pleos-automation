@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.pleos.routine.core.RuleDescriptionsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-30T00:22:57.146Z" time="0.009">
+  <testcase name="triggerOnlyEditShowsBothBoundariesAndPreservesNavigation" classname="com.pleos.routine.core.RuleDescriptionsTest" time="0.008" />
+  <testcase name="reroutingSameNodesIsIncludedInHumanReview" classname="com.pleos.routine.core.RuleDescriptionsTest" time="0.0" />
+  <testcase name="seatIdentityAndConditionalHeatAreNeverImplied" classname="com.pleos.routine.core.RuleDescriptionsTest" time="0.001" />
+  </testsuite>

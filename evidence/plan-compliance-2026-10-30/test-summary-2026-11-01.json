@@ -1,0 +1,69 @@
+{
+  "core": {
+    "tests": 98,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "classes": {
+      "com.pleos.routine.core.ActiveResourceFailureTest": 1,
+      "com.pleos.routine.core.ClockAndActivationTest": 2,
+      "com.pleos.routine.core.ExecutionLimitTest": 6,
+      "com.pleos.routine.core.ExecutionSafetyTest": 6,
+      "com.pleos.routine.core.FeatureCoverageTest": 35,
+      "com.pleos.routine.core.JournalContractTest": 7,
+      "com.pleos.routine.core.PlanComplianceTest": 12,
+      "com.pleos.routine.core.RuleDescriptionsTest": 3,
+      "com.pleos.routine.core.SemanticRegressionTest": 4,
+      "com.pleos.routine.core.TimerProgressTest": 8,
+      "com.pleos.routine.core.WorkflowTest": 14
+    }
+  },
+  "app": {
+    "tests": 56,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "classes": {
+      "com.pleos.routine.data.ConnectionPolicyTest": 2,
+      "com.pleos.routine.data.EditorRestoreTest": 8,
+      "com.pleos.routine.data.PlannerHttpTransportTest": 9,
+      "com.pleos.routine.execution.OwnedAudioTest": 8,
+      "com.pleos.routine.execution.SeatApprovalSessionTest": 12,
+      "com.pleos.routine.execution.SeatRunAuthorizationTest": 5,
+      "com.pleos.routine.vehicle.SeatMotionCoordinatorTest": 12
+    }
+  },
+  "lint": [
+    {
+      "id": "DataExtractionRules",
+      "severity": "Warning"
+    }
+  ],
+  "server": {
+    "tests": 38,
+    "failures": 0,
+    "log": "server-final-2026-11-01.log"
+  },
+  "avd": {
+    "regression": {
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "log": "final-avd-retest-2026-11-01.log"
+    },
+    "notificationsDenied": {
+      "passed": 1,
+      "log": "notification-denied-2026-11-01.log"
+    },
+    "processRecovery": {
+      "passed": 1,
+      "log": "process-recovery-2026-11-01.log"
+    },
+    "initialRun": {
+      "passedBeforeAbort": 13,
+      "failedOnSystemDeath": 1,
+      "notRun": 7,
+      "log": "final-avd-2026-11-01.log"
+    }
+  }
+}

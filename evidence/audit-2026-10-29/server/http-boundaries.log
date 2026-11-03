@@ -1,0 +1,41 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✔ known overspend blocks later reservations across restart and preserves known charge (38.4978ms)
+✔ settled costs cannot be settled again to refund spend (0.9857ms)
+✔ budget periods change at Korean midnight including month boundary (1.7412ms)
+✔ legacy UTC-day charges conservatively overlap both Korean dates and months (30.1714ms)
+✔ two ledger connections cannot reserve beyond one shared limit (45.7758ms)
+✔ malformed mode locale and create-only fields are rejected before provider or reservation (5.0828ms)
+✔ complete valid graph rejects approval and semantic malformed values (9.5759ms)
+✔ unavailable HA climate cannot write even when its old target matches (4.5254ms)
+✔ HA unavailable after write stays UNKNOWN and is never retried (1.3235ms)
+✔ actual SDK pins official origin and sends strict nonstored nonretry request (12.6771ms)
+✔ HTTP rejects browser and oversized final response, keeping error bounded (74.0412ms)
+✔ invalid usage keeps reservation and locks the ledger (6.291ms)
+✔ real SDK does not retry network errors (2.3653ms)
+✔ HTTP MIME JSON body and request rate boundaries are enforced (85.9693ms)
+✔ connector stream overflow and redirect failure return sanitized errors (1.57ms)
+✔ default and missing budgets block before provider creation/call (16.9578ms)
+✔ mock completion validates and duplicate request does not bill twice (2.3784ms)
+✔ uncertain reservations survive restart and enforce budget (23.324ms)
+✔ provider failure keeps full reservation and hides provider secrets (1.7138ms)
+✔ invalid AI output is never a draft (1.1574ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.6907ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (3.5696ms)
+✔ HTTP authentication and disabled AI do not call a provider (59.9025ms)
+✔ schema rejects unexpected execution approval (1.5118ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (12.4861ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 650.0242

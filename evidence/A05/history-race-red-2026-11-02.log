@@ -1,0 +1,65 @@
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.RunHistoryUiTest:
+INSTRUMENTATION_STATUS: test=delayedHistoryReadCannotOverwriteNewerRequest
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.RunHistoryUiTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (Text + EditableText contains '최신 사용자 요청 abf27814-f644-44a5-8d03-dd1905ec5754' (ignoreCase: false))
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.RunHistoryUiTest.delayedHistoryReadCannotOverwriteNewerRequest$lambda$17(RunHistoryUiTest.kt:112)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$Xz3jZZNNd0tAkc3-Mh6vMEXiKS0(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda11.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:30)
+	at com.pleos.routine.RunHistoryUiTest.delayedHistoryReadCannotOverwriteNewerRequest(RunHistoryUiTest.kt:91)
+
+INSTRUMENTATION_STATUS: stream=
+Error in delayedHistoryReadCannotOverwriteNewerRequest(com.pleos.routine.RunHistoryUiTest):
+java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (Text + EditableText contains '최신 사용자 요청 abf27814-f644-44a5-8d03-dd1905ec5754' (ignoreCase: false))
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.RunHistoryUiTest.delayedHistoryReadCannotOverwriteNewerRequest$lambda$17(RunHistoryUiTest.kt:112)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$Xz3jZZNNd0tAkc3-Mh6vMEXiKS0(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda11.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:30)
+	at com.pleos.routine.RunHistoryUiTest.delayedHistoryReadCannotOverwriteNewerRequest(RunHistoryUiTest.kt:91)
+
+INSTRUMENTATION_STATUS: test=delayedHistoryReadCannotOverwriteNewerRequest
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 8.614
+There was 1 failure:
+1) delayedHistoryReadCannotOverwriteNewerRequest(com.pleos.routine.RunHistoryUiTest)
+java.lang.AssertionError: Failed: assertExists.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (Text + EditableText contains '최신 사용자 요청 abf27814-f644-44a5-8d03-dd1905ec5754' (ignoreCase: false))
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists(SemanticsNodeInteraction.kt:125)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.assertExists$default(SemanticsNodeInteraction.kt:124)
+	at com.pleos.routine.RunHistoryUiTest.delayedHistoryReadCannotOverwriteNewerRequest$lambda$17(RunHistoryUiTest.kt:112)
+	at com.pleos.routine.RunHistoryUiTest.$r8$lambda$Xz3jZZNNd0tAkc3-Mh6vMEXiKS0(Unknown Source:0)
+	at com.pleos.routine.RunHistoryUiTest$$ExternalSyntheticLambda11.invoke(D8$$SyntheticClass:0)
+	at com.pleos.routine.RunHistoryUiTest.fixture(RunHistoryUiTest.kt:30)
+	at com.pleos.routine.RunHistoryUiTest.delayedHistoryReadCannotOverwriteNewerRequest(RunHistoryUiTest.kt:91)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

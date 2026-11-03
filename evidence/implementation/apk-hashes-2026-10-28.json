@@ -1,0 +1,14 @@
+[
+  {
+    "Hash": "8040CE2490CBFD22C0C0E8930849B4CCD41832E8057E64E943CAB1B4DF8BB913",
+    "Path": "C:\\pleos-automation\\android\\app\\build\\outputs\\apk\\debug\\app-debug.apk"
+  },
+  {
+    "Hash": "5F3BFE9F39743DA116011E3E6D2963C7CB454F0D37E2A1F0E2627CC962E4DE53",
+    "Path": "C:\\pleos-automation\\android\\app\\build\\outputs\\apk\\androidTest\\debug\\app-debug-androidTest.apk"
+  },
+  {
+    "Hash": "48416F76A70C4DED7724A31BCF27B33D4B0EA276D2B21DE26730640EAA527C04",
+    "Path": "C:\\pleos-automation\\android\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk"
+  }
+]

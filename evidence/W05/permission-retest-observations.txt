@@ -1,0 +1,10 @@
+--------- beginning of main
+10-27 17:18:41.231 30926 30926 I RoutineEvidence: WRITE SET_AMBIENT_BRIGHTNESS ACKNOWLEDGED 요청 응답 수신 · 상태 재조회 중
+10-27 17:18:41.345 30926 31093 I RoutineEvidence: WRITE SET_AMBIENT_BRIGHTNESS area=ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT before=70.0 requested=20.0 VERIFIED observed=20.0 목표 상태 반영 확인
+10-27 17:18:41.703 30926 30926 I RoutineEvidence: WRITE SET_AMBIENT_BRIGHTNESS ACKNOWLEDGED 요청 응답 수신 · 상태 재조회 중
+10-27 17:18:41.822 30926 31093 I RoutineEvidence: WRITE SET_AMBIENT_BRIGHTNESS area=ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT before=20.0 requested=30.0 VERIFIED observed=30.0 목표 상태 반영 확인
+10-27 17:18:45.926 30926 30926 I RoutineEvidence: WRITE SET_AMBIENT_COLOR ACKNOWLEDGED 요청 응답 수신 · 상태 재조회 중
+10-27 17:18:49.017 30926 31093 I RoutineEvidence: WRITE SET_AMBIENT_COLOR area=ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT before=1.6777215E7 requested=#FFDB854B UNKNOWN observed=null 응답은 수신했지만 목표 상태 반영을 확인하지 못했습니다.
+10-27 17:18:53.365 30926 31093 I RoutineEvidence: PREPARE HVAC_POWER area=ROW_1_LEFT, ROW_1_RIGHT, ROW_2_LEFT, ROW_2_CENTER, ROW_2_RIGHT before=false target=true
+10-27 17:18:53.465 30926 31093 I RoutineEvidence: PREPARE HVAC_POWER observedOn=true
+10-27 17:18:54.696 30926 31093 I RoutineEvidence: WRITE SET_HVAC_TARGET area=ROW_1_LEFT before=null requested=22.0 BLOCKED observed=null 현재 공조 목표 온도를 읽을 수 없습니다. 차량의 공조 전원·연결을 확인하세요.

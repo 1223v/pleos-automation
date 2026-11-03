@@ -1,0 +1,37 @@
+[
+  {
+    "path": "server/src/contracts.ts",
+    "sha256": "de0be3e8d34add78bbf3885704c67807dab273d3b612ec168c60ebd5911d7cec",
+    "lastWriteTime": "2026-11-01T16:58:42.1252621+09:00"
+  },
+  {
+    "path": "server/src/explanations.ts",
+    "sha256": "5bc89c53b3924b212051e15faed09c9eef57f946bfb6881bfd8b3bb3619fce68",
+    "lastWriteTime": "2026-11-01T16:59:58.2109814+09:00"
+  },
+  {
+    "path": "server/src/http.ts",
+    "sha256": "22d60852e5ace245a652e8fcdafb1d5b7d18bb87f84c4bf211d0ec6c57768087",
+    "lastWriteTime": "2026-11-01T16:57:32.5892178+09:00"
+  },
+  {
+    "path": "server/src/planner.ts",
+    "sha256": "1bf4aeac761532424e099d290b78ca2464b10094b3d49daadedd0328cfc4eead",
+    "lastWriteTime": "2026-11-01T16:57:32.5892178+09:00"
+  },
+  {
+    "path": "server/test/run-explanations.test.ts",
+    "sha256": "7f40d4922808ca6c323afa81b17a3dfd8cca08646b31833efd34b96c14412fa3",
+    "lastWriteTime": "2026-11-01T16:59:58.2129829+09:00"
+  },
+  {
+    "path": "server/README.md",
+    "sha256": "79b5e4974add50ff6f915722a336c725849d8cc9aad0039b2c017be3c4f7a553",
+    "lastWriteTime": "2026-11-01T16:59:58.2149824+09:00"
+  },
+  {
+    "path": ".local/A05/explanation-server.mjs",
+    "sha256": "d671ae05e7b7c84180de499af53ebbc6eb93cf1878bb791949b712c5b955460f",
+    "lastWriteTime": "2026-11-01T21:38:28.1925873+09:00"
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "core": {
+    "tests": 98,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "app": {
+    "tests": 64,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "server": {
+    "tests": 50,
+    "failures": 0,
+    "skipped": 0,
+    "log": "server-final-2026-11-02.log"
+  },
+  "lint": [
+    {
+      "id": "DataExtractionRules",
+      "severity": "Warning"
+    }
+  ],
+  "targetAvd": {
+    "tests": 7,
+    "failures": 0,
+    "skipped": 0,
+    "elapsedSeconds": 21.933,
+    "log": "target-avd-retest-2026-11-02.log",
+    "includedIn": "fullAvd"
+  },
+  "fullAvd": {
+    "tests": 26,
+    "failures": 0,
+    "skipped": 0,
+    "elapsedSeconds": 184.483,
+    "log": "full-avd-retest-2026-11-02.log"
+  },
+  "processRecovery": {
+    "tests": 1,
+    "failures": 0,
+    "skipped": 0,
+    "elapsedSeconds": 6.374,
+    "log": "process-recovery-2026-11-02.log",
+    "productApk": "Same debug product APK as fullAvd",
+    "instrumentationApkHashes": "apk-hashes-before-selector-fix-2026-11-02.json"
+  },
+  "build": {
+    "result": "PASS",
+    "tasks": 137,
+    "elapsedSeconds": 127,
+    "log": "final-build-retest-2026-11-02.log",
+    "outputs": [
+      "debug",
+      "androidTest",
+      "unsigned release"
+    ]
+  },
+  "finalInstrumentationBuild": {
+    "result": "PASS",
+    "tasks": 53,
+    "elapsedSeconds": 34,
+    "log": "full-retest-build-2026-11-02.log",
+    "change": "test selector only; product APK unchanged"
+  },
+  "actualOpenAiCalls": 0,
+  "localMockProviderCalls": 4,
+  "recordFinalizedAt": "2026-11-03 KST",
+  "testsExecutedAt": "2026-11-02 KST",
+  "resumeIntegrity": "resume-integrity-2026-11-03.json",
+  "cleanup": "cleanup-2026-11-03.json"
+}

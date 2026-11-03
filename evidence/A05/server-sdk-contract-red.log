@@ -1,0 +1,32 @@
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✖ official SDK explanation wire request uses supported strict schema and never exposes vehicle tools (63.038ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 617.1071
+
+✖ failing tests:
+
+test at dist\test\run-explanations.test.js:201:1
+✖ official SDK explanation wire request uses supported strict schema and never exposes vehicle tools (63.038ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /"uniqueItems"/. Input:
+  
+  '{"type":"object","properties":{"runId":{"type":"string","minLength":1,"maxLength":80},"summary":{"type":"string","minLength":1,"maxLength":2000},"details":{"type":"array","maxItems":64,"items":{"type":"object","properties":{"nodeId":{"anyOf":[{"type":"string","pattern":"^[A-Za-z0-9_-]{1,80}$"},{"type":"null"}]},"explanation":{"type":"string","minLength":1,"maxLength":2000},"eventSequences":{"type":"array","minItems":1,"maxItems":128,"uniqueItems":true,"items":{"type":"integer","minimum":1,"maximum":9007199254740991}}},"required":["nodeId","explanation","eventSequences"],"additionalProperties":false}},"limitations":{"type":"array","maxItems":16,"items":{"type":"string","minLength":1,"maxLength":500}}},"required":["runId","summary","details","limitations"],"additionalProperties":false}'
+  
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/run-explanations.test.js:223:16)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"type":"object","properties":{"runId":{"type":"string","minLength":1,"maxLength":80},"summary":{"type":"string","minLength":1,"maxLength":2000},"details":{"type":"array","maxItems":64,"items":{"type":"object","properties":{"nodeId":{"anyOf":[{"type":"string","pattern":"^[A-Za-z0-9_-]{1,80}$"},{"type":"null"}]},"explanation":{"type":"string","minLength":1,"maxLength":2000},"eventSequences":{"type":"array","minItems":1,"maxItems":128,"uniqueItems":true,"items":{"type":"integer","minimum":1,"maximum":9007199254740991}}},"required":["nodeId","explanation","eventSequences"],"additionalProperties":false}},"limitations":{"type":"array","maxItems":16,"items":{"type":"string","minLength":1,"maxLength":500}}},"required":["runId","summary","details","limitations"],"additionalProperties":false}',
+    expected: /"uniqueItems"/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }

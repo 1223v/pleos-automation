@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 2,
+  "id": "contract-commute",
+  "title": "출근 계약 시험",
+  "revision": 1,
+  "trigger": {
+    "type": "SEAT_OCCUPIED",
+    "condition": null,
+    "filters": [
+      {
+        "field": "WEEKDAY",
+        "operator": "LTE",
+        "value": null,
+        "text": null,
+        "flag": null,
+        "startMinute": null,
+        "endMinute": null,
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "field": "TIME_WINDOW",
+        "operator": "LTE",
+        "value": null,
+        "text": null,
+        "flag": null,
+        "startMinute": 420,
+        "endMinute": 540,
+        "weekdays": []
+      }
+    ],
+    "minuteOfDay": null,
+    "weekdays": [],
+    "zoneId": "Asia/Seoul"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "kind": "START",
+      "label": "탑승",
+      "position": {
+        "x": 40,
+        "y": 160
+      },
+      "action": null,
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "navigation",
+      "kind": "ACTION",
+      "label": "시험 목적지 안내",
+      "position": {
+        "x": 300,
+        "y": 160
+      },
+      "action": {
+        "type": "NAVIGATE",
+        "area": "ROW_1_LEFT",
+        "value": null,
+        "text": "서울시청 공개 좌표 · 시험용",
+        "targetId": null,
+        "latitude": 37.5665,
+        "longitude": 126.978,
+        "axis": null,
+        "direction": null
+      },
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "cold",
+      "kind": "IF",
+      "label": "5도 이하",
+      "position": {
+        "x": 560,
+        "y": 160
+      },
+      "action": null,
+      "condition": {
+        "field": "OUTSIDE_TEMPERATURE",
+        "operator": "LTE",
+        "value": 5,
+        "text": null,
+        "flag": null,
+        "startMinute": null,
+        "endMinute": null,
+        "weekdays": []
+      },
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "heat",
+      "kind": "ACTION",
+      "label": "앞줄 왼쪽 열선",
+      "position": {
+        "x": 820,
+        "y": 60
+      },
+      "action": {
+        "type": "SET_SEAT_HEAT",
+        "area": "ROW_1_LEFT",
+        "value": 2,
+        "text": null,
+        "targetId": null,
+        "latitude": null,
+        "longitude": null,
+        "axis": null,
+        "direction": null
+      },
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "end",
+      "kind": "END",
+      "label": "완료",
+      "position": {
+        "x": 1080,
+        "y": 160
+      },
+      "action": null,
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "start",
+      "target": "navigation",
+      "port": "next"
+    },
+    {
+      "id": "e2",
+      "source": "navigation",
+      "target": "cold",
+      "port": "next"
+    },
+    {
+      "id": "e3",
+      "source": "cold",
+      "target": "heat",
+      "port": "true"
+    },
+    {
+      "id": "e4",
+      "source": "cold",
+      "target": "end",
+      "port": "false"
+    },
+    {
+      "id": "e5",
+      "source": "heat",
+      "target": "end",
+      "port": "next"
+    }
+  ]
+}

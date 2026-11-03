@@ -1,0 +1,88 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✔ HA light unknown or unavailable state blocks before any service write (56.5181ms)
+✔ HA light mismatched or missing current state blocks before service write (0.5596ms)
+✔ HA light reads before write and verifies the selected on or off state afterwards (1.4252ms)
+✔ Calendar rejects malformed event collections and explicit error payloads (3.6179ms)
+✔ Calendar preserves omitted or empty items and valid optional event fields (0.6514ms)
+✔ Kakao rejects missing or malformed place lists and unusable destination coordinates (1.3345ms)
+✔ Kakao preserves empty results and valid place coordinates without optional metadata (0.4928ms)
+✔ what3words rejects absent malformed or out of range coordinates (0.9059ms)
+✔ what3words verifies numeric coordinates including zero and range boundaries (0.4159ms)
+✖ workflow contract accepts exactly4096 visits and rejects4097 before provider compilation (63.2544ms)
+✖ deep nested repeats saturate rather than overflow the visit limit (1.0082ms)
+✔ known overspend blocks later reservations across restart and preserves known charge (58.1467ms)
+✔ settled costs cannot be settled again to refund spend (0.9163ms)
+✔ budget periods change at Korean midnight including month boundary (1.6563ms)
+✔ legacy UTC-day charges conservatively overlap both Korean dates and months (36.8975ms)
+✔ two ledger connections cannot reserve beyond one shared limit (47.3952ms)
+✔ malformed mode locale and create-only fields are rejected before provider or reservation (3.4227ms)
+✔ complete valid graph rejects approval and semantic malformed values (6.198ms)
+✔ unavailable HA climate cannot write even when its old target matches (2.6319ms)
+✔ HA unavailable after write stays UNKNOWN and is never retried (1.4724ms)
+✔ actual SDK pins official origin and sends strict nonstored nonretry request (6.6911ms)
+✔ HTTP rejects browser and oversized final response, keeping error bounded (34.543ms)
+✔ invalid usage keeps reservation and locks the ledger (3.7578ms)
+✔ real SDK does not retry network errors (1.3316ms)
+✔ HTTP MIME JSON body and request rate boundaries are enforced (47.2484ms)
+✔ connector stream overflow and redirect failure return sanitized errors (0.8498ms)
+✔ default and missing budgets block before provider creation/call (32.0467ms)
+✔ mock completion validates and duplicate request does not bill twice (2.404ms)
+✔ uncertain reservations survive restart and enforce budget (30.4126ms)
+✔ provider failure keeps full reservation and hides provider secrets (1.2418ms)
+✔ invalid AI output is never a draft (0.8162ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.5133ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (3.7619ms)
+✔ HTTP authentication and disabled AI do not call a provider (66.1939ms)
+✔ schema rejects unexpected execution approval (0.7987ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (6.8233ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 34
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2547.5021
+
+✖ failing tests:
+
+test at dist\test\execution-limit.test.js:24:1
+✖ workflow contract accepts exactly4096 visits and rejects4097 before provider compilation (63.2544ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/execution-limit.test.js:26:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /4,096/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at dist\test\execution-limit.test.js:28:1
+✖ deep nested repeats saturate rather than overflow the visit limit (1.0082ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/execution-limit.test.js:29:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /4,096/,
+    operator: 'throws',
+    diff: 'simple'
+  }
