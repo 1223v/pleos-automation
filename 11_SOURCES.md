@@ -151,7 +151,7 @@ C18의 원본은 [references](references/APPLICATION_FORM_NOTES.md)에 해시와
 | D43 | [Activity lifecycle](https://developer.android.com/guide/components/activities/activity-lifecycle) | DOC: 화면/프로세스 수명 참고; STOP 보장으로 해석 금지 |
 | D44 | [Audio focus](https://developer.android.com/media/optimize/audio-focus) | DOC: 자체 음원의 포커스/중단 구현 참고, 대상 OS·target별 확인 필요 |
 | D45 | [Android testing](https://developer.android.com/training/testing) | DOC: 로컬·계측·UI 시험 구성 참고 |
-| D46 | [App signing](https://developer.android.com/studio/publish/app-signing) | DOC: release 서명·키 관리 참고; 서명·키 생성 미실행 |
+| D46 | [App signing](https://developer.android.com/studio/publish/app-signing), [apksigner](https://developer.android.com/tools/apksigner), [JDK 17 keytool](https://docs.oracle.com/en/java/javase/17/docs/specs/man/keytool.html) | 2026-11-15 확인. JDK 17로 제출 키 생성, Build Tools 35.0.0으로 APK 서명과 검증. [설치 결과](09_SUBMISSION_CHECKLIST.md#apk-검증-기록) |
 | D47 | [Gradle Wrapper](https://docs.gradle.org/8.10.2/userguide/gradle_wrapper.html) | DOC: 프로젝트 Wrapper·Windows 실행 재현 기준 |
 | D48 | [Network security configuration](https://developer.android.com/privacy-and-security/security-config) | DOC: 개발/제품 네트워크 설정 분리 참고; 서버 구현 미착수 |
 | D49 | [SystemClock](https://developer.android.com/reference/android/os/SystemClock) | DOC: elapsedRealtime 등 경과시간 시계; 타이머의 벽시계 변경 분리 참고 |

@@ -20,11 +20,17 @@
 
 ## 1차 선택 개발 자료
 
-로컬 release 빌드는 `app-release-unsigned.apk`다. 11월 5일 파일의 SHA-256은 `24465b84b6289ef81e894a20bd30ed754edddb88cf2fa05c0393f5671ee0e81d`로 A05 장부와 일치했다. 제출용 서명본·영상·심사용 GitHub/다운로드 링크는 검증 대기다. [APK 장부](evidence/A05/apk-hashes-2026-11-02.json) · [A05 검증 범위](evidence/A05/verification-2026-11-02.md)
+### APK 검증 기록
 
-- [ ] APK를 제출할 때 서명된 release 빌드를 새로 설치·실행하고, 소스 버전과 최종 APK 해시를 대응한다.
-- [ ] `apk/팀명_앱이름_release.apk` 또는 용량 초과 시 Releases 링크.
-- [ ] 저장소 README에 앱 소개·실행법·테스트 환경·설정·APK 위치 작성.
+2026-11-15 KST · R12/R13 · W20/W22 · T34/T35. [제출 APK](apk/forky_forky_release.apk)는 앱 소스 커밋 `c516d1cfe2868cd5070ea4f7730620f173cd4b09`로 빌드했다. 패키지는 `com.pleos.routine`, 버전은 `0.1.0`(1), 파일 크기는 52,859,960바이트다.
+
+- APK SHA-256은 `d07a4d2b89ca6278eb1bc3d728d3da098f2a8a2cf508820da96c9368f40ad21d`이다.
+- Windows x64, Corretto 17.0.21, Gradle 8.14.6으로 `:app:assembleRelease` 성공. Build Tools 35.0.0의 `apksigner verify --verbose --print-certs`에서 v3 서명 1개를 확인했고 `zipalign -c -P 16 4`가 통과했다.
+- 공식 Pleos Connect API 34의 새 AVD(`emulator-5580`, 사용자 10)에서 패키지 미설치를 확인했다. `adb -s emulator-5580 install --user 10 apk/forky_forky_release.apk`는 `Success`, `adb -s emulator-5580 shell am start -W --user 10 -n com.pleos.routine/.MainActivity`는 `Status: ok`, `LaunchState: COLD`였다. 첫 화면까지 2,532ms였고 해당 Activity가 resumed 상태였다. 동일 APK의 필수 흐름 10회는 미실행이다.
+
+- [x] 서명된 release APK를 새로 설치·실행하고 소스 버전과 파일 해시를 기록했다.
+- [x] 저장소에 `apk/forky_forky_release.apk`를 배치했다.
+- [x] README에 앱 소개·실행법·테스트 환경·설정·APK 위치를 작성했다.
 - [ ] 비밀키, 토큰, 서명 키스토어, 실제 차량 식별자, 개인 위치·음성 데이터 제외.
 - [ ] 제출할 저장소의 소유자·커밋 이력과 영상에 보이는 계정 표시를 확인한다. 비식별 요건이 모호하면 운영사 안내를 확인한다.
 - [ ] 비공개 저장소 사용 시 공지된 심사 계정만 초대하고 접근 검증.
