@@ -23,6 +23,12 @@ object RunHistory {
         }
     }.getOrNull()
     fun events(row:RunRecord,partial:List<ExecutionEvent>)=result(row)?.events ?: partial.filter { it.runId==row.id }.sortedBy { it.sequence }
+    /** A run can complete while steps were deliberately left unexecuted; say so next to its status. */
+    fun unexecuted(w:WorkflowDefinition?,events:List<ExecutionEvent>):String? {
+        val ids=events.filter { it.status==ActionStatus.SKIPPED }.mapNotNull { it.nodeId }.distinct()
+        if(ids.isEmpty())return null
+        return "미실행 단계 ${ids.size}개 · "+ids.joinToString(", ") { id -> w?.nodes?.find { it.id==id }?.label ?: id }
+    }
     fun edit(row:RunRecord,nodeId:String?,current:WorkflowDefinition?,newId:String):HistoryEdit {
         val snapshot=requireNotNull(definition(row)) { "실행 당시 규칙이 없거나 일치하지 않아 조건을 연결할 수 없습니다." }
         require(nodeId==null || snapshot.nodes.any { it.id==nodeId && it.kind==NodeKind.IF })

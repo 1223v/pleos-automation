@@ -132,6 +132,8 @@ class RoutineRuntime(private val app:RoutineApplication) {
         }
         override suspend fun preflight(action:ActionSpec,context:ExecutionContext):ActionResult? {
             authorization.validate(workflow,runId)?.let { return it }
+            // The seat step of a confirmed exclusion run is recorded as unexecuted; it never reaches the vehicle adapter.
+            authorization.skipped(action)?.let { return it }
             app.platform.preflight(action,context)?.let { return it }
             if(context.source!=InputSource.REAL)return ActionResult(ActionStatus.BLOCKED,"가상 입력으로 실제 기능을 호출할 수 없습니다.")
             // Driving allowance requires a separately verified provider/app capability.
@@ -142,6 +144,7 @@ class RoutineRuntime(private val app:RoutineApplication) {
         override suspend fun execute(request:ActionRequest,onProgress:suspend (ActionProgress)->Unit):ActionResult {
             authorization.validate(workflow,request.runId)?.let { return it }
             val a=request.action
+            authorization.skipped(a)?.let { return it }
             if(a.type in ActionResources.parkedTypes) {
                 vehicleEffectsStarted=true
                 return app.platform.execute(a,beforeDispatch={ authorization.beforeDispatch(request) },progress=onProgress)

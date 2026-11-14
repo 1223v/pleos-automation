@@ -27,6 +27,7 @@ import java.util.UUID
         Column(Modifier.fillMaxWidth().padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
             Text(snapshot?.title ?: row.routineId,style=MaterialTheme.typography.titleMedium)
             Text("${if(row.simulation)"시뮬레이션" else "실제 실행"} · ${row.state} · 버전 ${row.revision ?: RunHistory.result(row)?.revision ?: "미기록"}")
+            RunHistory.unexecuted(snapshot,events)?.let { Text(it,color=MaterialTheme.colorScheme.error) }
             Text("시작 원인: ${RunHistory.cause(row)}")
             Text(java.time.Instant.ofEpochMilli(row.createdAt).atZone(java.time.ZoneId.of("Asia/Seoul")).toString())
             if(expanded) {

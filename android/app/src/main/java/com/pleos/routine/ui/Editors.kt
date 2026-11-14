@@ -58,7 +58,7 @@ fun actionName(type:ActionType)=when(type) {
                     }
                 } else Text("연결 설정에서 차량 지원을 조회하면 이 동작의 영역을 선택할 수 있습니다.")
                 if(current==null && a.area.isNotBlank())Text("현재 초안의 영역 ${a.area} · 차량 지원 미확인")
-                if(a.type==ActionType.MOVE_SEAT_LIMITED)Text("앞뒤·등받이 이동과 정지 검증이 끝날 때까지 시트 루틴은 가상 테스트만 가능합니다.")
+                if(a.type==ActionType.MOVE_SEAT_LIMITED)Text("앞뒤·등받이 이동과 정지 검증이 끝날 때까지 시트는 실제로 움직이지 않습니다. 실제 실행 때 동의하면 이 단계만 ‘미실행’으로 기록하고 나머지 동작을 실행합니다.")
             }
             when(a.type) {
                 ActionType.SET_HVAC_TARGET,ActionType.SET_AMBIENT_BRIGHTNESS,ActionType.SET_SEAT_HEAT -> NumberInput(when(a.type) { ActionType.SET_HVAC_TARGET->"목표 온도 °C";ActionType.SET_AMBIENT_BRIGHTNESS->"밝기 %";else->"열선 단계" },a.value) { update(a.copy(value=it)) }

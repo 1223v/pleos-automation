@@ -66,7 +66,10 @@ interface ActionAdapter {
     /** Failure of a still-owned resource after its initial start was verified. */
     fun activeFailure():ActiveActionFailure? = null
     suspend fun authorizeRun(workflow: WorkflowDefinition, runId: String, context: ExecutionContext): ActionResult? = null
-    /** null means eligible; a terminal result means stop before any side effect. */
+    /**
+     * null means eligible. SKIPPED means this one step is left unexecuted on purpose, with no command sent,
+     * and the run continues. Any other result stops the run before any side effect of this step.
+     */
     suspend fun preflight(action: ActionSpec, context: ExecutionContext): ActionResult? = null
     suspend fun execute(request: ActionRequest, onProgress: suspend (ActionProgress) -> Unit): ActionResult
     /** Must not share the normal move queue or movement gates; best-effort STOP and owned-resource cleanup. */

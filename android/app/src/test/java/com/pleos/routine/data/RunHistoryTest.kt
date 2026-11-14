@@ -12,6 +12,16 @@ class RunHistoryTest {
     private fun row()=RunRecord("run-12345",w.id,WorkflowJson.format.encodeToString(result()),"COMPLETED",true,
         definition=WorkflowJson.encode(w),revision=7,semanticHash=WorkflowJson.semanticHash(w))
 
+    @Test fun unexecutedStepsAreSummarisedSoACompletedRunIsNotReadAsFullExecution() {
+        val rest=WorkflowExamples.rest()
+        val seat=rest.nodes.first { it.action?.type==ActionType.MOVE_SEAT_LIMITED }
+        val events=listOf(ExecutionEvent("r",seat.id,ActionStatus.SKIPPED,"m",0,sequence=1),
+            ExecutionEvent("r",seat.id,ActionStatus.SKIPPED,"m",0,iterations=listOf(2),sequence=2),
+            ExecutionEvent("r","action0",ActionStatus.VERIFIED,"ok",0,sequence=3))
+        assertEquals("미실행 단계 1개 · ${seat.label}",RunHistory.unexecuted(rest,events))
+        assertEquals("미실행 단계 1개 · ${seat.id}",RunHistory.unexecuted(null,events))
+        assertNull(RunHistory.unexecuted(rest,events.drop(2)))
+    }
     @Test fun simulationPersistsExactVersionEvenWhenLaterEdited() {
         val saved=RunHistory.simulation(w,result())
         assertEquals(w,RunHistory.definition(saved));assertEquals(7,saved.revision)

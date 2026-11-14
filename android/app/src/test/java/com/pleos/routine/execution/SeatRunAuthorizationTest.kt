@@ -21,10 +21,25 @@ class SeatRunAuthorizationTest {
         }
         assertEquals(2,prompts);assertEquals(graph().nodes.count { it.action?.type==ActionType.MOVE_SEAT_LIMITED },collected.size)
     }
-    @Test fun absentCalibrationOrMovingVehicleNeverPromptsOrAuthorizes()=runTest {
+    @Test fun movingVehicleNeverPromptsOrAuthorizesWithOrWithoutCalibration()=runTest {
         val confirm:suspend(String,String)->Boolean={ _,_->error("must not ask") }
-        assertEquals(ActionStatus.BLOCKED,SeatRunAuthorization.authorize(graph(),parked(),{null},confirm)?.status)
-        assertEquals(ActionStatus.BLOCKED,SeatRunAuthorization.authorize(graph(),parked().copy(uxRestricted=true),{"plan"},confirm)?.status)
+        for(plan in listOf<String?>("plan",null))
+            assertEquals(ActionStatus.BLOCKED,SeatRunAuthorization.authorize(graph(),parked().copy(uxRestricted=true),{plan},confirm)?.status)
+    }
+    @Test fun absentCalibrationAsksToExcludeEverySeatStepInsteadOfMovingIt()=runTest {
+        var title="";var detail="";var prompts=0
+        assertNull(SeatRunAuthorization.authorize(graph(),parked(),{null}) { t,d -> title=t;detail=d;prompts++;true })
+        assertEquals(1,prompts);assertEquals(SeatRunAuthorization.EXCLUSION_TITLE,title)
+        graph().nodes.filter { it.action?.type==ActionType.MOVE_SEAT_LIMITED }.forEach { assertTrue(it.label,detail.contains(it.label)) }
+        assertTrue(detail,detail.contains("시트 명령은 전송하지 않습니다"))
+        assertTrue(detail,detail.contains("이번 실행에만"))
+    }
+    @Test fun decliningSeatExclusionCancelsTheWholeRun()=runTest {
+        assertEquals(ActionStatus.CANCELLED,SeatRunAuthorization.authorize(graph(),parked(),{null}) { _,_->false }?.status)
+    }
+    @Test fun calibrationAppearingWhileConfirmingExclusionCannotAuthorize()=runTest {
+        var plan:String?=null
+        assertEquals(ActionStatus.BLOCKED,SeatRunAuthorization.authorize(graph(),parked(),{plan}) { _,_->plan="new evidence";true }?.status)
     }
     @Test fun decliningBlocksEntireWorkflowAndSeatlessDoesNotPrompt()=runTest {
         assertEquals(ActionStatus.CANCELLED,SeatRunAuthorization.authorize(graph(),parked(),{"plan"}) { _,_->false }?.status)

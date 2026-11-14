@@ -95,7 +95,13 @@ class WorkflowEngine(
                     NodeKind.ACTION -> {
                         val a = n.action!!
                         if(a.type in ActionResources.parkedTypes && !x.parkedAndStationary()) { log(id,ActionStatus.BLOCKED,"선택한 차량 동작에 필요한 주차·정차 상태가 아닙니다.",at);throw Halt(RunStatus.BLOCKED) }
-                        adapter.preflight(a, x)?.let { log(id, it.status, it.message, at, iterations, branches); terminate(it) }
+                        val refusal = adapter.preflight(a, x)
+                        if (refusal != null) {
+                            log(id, refusal.status, refusal.message, at, iterations, branches)
+                            // A deliberately unexecuted step is recorded as such, never as a request, and the run goes on.
+                            if (refusal.status == ActionStatus.SKIPPED) { id = target(); continue }
+                            terminate(refusal)
+                        }
                         log(id, ActionStatus.REQUESTED, n.label, at, iterations, branches)
                         currentCoroutineContext().ensureActive()
                         val result = adapter.execute(ActionRequest(runId, id, a, x, iterations, branches)) { log(n.id, it.status, it.message, at, iterations, branches) }

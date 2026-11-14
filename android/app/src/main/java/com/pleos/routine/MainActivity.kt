@@ -519,7 +519,7 @@ private fun nodeSummary(n:WorkflowNode):String = RuleDescriptions.node(n)
         }
         Text(result)
         caps.forEach { c -> Card { Column(Modifier.fillMaxWidth().padding(12.dp)) { Text("${c.type} · ${c.access}");Text(c.areas.joinToString());Text(c.ranges.toString());if(c.message.isNotBlank())Text(c.message) } } }
-        Text("시트 제한 이동·STOP 및 좌석 점유 유효성은 대상 AVD 증거가 확보되기 전까지 잠깁니다. 읽기 값은 운전자 신원 확인이 아닙니다.")
+        Text("시트 제한 이동·STOP 및 좌석 점유 유효성은 대상 AVD 증거가 확보되기 전까지 잠깁니다. 시트가 든 루틴은 실행할 때 동의하면 시트 단계만 미실행으로 기록하고 나머지를 실행합니다. 읽기 값은 운전자 신원 확인이 아닙니다.")
     }
 }
 

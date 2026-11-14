@@ -20,14 +20,17 @@ class SeatApprovalSessionTest {
     private class Environment {
         var generation=1L
         var context=ExecutionContext(0,0,InputSource.REAL,StateValue("P",0,true,InputSource.REAL),StateValue(0.0,0,true,InputSource.REAL),uxRestricted=false)
-        var calibration="evidence-v1:window200:max300:sample50"
+        var description:String?="ROW_1_LEFT FORE_AFT BACKWARD maximum 300ms"
+        var calibration:String?="evidence-v1:window200:max300:sample50"
         var prompts=0
         var answer:suspend()->Boolean={true}
         fun session(w:WorkflowDefinition,runId:String="run-1")=SeatRunAuthorization.Session(
             workflow=w,runId=runId,connectionGeneration={generation},snapshot={context},
-            plan={"ROW_1_LEFT FORE_AFT BACKWARD maximum 300ms"},planKey={calibration},
+            plan={description},planKey={calibration},
             confirm={ _,_->prompts++;answer() })
     }
+    private fun uncalibrated()=Environment().apply { description=null;calibration=null }
+    private fun seat(w:WorkflowDefinition)=w.nodes.single { it.id=="seat" }.action!!
     private fun request(w:WorkflowDefinition,nodeId:String="audio",runId:String="run-1")=
         ActionRequest(runId,nodeId,w.nodes.single { it.id==nodeId }.action!!,parked())
 
@@ -112,6 +115,71 @@ class SeatApprovalSessionTest {
         assertEquals(ActionStatus.BLOCKED,session.beforeDispatch(request(w,"seat"))?.status)
         val next=e.session(w,"run-2");assertNull(next.authorize(parked()))
         assertNull(next.beforeDispatch(request(w,runId="run-2")));assertEquals(2,e.prompts)
+    }
+    @Test fun uncalibratedRunAsksOnceThenSkipsOnlySeatSteps()=runTest {
+        val w=graph();val e=uncalibrated();val session=e.session(w)
+        assertNull(session.authorize(parked()));assertEquals(1,e.prompts)
+        assertEquals(ActionStatus.SKIPPED,session.skipped(seat(w))?.status)
+        assertNull(session.skipped(w.nodes.single { it.id=="audio" }.action!!))
+        assertNull(session.beforeDispatch(request(w)))
+        assertEquals("A MOVE must never be dispatched from an exclusion run",ActionStatus.BLOCKED,session.beforeDispatch(request(w,"seat"))?.status)
+    }
+    @Test fun calibratedRunNeverSkipsItsSeatSteps()=runTest {
+        val w=graph();val session=Environment().session(w);assertNull(session.authorize(parked()))
+        assertNull(session.skipped(seat(w)))
+    }
+    @Test fun exclusionRunExecutesOtherStepsAndNeverRequestsTheSeat()=runTest {
+        val w=graph();val e=uncalibrated();val session=e.session(w);val dispatched=mutableListOf<ActionType>()
+        val adapter=object:ActionAdapter {
+            override suspend fun authorizeRun(workflow:WorkflowDefinition,runId:String,context:ExecutionContext)=session.authorize(context)
+            override suspend fun preflight(action:ActionSpec,context:ExecutionContext)=session.validate(w,"run-1") ?: session.skipped(action)
+            override suspend fun execute(request:ActionRequest,onProgress:suspend(ActionProgress)->Unit):ActionResult {
+                session.beforeDispatch(request)?.let { return it }
+                dispatched+=request.action.type
+                return ActionResult(ActionStatus.VERIFIED,"dispatched")
+            }
+            override suspend fun stop(runId:String):List<ActionResult> { session.invalidate();return emptyList() }
+        }
+        val result=WorkflowEngine(adapter,{e.context},nowMillis={testScheduler.currentTime}).run(w,"run-1")
+        assertEquals(RunStatus.COMPLETED,result.status)
+        assertEquals(listOf(ActionType.PLAY_LOCAL_AUDIO),dispatched)
+        assertEquals(listOf(ActionStatus.SKIPPED),result.events.filter { it.nodeId=="seat" }.map { it.status })
+    }
+    @Test fun decliningOrTimingOutExclusionCancelsWithoutAnySkipAuthority()=runTest {
+        val w=graph();val declined=uncalibrated().apply { answer={false} }.session(w)
+        assertEquals(ActionStatus.CANCELLED,declined.authorize(parked())?.status)
+        assertNull(declined.skipped(seat(w)))
+        assertEquals(ActionStatus.BLOCKED,declined.beforeDispatch(request(w))?.status)
+        val e=uncalibrated();val reply=CompletableDeferred<Boolean>();e.answer={reply.await()};val late=e.session(w)
+        val task=async { late.authorize(parked()) }
+        advanceTimeBy(30_001);runCurrent()
+        assertEquals(ActionStatus.CANCELLED,task.await()?.status)
+        reply.complete(true)
+        assertNull(late.skipped(seat(w)))
+    }
+    @Test fun exclusionConsentIsPerRunAndEndsWithTheRun()=runTest {
+        val w=graph();val e=uncalibrated();val first=e.session(w);assertNull(first.authorize(parked()))
+        first.invalidate()
+        assertNull(first.skipped(seat(w)))
+        assertEquals(ActionStatus.BLOCKED,first.validate(w,"run-1")?.status)
+        val second=e.session(w,"run-2");assertNull(second.authorize(parked()));assertEquals(2,e.prompts)
+    }
+    @Test fun calibrationAppearingAfterExclusionConsentInvalidatesTheRun()=runTest {
+        val w=graph();val e=uncalibrated();val session=e.session(w);assertNull(session.authorize(parked()))
+        e.description="ROW_1_LEFT FORE_AFT BACKWARD maximum 300ms";e.calibration="evidence-v1"
+        assertEquals(ActionStatus.BLOCKED,session.validate(w,"run-1")?.status)
+        assertNull(session.skipped(seat(w)))
+    }
+    @Test fun inconsistentCalibrationEvidenceBlocksWithoutPrompting()=runTest {
+        val w=graph()
+        for((description,key) in listOf<Pair<String?,String?>>("plan" to null,null to "key")) {
+            val e=Environment().apply { this.description=description;calibration=key }
+            assertEquals(ActionStatus.BLOCKED,e.session(w).authorize(parked())?.status);assertEquals(0,e.prompts)
+        }
+    }
+    @Test fun movingVehicleBlocksExclusionWithoutPrompting()=runTest {
+        val e=uncalibrated();e.context=e.context.copy(uxRestricted=true)
+        assertEquals(ActionStatus.BLOCKED,e.session(graph()).authorize(e.context)?.status);assertEquals(0,e.prompts)
     }
     @Test fun editingSeparateWorkingCopyDoesNotCancelImmutableRunningRevision()=runTest {
         val w=graph();val e=Environment();val session=e.session(w);assertNull(session.authorize(parked()))
