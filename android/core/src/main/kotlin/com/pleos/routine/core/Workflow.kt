@@ -118,6 +118,13 @@ object WorkflowJson {
 }
 
 object WorkflowEdits {
+    fun applyScopedPatch(workflow: WorkflowDefinition, patch: WorkflowPatch, selectedNodeId: String): WorkflowDefinition {
+        val selected = requireNotNull(workflow.nodes.singleOrNull { it.id == selectedNodeId }) { "선택한 노드가 없습니다." }
+        val candidate = applyPatch(workflow, patch)
+        validateScopedOperations(workflow, selected, patch)
+        return candidate
+    }
+
     fun applyPatch(workflow: WorkflowDefinition, patch: WorkflowPatch): WorkflowDefinition {
         require(patch.baseRevision == workflow.revision) { "수정 기준 버전이 다릅니다. 최신 루틴을 다시 확인하세요." }
         require(patch.operations.isNotEmpty() && patch.operations.size <= 128) { "변경 항목 수가 올바르지 않습니다." }

@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 2,
+  "id": "winter-camping",
+  "title": "겨울 차박",
+  "revision": 1,
+  "trigger": {
+    "type": "MANUAL",
+    "condition": null,
+    "filters": [],
+    "minuteOfDay": null,
+    "weekdays": [],
+    "zoneId": "Asia/Seoul"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "kind": "START",
+      "label": "주차 후 시작",
+      "position": {
+        "x": 40,
+        "y": 155
+      },
+      "action": null,
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "cold",
+      "kind": "IF",
+      "label": "외기 5°C 이하",
+      "position": {
+        "x": 280,
+        "y": 155
+      },
+      "action": null,
+      "condition": {
+        "field": "OUTSIDE_TEMPERATURE",
+        "operator": "LTE",
+        "value": 5,
+        "text": null,
+        "flag": null,
+        "startMinute": null,
+        "endMinute": null,
+        "weekdays": []
+      },
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "hvac23",
+      "kind": "ACTION",
+      "label": "공조 목표 23°C",
+      "position": {
+        "x": 520,
+        "y": 30
+      },
+      "action": {
+        "type": "SET_HVAC_TARGET",
+        "area": "ROW_1_LEFT",
+        "value": 23,
+        "text": null,
+        "targetId": null,
+        "latitude": null,
+        "longitude": null,
+        "axis": null,
+        "direction": null
+      },
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "seat",
+      "kind": "ACTION",
+      "label": "선택한 운전석 등받이",
+      "position": {
+        "x": 760,
+        "y": 155
+      },
+      "action": {
+        "type": "MOVE_SEAT_LIMITED",
+        "area": "ROW_1_LEFT",
+        "value": null,
+        "text": null,
+        "targetId": null,
+        "latitude": null,
+        "longitude": null,
+        "axis": "BACKREST",
+        "direction": "BACKWARD"
+      },
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "light30",
+      "kind": "ACTION",
+      "label": "조명 30%",
+      "position": {
+        "x": 1000,
+        "y": 155
+      },
+      "action": {
+        "type": "SET_AMBIENT_BRIGHTNESS",
+        "area": "ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT",
+        "value": 30,
+        "text": null,
+        "targetId": null,
+        "latitude": null,
+        "longitude": null,
+        "axis": null,
+        "direction": null
+      },
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    },
+    {
+      "id": "end",
+      "kind": "END",
+      "label": "완료",
+      "position": {
+        "x": 1240,
+        "y": 155
+      },
+      "action": null,
+      "condition": null,
+      "durationSeconds": null,
+      "repeatCount": null,
+      "joinId": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "start-cold",
+      "source": "start",
+      "target": "cold",
+      "port": "next"
+    },
+    {
+      "id": "cold-hvac23",
+      "source": "cold",
+      "target": "hvac23",
+      "port": "true"
+    },
+    {
+      "id": "cold-seat",
+      "source": "cold",
+      "target": "seat",
+      "port": "false"
+    },
+    {
+      "id": "hvac23-seat",
+      "source": "hvac23",
+      "target": "seat",
+      "port": "next"
+    },
+    {
+      "id": "seat-light30",
+      "source": "seat",
+      "target": "light30",
+      "port": "next"
+    },
+    {
+      "id": "light30-end",
+      "source": "light30",
+      "target": "end",
+      "port": "next"
+    }
+  ]
+}

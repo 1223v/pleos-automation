@@ -28,7 +28,7 @@ import java.util.concurrent.atomic.AtomicLong
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-data class Capability(val type:ActionType,val access:String,val areas:List<String>,val ranges:Map<String,Pair<Double,Double>> = emptyMap(),val message:String="")
+data class Capability(val type:ActionType,val access:String,val areas:List<String>,val ranges:Map<String,Pair<Double,Double>> = emptyMap(),val message:String="",val seatAxis:SeatAxis?=null)
 /** Values below are query observations, never Virtual Console cruise targets. */
 class VehiclePlatform(private val context:Context) {
     val automotive=context.packageManager.hasSystemFeature(PackageManager.FEATURE_AUTOMOTIVE)
@@ -132,7 +132,19 @@ class VehiclePlatform(private val context:Context) {
         bounded(ActionType.SET_AMBIENT_BRIGHTNESS) { callback { ok,fail -> v.getLight().checkAmbientLightBrightnessCapabilities({ c,m -> ok(cap(ActionType.SET_AMBIENT_BRIGHTNESS,c,m)) },fail) } }
         bounded(ActionType.SET_AMBIENT_COLOR) { callback { ok,fail -> v.getLight().checkAmbientLightBrightnessColorCapabilities({ c,m -> ok(Capability(ActionType.SET_AMBIENT_COLOR,c.accessType.name,m.map(::areaName))) },fail) } }
         bounded(ActionType.SET_SEAT_HEAT) { callback { ok,fail -> v.getSeat().checkSeatTemperatureCapabilities({ c,m -> ok(cap(ActionType.SET_SEAT_HEAT,c,m)) },fail) } }
-        bounded(ActionType.MOVE_SEAT_LIMITED) { callback { ok,fail -> v.getSeat().checkMoveSeatForeAftCapabilities({ c,m -> ok(Capability(ActionType.MOVE_SEAT_LIMITED,c.accessType.name,m.map(::areaName),message="앞뒤 capability · 등받이는 실행 전 별도 조회 · STOP 실증 전 이동 잠금")) },fail) } }
+        for (axis in SeatAxis.entries) {
+            bounded(ActionType.MOVE_SEAT_LIMITED) {
+                callback { ok,fail ->
+                    val done:(CapabilityConfig,List<SeatArea>)->Unit = { config,areas ->
+                        val label=if(axis==SeatAxis.FORE_AFT)"앞뒤" else "등받이"
+                        ok(Capability(ActionType.MOVE_SEAT_LIMITED,config.accessType.name,areas.map(::areaName),
+                            message="$label 지원 영역 · 이동·STOP 실증 전 실행 잠금",seatAxis=axis))
+                    }
+                    if(axis==SeatAxis.FORE_AFT)v.getSeat().checkMoveSeatForeAftCapabilities(done,fail)
+                    else v.getSeat().checkMoveSeatBackrestAngleCapabilities(done,fail)
+                }
+            }
+        }
         capabilities.value=results
     }
     suspend fun preflight(a:ActionSpec,x:ExecutionContext):ActionResult? {

@@ -17,3 +17,6 @@ evidence/**/logcat-local.txt
 *.hprof
 **/__pycache__/
 .DS_Store
+evidence/**/emulator-stdout.log
+evidence/**/emulator-stderr.log
+~$*

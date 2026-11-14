@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { Ajv } from 'ajv';
 import { AppError } from './errors.js';
+import { validateSelectedOperations } from './selected-edit.js';
+import { checkAreaHints, type VehicleAreas } from './planner-areas.js';
 
 const root = new URL('../../../contracts/', import.meta.url);
 export const workflowSchema = JSON.parse(readFileSync(new URL('workflow.schema.json', root), 'utf8')) as Record<string, unknown>;
@@ -28,9 +30,10 @@ function condition(value: unknown): void {
     case 'WEEKDAY': if (!(c.weekdays as number[]).length || (c.weekdays as number[]).some(v => v < 1 || v > 7)) invalid('요일 오류'); break;
   }
 }
-function action(value: unknown): void {
+function action(value: unknown, preview: boolean): void {
   const a = object(value);
-  if (!text(a.area) || a.area.length > 160 || a.value !== null && !finite(a.value)) invalid('동작 영역·값 오류');
+  const unresolvedSeat = preview && a.type === 'MOVE_SEAT_LIMITED' && a.area === '';
+  if ((!text(a.area) || a.area.length > 160) && !unresolvedSeat || a.value !== null && !finite(a.value)) invalid('동작 영역·값 오류');
   switch (a.type) {
     case 'NAVIGATE': if (!between(a.latitude, -90, 90) || !between(a.longitude, -180, 180) || !text(a.text)) invalid('목적지 오류'); break;
     case 'SET_HVAC_TARGET': if (!finite(a.value)) invalid('목표 온도 오류'); break;
@@ -49,6 +52,9 @@ export function validateWorkflowShape(value: unknown): ObjectValue {
   return object(value);
 }
 export function validateWorkflow(value: unknown): ObjectValue {
+  return checkWorkflow(value, false);
+}
+function checkWorkflow(value: unknown, preview: boolean): ObjectValue {
   const w = validateWorkflowShape(value), nodes = w.nodes as ObjectValue[], edges = w.edges as ObjectValue[];
   if (!text(w.id) || !text(w.title) || w.title.length > 100) invalid('루틴 이름·ID 오류');
   const trigger = object(w.trigger);
@@ -81,7 +87,7 @@ export function validateWorkflow(value: unknown): ObjectValue {
       case 'REPEAT': expected = ['body', 'next']; break;
       case 'PARALLEL': expected = null; if (ports.length < 2 || ports.length > 4 || new Set(ports).size !== ports.length || ports.some(p => !/^branch:[0-3]$/.test(p))) invalid('병렬 포트 오류'); break;
       case 'JOIN': if (owners.length !== 1) invalid('합류 소유 블록 오류'); expected = owners[0]!.kind === 'REPEAT' ? [] : ['next']; break;
-      case 'ACTION': action(n.action); break;
+      case 'ACTION': action(n.action, preview); break;
     }
     if (expected && JSON.stringify(ports) !== JSON.stringify(expected)) invalid('노드 연결 포트 오류');
     if (['REPEAT', 'PARALLEL'].includes(String(n.kind)) && !nodes.some(x => x.id === n.joinId && x.kind === 'JOIN')) invalid('합류 노드 오류');
@@ -145,22 +151,33 @@ export function validateWorkflow(value: unknown): ObjectValue {
   // App remains authoritative for live permissions, capability, approval and physical execution.
   return w;
 }
-export function validateResponse(value: unknown, mode: string, base?: ObjectValue): ObjectValue {
+export function validateResponse(value: unknown, mode: string, base?: ObjectValue, selectedNodeId?: string, vehicleAreas?: VehicleAreas[]): ObjectValue {
   if (!responseCheck(value)) throw new AppError('INVALID_AI_OUTPUT', 'AI 응답 형식을 검증하지 못했습니다.', 502);
   const result = object(value);
   if (result.status !== 'draft') {
-    if (result.workflow !== null || result.patch !== null) throw new AppError('INVALID_AI_OUTPUT', '질문·미지원 응답에는 실행 초안을 포함할 수 없습니다.', 502);
+    if (result.patch !== null) throw new AppError('INVALID_AI_OUTPUT', '질문·미지원 응답에 수정 패치가 있습니다.', 502);
+    if (result.status === 'needs_clarification') {
+      const questions = result.questions as string[];
+      if (!questions.length || !questions.every(text)) throw new AppError('INVALID_AI_OUTPUT', '보충 질문을 확인하세요.', 502);
+    }
+    if (result.workflow !== null) {
+      if (mode !== 'create' || result.status !== 'needs_clarification') throw new AppError('INVALID_AI_OUTPUT', '그래프 미리 보기는 생성 시 보충 질문에만 사용할 수 있습니다.', 502);
+      const preview = checkWorkflow(result.workflow, true);
+      if (vehicleAreas) checkAreaHints(preview, vehicleAreas);
+    }
     return result;
   }
   if (mode === 'create') {
     if (result.patch !== null) throw new AppError('INVALID_AI_OUTPUT', '생성 응답에 수정 패치를 사용할 수 없습니다.', 502);
-    validateWorkflow(result.workflow);
+    const draft = validateWorkflow(result.workflow);
+    if (vehicleAreas) checkAreaHints(draft, vehicleAreas);
   } else {
     if (!base || result.workflow !== null) throw new AppError('INVALID_AI_OUTPUT', '편집은 기준 버전에 대한 패치여야 합니다.', 502);
     const patch = object(result.patch);
     if (patch.baseRevision !== base.revision) throw new AppError('STALE_PATCH', 'AI 패치 기준 버전이 다릅니다.', 409);
     const operations = patch.operations as ObjectValue[];
     if (!operations.length) throw new AppError('INVALID_AI_OUTPUT', '빈 패치입니다.', 502);
+    if (selectedNodeId !== undefined) validateSelectedOperations(base, selectedNodeId, operations);
     const next = structuredClone(base);
     let nodes = next.nodes as ObjectValue[], edges = next.edges as ObjectValue[];
     for (const op of operations) {
@@ -175,6 +192,7 @@ export function validateResponse(value: unknown, mode: string, base?: ObjectValu
       }
     }
     next.nodes = nodes; next.edges = edges; validateWorkflow(next);
+    if (vehicleAreas) checkAreaHints(next, vehicleAreas, base);
   }
   return result;
 }

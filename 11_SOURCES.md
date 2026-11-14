@@ -1,10 +1,50 @@
 # 공식 출처와 조사 이력
 
-최신 보완 확인일: **2026-10-28 KST**. D51 이후와 O/E 표는 구현에 사용한 공식 근거를 추가한 기록이다. 기존 C/P/D01~D50은 별도 표시가 없으면 **2026-10-25 초기 조사 이력**이며, 당시의 ‘미설치·미착수’ 문구는 현재 구현 상태를 뜻하지 않는다. 현재 버전과 실행 결과는 [구현 검증 기록](evidence/implementation/2026-10-28.md) 및 [TODO](13_IMPLEMENTATION_TODO.md)를 따른다.
+## 2026-11-12 겨울 차박 구현·접수 재확인
+
+| 공식 문서·버전 | 확인한 범위 |
+|---|---|
+| [접수·제출 방법](https://appdevchallenge.auto-hmg.io/guide/submission) · [심사·시상](https://appdevchallenge.auto-hmg.io/guide/judging-awards) · [공식 DOCX](https://appdevchallenge.auto-hmg.io/downloads/contest-application-consent.docx) | 1차 접수는 11월 15일까지 작성·서명한 양식을 이메일로 제출한다. 시연 영상과 소스·APK를 포함한 GitHub는 선택 가산점 자료다. 공식 DOCX 응답의 SHA-256은 보관본과 같은 `07be893d58b0e96ab7788f0d189d6829f0e59a2cee4bc18cb90ec37eeda2f5fd`였다. |
+| [SDK 버전과 변경 사항](https://document.pleos.ai/docs/pleos-only/release-note/sdk-release-note) · [Virtual Console](https://document.pleos.ai/docs/pleos-only/app-test-guide/virtual-console-guide) · [주행 안전 설계](https://document.pleos.ai/docs/pleos-only/vehicle-app-planning-guide/driver-distraction-guideline) | Vehicle 2.3.2의 영역 값 비교, 콘솔의 좌석 점유·열선과 운전석 공조 목표 온도, CarUxRestrictions에 따른 편집 제한을 대조했다. 시트 앞뒤·등받이 이동은 별도 SDK 계측 대상이다. |
+| [Gleo Callback Schema](https://document.pleos.ai/docs/pleos-only/app-integration-guide/guide/action_callback) | asking·success·fail 및 7초 시간 초과를 확인했다. 운전자의 편집 확인과 물리 실행 결과는 서로 다른 사건이다. 로컬 응답 시험으로 Gleo 서비스 등록·수신을 입증할 수 없다. |
+| [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses) · [Responses create](https://developers.openai.com/api/reference/resources/responses/methods/create) | 프로젝트 Node SDK 7.45.0과 strict JSON Schema를 대조했다. 초안/질문/수정안의 의미와 선택한 노드의 범위는 앱과 서버가 별도로 검사한다. |
+
+**2026-11-05 KST 갱신.** 이번 공모전의 접수 요건, 비교 대회 수상작, 판매 차량의 기존 기능을 아래에 정리했다. C/P/D01~D50은 별도 표시가 없으면 2026-10-25 초기 조사 기록이다. D51 이후와 O/E 표에는 후속 구현 근거를 누적했다. 제품의 현재 검증 범위는 [A05 검증 기록](evidence/A05/verification-2026-11-02.md)과 [구현 TODO](13_IMPLEMENTATION_TODO.md)를 따른다.
 
 공모전은 브라우저 직접 탐색, 제품·SDK는 공식 사이트 검색과 본문 열람으로 조사했다. 검색 스니펫만의 정보는 확정 근거로 쓰지 않는다. 문서(DOC), 배포 소스(SOURCE), 계정 권한(ACCOUNT), 실제 실행(RUNTIME)을 구분하며, 아래 URL이 공개됐다는 사실은 계정 사용 가능성이나 실제 차량 제어 성공의 증거가 아니다.
 
-## 공모전
+## 2026-11-05 접수 요건 재확인
+
+| 공식 근거 | 지원서에 적용할 내용 |
+|---|---|
+| [공식 접수양식](https://appdevchallenge.auto-hmg.io/downloads/contest-application-consent.docx) · [보관 원본](references/contest-application-consent.docx) | 당일 내려받은 55,208바이트, 동의서 `1020 ver.`, SHA-256 `07be893d58b0e96ab7788f0d189d6829f0e59a2cee4bc18cb90ec37eeda2f5fd`가 보관 원본과 일치했다. 소개 자료 분량 제한은 없고, 심사 소개 부분은 익명으로 작성한다. 마감은 11월 15일 23:59 KST다. |
+| [심사·시상](https://appdevchallenge.auto-hmg.io/guide/judging-awards) · [제출 방법](https://appdevchallenge.auto-hmg.io/guide/submission) | 1차 필수는 접수양식이며 차량특화성·창의성·기술 활용성·사업성을 평가한다. 세부 배점은 비공개다. 시연 영상·소스와 실행 가능한 release APK를 담은 GitHub는 선택 가산점 자료다. 숏폼은 별도 특별상이다. 각 참가자의 동의·서명·날짜를 갖춰 이메일 접수하며, 팀은 전원 CC한다. |
+| [일정](https://appdevchallenge.auto-hmg.io/guide/schedule) · [출품 유의사항](https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000006) · [FAQ](https://appdevchallenge.auto-hmg.io/faq) | 1차 20팀 결과 발표는 11월 23일이다. 이들이 12월 3~4일 PT에서 에뮬레이터 또는 기기로 시연한 결과로 순위가 결정된다. 최종 10팀 선정 발표는 12월 18일, 현장 전시·순위 발표는 2027년 2월 예정이다. 11월 5일 현재 이번 외부 공모전은 접수 중이다. |
+| [현대차·기아 모집 발표](https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-company-kia-vehicle-app-development-contest) · [설명회 공지](https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000005) | 10월 21일 주최 측은 8월 사내 해커톤에 이어 대상을 외부로 확대한다고 발표했다. 설명회 공지에는 10월 28일 14:00가 명시됐다. |
+
+## 수상작과 겨울 차박 지원서의 비교 근거
+
+아래 날짜는 주최 측 발표일이다. 전체 명단과 선별 소개를 구분했다. 오른쪽 열은 겨울 차박을 준비하는 운전자에게 이 앱의 가치를 설명하기 위한 작성 판단이다. 대회별 배점이나 다른 작품의 사용 실적을 우리 작품에 적용하지 않는다.
+
+| 발표일 · 대회 | 확인된 수상작과 사용 장면 | 이번 지원서에 적용할 점 |
+|---|---|---|
+| 2026-08-24 · 현대차·기아 사내 Pleos 24H 코드 레이스 | 대상 **테일싱크**는 주행 데이터와 아동 반응을 반영해 목적지 도착에 맞춰 동화를 끝낸다. 주최 측은 고객 가치와 독창성을 높이 평가했다. 우수상은 아기 꿀잠 드라이브·마중·액시트다. [수상 4팀 전체](https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-company-kia-24h-code-race-hackathon) | 목적지에서 P단에 놓은 뒤에야 사용자가 저장한 차박 준비를 시작할 수 있는 장면으로 차량 상태의 가치를 설명한다. |
+| 2026-10-28 · 현대모비스 사내 모빌리티 애플리케이션 해커톤 | AI 차량 진단앱 **모비딕**이 최종 우승했다. 모비몬과 카 드 메이커도 우수 앱으로 소개됐다. [우승 및 일부 우수작](https://www.hyundaimotorgroup.co.kr/ko/news/hyundai-mobis-mobility-app-development-contest) | 같은 그룹의 AAOS 기반 인포링크 사례다. 운전자의 자연어 요청을 검토할 수 있는 규칙으로 바꾸는 일에 AI의 역할을 한정해 표현한다. |
+| 2023-09-06 · LG유플러스·현대모비스·오비고 차량용 앱 서비스 공모전 | 대상 **워치마일**은 GPS가 닿기 어려운 실내 주차장에서 영상으로 점유 현황을 파악해 길을 안내한다. 우수상은 닥터차·스루 운영사다. [수상 기업 3곳 전체](https://news.lguplus.com/13557) | 동일한 차박 준비를 수동 설정할 때와 저장한 루틴을 다시 쓸 때의 조작 수·시간을 비교하는 사용자 시험을 설계한다. |
+| 2026-10-14 · Eclipse SDV Hackathon Chapter Four | 혁신 트랙 1위 **Guardian Loop**는 고온 실내·차량 아동 방치에 대응하도록 감지·판단·구동을 분리했다. [공식 트랙별 결과](https://eclipsesdv.org/blogs/from-student-dreams-to-open-source-reality-why-the-eclipse-sdv-hackathon-2026-was-different/) · [우승팀 원본 발표자료](https://github.com/Eclipse-SDV-Hackathon-Chapter-Four/Bare-Metal-Mafia/blob/main/pitch/Bare-Metal-Mafia_Pitch.pptx) | 원본 5장은 모의 입력과 실제 하드웨어를, 12장은 완료 및 후속 개발을 구분한다. 우리 시연도 가상 시험·에뮬레이터 관찰·시트 미검증을 화면에서 구분한다. |
+| 2025-10-09 · Eclipse SDV Hackathon Chapter Three | **CarMate**가 1위다. 장거리 단독 운전자에게 차량 맥락을 반영한 음성 AI 동반자를 제공한다. [결선 7팀·수상 1~3위·코드](https://eclipsesdv.org/ko/blogs/meet-the-2025-sdv-hackathon-finalists-and-winners-and-explore-their-code/) | 운전자가 차박 규칙을 검토·수정·시험한 뒤 다음 방문 때 다시 쓰는 과정에서 차별점을 찾는다. |
+| 2024-11-21 · Google Gemini API Developer Competition | **Gaze Link**가 Android 앱 부문을 수상했다. 돌봄 제공자의 질문과 ALS 환자가 시선 추적으로 입력한 단어로 문장 답변을 생성한다. 종합 수상작 **Jayu**는 화면을 읽고 여러 앱의 UI와 상호작용한다. [전 부문 수상작·시연](https://developers.googleblog.com/en/announcing-the-winners-of-the-gemini-api-developer-competition/) | 차박 요청 원문과 그 요청을 옮긴 조건·동작 카드를 나란히 제시해 AI가 맡은 일을 보여준다. |
+| 2024-06-06 · Apple Design Awards | 포용성 앱 부문 수상작 **Oko**는 보행 신호 상태를 진동·소리로 알려준다. 개발팀은 현장 사용자의 선호를 확인하고 화면을 세로로 재설계했다. [수상·결선 전체](https://developer.apple.com/design/awards/2024/) · [Apple의 팀 인터뷰](https://developer.apple.com/news/?id=58c4urmu) | 차박 운전자가 시트 실행을 보류한 이유를 이해했는지 묻고, 실제 피드백과 이후 수정 사항을 기록한다. |
+| 2024-07-01 · Google for Developers Solution Challenge | **Spoon Share**는 나눔 음식의 위치 정보를 단체·봉사자가 검토한 뒤 지도에서 찾을 수 있게 해 Top 3에 선정됐다. 같은 Top 3의 **ATTI**는 경도 치매 당사자의 기억과 일상 관리에 음성 도우미를 사용한다. [Top 3·인기상 전체](https://blog.google/innovation-and-ai/technology/developers-tools/meet-the-students-that-are-changing-the-world-through-technology/) | 시트가 들어간 루틴에서 누가 무엇을 언제 확인하는지, 취소하면 어떻게 되는지 사용 흐름에 명시한다. |
+
+## 판매 차량의 유사 기능
+
+| 발표일 · 제품 | 제조사가 설명한 기능 | 차별화의 범위 |
+|---|---|---|
+| 2023-04-25 · Mercedes-Benz 2024 E-Class MBUX | 중앙 화면에서 조건과 여러 동작을 조합한 루틴을 작성·편집하고 이름을 붙여 저장한다. 예시로 낮은 실내 온도에 따라 시트 열선과 앰비언트 조명을 켠다. [Mercedes-Benz USA 발표](https://media.mbusa.com/news/a-bridge-between-tradition-and-digitalization-the-new-e-class) | 조건부 차량 루틴에는 양산차 선례가 있다. Pleos에서 자신의 차박 흐름을 직접 고치고 시험한 뒤 실행 기록에서 결과를 확인하는 장면을 비교한다. |
+| 2026-09-29 · Pleos Connect Gleo AI | 라디오·공조·무드등을 한 발화로 요청하면 차량 상태와 안전 조건을 고려해 순차 수행하는 사례가 소개됐다. 이동 습관을 기억해 선제 제안하는 기능은 인터뷰에서 향후 방향으로 다뤘다. [현대자동차그룹 개발자 인터뷰](https://www.hyundaimotorgroup.com/ko/story/42dot-gleo-ai-developer-present-and-future) | Gleo의 복합 음성 명령과 이 앱이 제공하는 사용자 편집·저장·가상 시험·실행 이력을 구분한다. Gleo 등록과 실제 음성 호출은 별도 검증 대상이다. |
+
+## 공모전 초기 출처 색인
 
 | ID | 공식 자료 | 확인 목적 |
 |---|---|---|

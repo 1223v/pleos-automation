@@ -16,6 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.activity.compose.LocalActivity
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -68,27 +69,48 @@ class GleoActivity:ComponentActivity() {
     override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
         val raw=intent.getStringExtra("actionParameters") ?: intent.getStringExtra("ACTION_PARAM") ?: ""
-        val action=intent.action
+        val action=intent.action ?: run { finish();return }
         if(action !in setOf("CREATE_ROUTINE","EDIT_ROUTINE","CONTROL_ROUTINE")) { finish();return }
         val parsed=runCatching { val element=Json.parseToJsonElement(raw.take(8192));if(element is JsonPrimitive)Json.parseToJsonElement(element.content).jsonObject else element.jsonObject }.getOrNull()
         fun field(name:String)=intent.getStringExtra(name) ?: (parsed?.get(name) as? JsonPrimitive)?.takeIf { it.isString }?.contentOrNull
-        val request=field("requestText").orEmpty().take(4000)
-        val id=field("routineId")?.take(80);val operation=field("operation")?.take(30)
+        val request=field("requestText").orEmpty()
+        val id=field("routineId")
+        val operation=field("operation")
+        val valid=when(action) {
+            "CREATE_ROUTINE" -> request.isNotBlank() && request.length<=4000
+            "EDIT_ROUTINE" -> !id.isNullOrBlank() && id.length<=80 && request.isNotBlank() && request.length<=4000
+            else -> !id.isNullOrBlank() && id.length<=80 && operation in GleoReviews.controlOperations
+        }
+        if(!valid) {
+            replyToGleo(action,"fail","The routine request contains missing or invalid parameters.")
+            finish();return
+        }
         // Reply before disk IO; asking is neither a persistence nor an execution success.
-        val response=buildJsonObject { put("functionName",action);put("status","asking");put("message","Please review and confirm the routine request in the app.");put("mode","voice") }
-        sendBroadcast(Intent("ai.pleos.playground.intent.action.APP_ACTION_RESPONSE").putExtra("packageName",packageName).putExtra("response",response.toString()))
+        val app=application as RoutineApplication
+        val requestId=UUID.randomUUID().toString()
+        replyToGleo(action,"asking","Please review and confirm the routine request in the app.")
         lifecycleScope.launch {
-            val pending=if(action=="CONTROL_ROUTINE")null else PendingRoutineRequest(action=action!!,text=request,routineId=id)
-            val saved=pending==null || withContext(Dispatchers.IO) {
-                runCatching { (application as RoutineApplication).pendingRequests.save(pending) }.getOrDefault(false)
+            val saved=withContext(intakeDispatcher) {
+                if(action=="CONTROL_ROUTINE") {
+                    app.gleoReviews.openControl(requestId,id!!,operation!!)
+                    true
+                } else runCatching {
+                    app.gleoReviews.retain(PendingRoutineRequest(requestId,action,request,if(action=="EDIT_ROUTINE")id else null))
+                }.getOrDefault(false)
             }
-            startActivity(Intent(this@GleoActivity,MainActivity::class.java).putExtra("requestText",request).putExtra("routineAction",action).putExtra("routineId",id).putExtra("operation",operation).putExtra("requestSaveFailed",!saved).putExtra("requestId",pending?.id))
+            if(!saved)replyToGleo(action,"fail","The app could not retain the routine request.")
+            startActivity(Intent(this@GleoActivity,MainActivity::class.java).putExtra("requestText",request.take(4000)).putExtra("routineAction",action).putExtra("routineId",id?.take(80)).putExtra("operation",operation?.take(30)).putExtra("requestSaveFailed",!saved).putExtra("requestId",requestId))
             finish()
         }
     }
+    private companion object { val intakeDispatcher=Dispatchers.IO.limitedParallelism(1) }
 }
 
 private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(0xFF142330),background=Color(0xFF142330),surface=Color(0xFF233747),onSurface=Color(0xFFF3F6F8),secondary=Color(0xFF79CCA9),error=Color(0xFFF08D87))
+private data class ProposalReview(
+    val base:WorkflowDefinition,val proposal:PlannerReply.Proposal,val selectedNodeId:String?,val gleoReviewId:String?,
+)
+private data class EditorSnapshot(val editor:WorkingEditor,val clarification:String?,val gleoReviewId:String?)
 @Composable private fun RoutineScreen(app:RoutineApplication,initialRequest:String,initialAction:String?,initialId:String?,initialOperation:String?,requestSaveFailed:Boolean,initialRequestId:String,freshIntent:Boolean,entryVersion:Int) {
     val type=Typography()
     MaterialTheme(colorScheme=appColors,typography=Typography(
@@ -102,6 +124,7 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
         val runs by dao.observeRuns().collectAsState(initial=emptyList())
         val vehicle by app.platform.state.collectAsState()
         val connection by app.platform.connection.collectAsState()
+        val capabilities by app.platform.capabilities.collectAsState()
         val busy by app.runtime.busy.collectAsState()
         val approval by app.runtime.approval.collectAsState()
         val liveEvents by app.runtime.events.collectAsState()
@@ -117,7 +140,13 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
         var message by remember { mutableStateOf("") }
         var planning by remember { mutableStateOf(false) }
         var planningJob by remember { mutableStateOf<Job?>(null) }
-        var candidate by remember { mutableStateOf<WorkflowDefinition?>(null) }
+        var candidate by remember { mutableStateOf<ProposalReview?>(null) }
+        var clarification by remember { mutableStateOf<ClarificationDraft?>(null) }
+        var scopeEditor by remember { mutableStateOf<WorkflowNode?>(null) }
+        var saveReview by remember { mutableStateOf<WorkflowDefinition?>(null) }
+        var saving by remember { mutableStateOf(false) }
+        var gleoReviewId by remember { mutableStateOf<String?>(null) }
+        var controlReview by remember { mutableStateOf(false) }
         var editNode by remember { mutableStateOf<WorkflowNode?>(null) }
         var triggerEditor by remember { mutableStateOf(false) }
         var graphEditor by remember { mutableStateOf(false) }
@@ -134,8 +163,48 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
         var originRequestId by remember { mutableStateOf<String?>(null) }
         val editable=!app.platform.automotive || !vehicle.uxRestricted
         val issues=remember(w) { WorkflowValidator.validate(w) }
-        fun changed(next:WorkflowDefinition) { if(app.platform.automotive && app.platform.state.value.uxRestricted) { message="주행 UX 제한 중에는 편집할 수 없습니다.";return };history.replace(next);w=next }
-        fun load(next:WorkflowDefinition) { w=next;history=WorkflowHistory(next);selected=null;test=null;testRecord=null;page=0;step=1 }
+        fun canEdit() = !app.platform.automotive || !app.platform.state.value.uxRestricted
+        fun cancelPlanner() {
+            planningJob?.cancel();planningJob=null;planning=false
+            candidate=null;scopeEditor=null
+        }
+        fun resetPlanner() { cancelPlanner();clarification=null;saveReview=null }
+        fun changed(next:WorkflowDefinition) {
+            if(!canEdit()) { message="주행 UX 제한 중에는 편집할 수 없습니다.";return }
+            resetPlanner();history.replace(next);w=next
+        }
+        fun load(next:WorkflowDefinition) {
+            resetPlanner();gleoReviewId=null;w=next;history=WorkflowHistory(next)
+            selected=null;test=null;testRecord=null;page=0;step=1
+        }
+        fun updateRequest(text:String) { resetPlanner();request=text.take(4000) }
+        fun selectNode(id:String) {
+            if(selected!=id) { resetPlanner();selected=id }
+        }
+        fun askPlanner(text:String,edit:Boolean,nodeId:String?=null,answers:AnsweredQuestions?=null) {
+            if(!canEdit() || planning || !loaded || text.isBlank())return
+            val base=w
+            val reviewOrigin=if(edit)gleoReviewId else pendingRequest?.takeIf {
+                it.action=="CREATE_ROUTINE" && it.id==originRequestId && it.text==text
+            }?.id
+            request=text
+            message=""
+            planning=true
+            planningJob=scope.launch {
+                try {
+                    val answer=app.planner.plan(text,base.takeIf { edit },nodeId,answers,app.platform.capabilities.value)
+                    ensureActive()
+                    if(!canEdit() || w!=base || request!=text || (nodeId!=null && selected!=nodeId))return@launch
+                    when(val result=PlannerConversation.read(answer,base,text,edit,nodeId,answers)) {
+                        is PlannerReply.Ask -> { candidate=null;clarification=result.draft;message="" }
+                        is PlannerReply.Proposal -> { clarification=null;candidate=ProposalReview(base,result,nodeId,reviewOrigin);message="" }
+                        is PlannerReply.Unsupported -> { clarification=null;message=result.explanation.ifBlank { "이 요청을 지원하지 않습니다." } }
+                    }
+                } catch(e:CancellationException) { throw e }
+                catch(e:Exception) { message=e.message ?: "AI 응답을 확인할 수 없습니다." }
+                finally { if(planningJob===coroutineContext[Job]) { planning=false;planningJob=null } }
+            }
+        }
         fun editFromHistory(row:RunRecord,nodeId:String?,partial:List<ExecutionEvent> = emptyList()) {
             try {
                 // This UI decision must be synchronous: an older DAO completion could overwrite a newer edit.
@@ -154,33 +223,40 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
         LaunchedEffect(entryVersion) {
             // A new entry must not dispose live edits or cancel their pending autosave.
             val persisted=if(!loaded)withContext(Dispatchers.IO) { app.database.withTransaction {
-                WorkingEditor(dao.working()?.definition?.let { runCatching { WorkflowJson.decode(it) }.getOrNull() },
-                    dao.workingRequest()?.definition.orEmpty().take(4000),dao.workingOrigin()?.definition?.ifBlank { null })
+                EditorSnapshot(WorkingEditor(dao.working()?.definition?.let { runCatching { WorkflowJson.decode(it) }.getOrNull() },
+                    dao.workingRequest()?.definition.orEmpty().take(4000),dao.workingOrigin()?.definition?.ifBlank { null }),
+                    dao.workingClarification()?.definition,dao.workingGleoReview()?.definition?.ifBlank { null })
             } } else null
             val retained=withContext(Dispatchers.IO) { app.pendingRequests.read() }
             pendingRequest=retained
             val fromIntent=initialAction?.let { PendingRoutineRequest(initialRequestId,it,initialRequest,initialId) }?.takeIf { it.isValid() }
-            val working=persisted ?: WorkingEditor(w,request,originRequestId)
+            val working=persisted?.editor ?: WorkingEditor(w,request,originRequestId)
             val incoming=EditorRestore.incoming(working,fromIntent,retained,freshIntent,requestSaveFailed)
             val target=if(incoming?.action=="EDIT_ROUTINE")incoming.routineId?.let { id -> withContext(Dispatchers.IO) { dao.routine(id) } }
                 ?.definition?.let { runCatching { WorkflowJson.decode(it) }.getOrNull() } else null
             val restored=EditorRestore.restore(if(loaded)WorkingEditor(w,request,originRequestId) else working,incoming,target)
             if(!loaded || restored.applied) {
                 if(restored.applied) {
-                    planningJob?.cancel()
-                    candidate=null;editNode=null;triggerEditor=false;graphEditor=false;rename=false;add=false
+                    resetPlanner();editNode=null;triggerEditor=false;graphEditor=false;rename=false;add=false
                 }
                 restored.working.workflow?.let { load(it) }
                 request=restored.working.text;originRequestId=restored.working.originRequestId
+                gleoReviewId=if(restored.applied)incoming?.takeIf { it.action=="EDIT_ROUTINE" && target!=null }?.id
+                    else persisted?.gleoReviewId
+                if(!restored.applied) {
+                    clarification=PlannerConversation.restore(persisted?.clarification,w,request)
+                    clarification?.let { selected=it.selectedNodeId;step=if(it.edit)2 else 0 }
+                }
             }
             if(restored.applied)when(incoming?.action) {
                 "CREATE_ROUTINE" -> { page=0;step=0;message="Gleo 생성 요청을 검토한 뒤 초안을 만들어 주세요." }
                 "EDIT_ROUTINE" -> if(restored.missingTarget) { page=1;message="수정할 루틴을 선택한 뒤 요청을 확인하세요: $request" } else step=2
             }
-            if(initialAction=="CONTROL_ROUTINE") { page=1;message="Gleo 요청: ${initialOperation ?: "실행"} · ${initialId ?: "루틴 선택 필요"}. 해당 루틴의 버튼으로 확인하세요." }
+            controlReview=app.gleoReviews.matchesControl(initialRequestId,initialId,initialOperation)
+            if(initialAction=="CONTROL_ROUTINE") { page=1;message="Gleo 요청: ${initialOperation ?: "실행"} · ${initialId ?: "루틴 선택 필요"}." }
             loaded=true
         }
-        LaunchedEffect(w,request,originRequestId,loaded,editable) {
+        LaunchedEffect(w,request,originRequestId,clarification,gleoReviewId,loaded,editable) {
             if(loaded) {
                 draftStatus="초안 저장 중…"
                 if(editable)delay(350)
@@ -188,17 +264,21 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
                     val definition=WorkflowJson.encode(w)
                     val text=request
                     val origin=originRequestId.orEmpty()
+                    val questions=clarification?.let(PlannerConversation::encode).orEmpty()
+                    val review=gleoReviewId.orEmpty()
                     withContext(Dispatchers.IO) { app.database.withTransaction {
                         dao.draft(DraftRecord("working",definition))
                         dao.draft(DraftRecord("working-request",text))
                         dao.draft(DraftRecord("working-origin",origin))
+                        dao.draft(DraftRecord("working-clarification",questions))
+                        dao.draft(DraftRecord("working-gleo-review",review))
                     } }
                     draftStatus="초안 저장됨"
                 } catch(e:CancellationException) { throw e }
                 catch(_:Exception) { draftStatus="초안 저장 실패 · 앱을 닫기 전에 다시 확인해 주세요." }
             }
         }
-        LaunchedEffect(editable) { if(!editable) { editNode=null;triggerEditor=false;graphEditor=false;rename=false;add=false;candidate=null;message="주행 UX 제한이 적용되었습니다. 상세 편집은 정차 후 이어갈 수 있습니다." } }
+        LaunchedEffect(editable) { if(!editable) { cancelPlanner();saveReview=null;editNode=null;triggerEditor=false;graphEditor=false;rename=false;add=false;message="주행 UX 제한이 적용되었습니다. 상세 편집은 정차 후 이어갈 수 있습니다." } }
         LaunchedEffect(editable,approval) { if(!editable)approval?.answer?.complete(false) }
         Surface(Modifier.fillMaxSize(),color=MaterialTheme.colorScheme.background) {
             Column(Modifier.fillMaxSize().padding(24.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
@@ -206,7 +286,7 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
                     Column { Text("PLEOS  /  ROUTINE",color=MaterialTheme.colorScheme.primary,style=MaterialTheme.typography.labelLarge);Text("나의 이동을, 나의 방식으로",style=MaterialTheme.typography.headlineSmall,fontWeight=FontWeight.SemiBold) }
                     Column(horizontalAlignment=Alignment.End) { Text("${vehicle.gear.value ?: "—"}  ·  ${vehicle.speedMps.value?.let { "%.1f m/s".format(it) } ?: "속도 미확인"}",style=MaterialTheme.typography.titleMedium);Text(if(editable)"편집 가능" else "주행 제한 · 초안 보관",color=MaterialTheme.colorScheme.secondary);if(busy)Button(onClick={app.runtime.cancel()},colors=ButtonDefaults.buttonColors(containerColor=MaterialTheme.colorScheme.error)) { Text("실행 중지") } }
                 }
-                Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) { listOf("루틴 만들기","내 루틴","연결 둘러보기","실행 이력","연결 설정").forEachIndexed { i,label -> FilterChip(selected=page==i,onClick={page=i},label={Text(label)}) } }
+                Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) { listOf("루틴 만들기","내 루틴","연결 둘러보기","실행 이력","연결 설정").forEachIndexed { i,label -> FilterChip(selected=page==i,onClick={if(i!=page)cancelPlanner();page=i},label={Text(label)}) } }
                 if(message.isNotBlank())Text(message,color=MaterialTheme.colorScheme.secondary,style=MaterialTheme.typography.bodyMedium)
                 if(draftStatus.isNotBlank())Text(draftStatus,style=MaterialTheme.typography.labelSmall)
                 if(runtimeNotice.isNotBlank())Text(runtimeNotice,color=MaterialTheme.colorScheme.error)
@@ -220,14 +300,30 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
                     Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
                         Text("보관된 Gleo 요청 · 정차 후 검토 · 자동 실행되지 않음",Modifier.weight(1f),style=MaterialTheme.typography.bodyMedium)
                         TextButton(enabled=editable,onClick={scope.launch {
-                            val cleared=withContext(Dispatchers.IO) { app.pendingRequests.clearIf(retained.id) }
-                            if(cleared)pendingRequest=null else message="보관 요청이 변경되었거나 삭제하지 못했습니다. 다시 열어 확인해 주세요."
+                            val cleared=withContext(Dispatchers.IO) { app.gleoReviews.dismiss(retained.id) }
+                            if(cleared && pendingRequest?.id==retained.id) { pendingRequest=null;gleoReviewId=null } else message="보관 요청이 변경되었거나 삭제하지 못했습니다. 다시 열어 확인해 주세요."
                         }}) { Text("보관 요청 지우기") }
+                    }
+                }
+                if(editable && controlReview) {
+                    val target=saved.find { it.id==initialId }
+                    Text("Gleo 요청 검토 · ${target?.let { WorkflowJson.decode(it.definition).title } ?: "저장된 대상 없음"} · ${initialOperation.orEmpty()}\n요청 확인 후 실제 동작은 내 루틴에서 선택하세요.")
+                    fun finishControl(accepted:Boolean) {
+                        scope.launch {
+                            val exists=initialId!=null && withContext(Dispatchers.IO) { dao.routine(initialId)!=null }
+                            if(canEdit() && app.gleoReviews.reviewControl(initialRequestId,initialId,initialOperation,accepted,exists)) {
+                                controlReview=false;message=if(accepted)"Gleo 요청을 검토했습니다." else "Gleo 요청을 거절했습니다."
+                            }
+                        }
+                    }
+                    Row {
+                        Button(enabled=target!=null,onClick={finishControl(true)}) { Text("요청 확인") }
+                        TextButton(onClick={finishControl(false)}) { Text("거절") }
                     }
                 }
                 when(page) {
                     0 -> {
-                        Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) { listOf("01 생성","02 확인","03 수정","04 테스트").forEachIndexed { i,label -> FilterChip(selected=step==i,onClick={step=i},label={Text(label)}) };Spacer(Modifier.weight(1f));TextButton(onClick={w=history.undo()},enabled=editable&&history.canUndo) { Text("실행 취소") };TextButton(onClick={w=history.redo()},enabled=editable&&history.canRedo) { Text("다시 적용") } }
+                        Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) { listOf("01 생성","02 확인","03 수정","04 테스트").forEachIndexed { i,label -> FilterChip(selected=step==i,onClick={if(i!=step)cancelPlanner();step=i},label={Text(label)}) };Spacer(Modifier.weight(1f));TextButton(onClick={resetPlanner();w=history.undo()},enabled=editable&&history.canUndo) { Text("실행 취소") };TextButton(onClick={resetPlanner();w=history.redo()},enabled=editable&&history.canRedo) { Text("다시 적용") } }
                         if(!editable) {
                             Text("지금은 짧은 요청을 초안으로 남길 수 있습니다. 상세 편집과 활성화는 정차 후 이어집니다.",style=MaterialTheme.typography.titleLarge)
                             Text("자동 실행과 편집 제한은 별도로 적용됩니다. 현재 활성 루틴 ${saved.count { it.enabled }}개")
@@ -235,15 +331,15 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
                             Column(Modifier.verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(16.dp)) {
                                 Text("어떤 순간을 만들까요?",style=MaterialTheme.typography.headlineLarge)
                                 Text("상황과 원하는 동작을 말하듯 적어 주세요. AI가 만든 규칙은 확인한 뒤 사용할 수 있습니다.")
-                                OutlinedTextField(request,{request=it.take(4000)},Modifier.fillMaxWidth(),label={Text("나의 요청")},placeholder={Text("평일 아침 차에 타면 회사로 안내하고, 5도 이하면 열선을 켜줘")},minLines=3)
+                                OutlinedTextField(request,::updateRequest,Modifier.fillMaxWidth(),label={Text("나의 요청")},placeholder={Text("겨울 차박을 준비해 줘. 바깥이 5도 이하면 공조를 23도로 맞춰 줘.")},minLines=3)
                                 Row(horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-                                    Button(enabled=request.isNotBlank()&&!planning,onClick={ planning=true;planningJob=scope.launch { try { val answer=app.planner.plan(request,null);message=answer["explanation"]?.jsonPrimitive?.content.orEmpty();val value=answer["workflow"];if(value!=null && value !is JsonNull)candidate=WorkflowJson.format.decodeFromJsonElement(value) else message+="\n"+(answer["questions"]?.jsonArray?.joinToString("\n") { it.jsonPrimitive.content }.orEmpty()) } catch(e:CancellationException) { throw e } catch(e:Exception) { message=e.message ?: "AI 연결 실패" } finally { planning=false } } }) { Text(if(planning)"규칙을 만드는 중…" else "AI로 초안 만들기") }
+                                    Button(enabled=loaded&&request.isNotBlank()&&!planning,onClick={askPlanner(request,false)}) { Text(if(planning)"규칙을 만드는 중…" else "AI로 초안 만들기") }
                                     OutlinedButton(onClick={load(WorkflowExamples.commute());message="예시 템플릿입니다. 회사 좌표와 좌석 영역을 직접 확인해 주세요."}) { Text("출근 예시로 시작") }
                                     OutlinedButton(onClick={load(WorkflowExamples.rest());message="휴식 예시입니다. 실제 지원 범위와 시트 STOP 검증이 필요합니다."}) { Text("휴식 예시") }
                                     TextButton(onClick={load(WorkflowExamples.blank(UUID.randomUUID().toString()))}) { Text("빈 흐름") }
                                 }
                                 Text("AI 연결 전에도 직접 만들고 테스트할 수 있어요.",color=MaterialTheme.colorScheme.primary)
-                                FlowCanvas(w,selected,false,{selected=it},{_,_->},Modifier.fillMaxWidth().height(300.dp))
+                                FlowCanvas(w,selected,false,::selectNode,{_,_->},Modifier.fillMaxWidth().height(300.dp))
                             }
                         } else {
                             Column(Modifier.weight(1f).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
@@ -256,19 +352,20 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
                                     Text(RuleDescriptions.trigger(w.trigger))
                                     Text("추가 조건은 시작할 때 확인하고, 흐름 안의 조건 분기는 해당 동작 앞에서 평가합니다.",style=MaterialTheme.typography.bodyMedium)
                                 } }
-                                FlowCanvas(w,selected,step==2,{selected=it},{id,pos->changed(w.copy(nodes=w.nodes.map { if(it.id==id)it.copy(position=pos) else it }))},Modifier.fillMaxWidth().height(400.dp))
+                                FlowCanvas(w,selected,step==2,::selectNode,{id,pos->changed(w.copy(nodes=w.nodes.map { if(it.id==id)it.copy(position=pos) else it }))},Modifier.fillMaxWidth().height(400.dp))
                                 selected?.let { id -> w.nodes.find { it.id==id }?.let { n ->
                                     Card { Row(Modifier.fillMaxWidth().padding(16.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
                                         Column(Modifier.weight(1f)) { Text(n.label,style=MaterialTheme.typography.titleMedium);Text(nodeSummary(n));w.edges.filter { it.source==id }.forEach { e -> Text("${e.port} → ${w.nodes.find { it.id==e.target }?.label ?: e.target}",color=MaterialTheme.colorScheme.primary) } }
                                         TextButton(onClick={editNode=n}) { Text("규칙 수정") }
+                                        TextButton(enabled=!planning,onClick={scopeEditor=n}) { Text("AI에게 수정 요청") }
                                         if(n.kind in setOf(NodeKind.ACTION,NodeKind.WAIT,NodeKind.TIMER))TextButton(onClick={runCatching { changed(GraphEditing.remove(w,id));selected=null }.onFailure { message=it.message.orEmpty() }}) { Text("삭제") }
                                     } }
                                 } }
                                 if(issues.isNotEmpty())Card { Column(Modifier.padding(16.dp)) { Text("확인할 항목 ${issues.size}개",color=MaterialTheme.colorScheme.error);issues.forEach { Text("${it.nodeId ?: "흐름"} · ${it.message}") } } }
                                 if(step==2) {
                                     Row(horizontalArrangement=Arrangement.spacedBy(12.dp),verticalAlignment=Alignment.CenterVertically) {
-                                        OutlinedTextField(request,{request=it.take(4000)},Modifier.weight(1f),label={Text("대화로 수정 · 예: 열선 기준을 8도로 바꿔줘")})
-                                        Button(enabled=!planning&&request.isNotBlank(),onClick={ val base=w;planning=true;planningJob=scope.launch { try { val answer=app.planner.plan(request,base);message=answer["explanation"]?.jsonPrimitive?.content.orEmpty();answer["patch"]?.takeUnless { it is JsonNull }?.let { val patch=WorkflowJson.format.decodeFromJsonElement<WorkflowPatch>(it);if(w!=base)error("편집 중 흐름이 바뀌었습니다. 최신 버전으로 다시 요청하세요.");candidate=WorkflowEdits.applyPatch(base,patch) } } catch(e:CancellationException) { throw e } catch(e:Exception) { message=e.message.orEmpty() } finally { planning=false } } }) { Text("변경 제안") }
+                                        OutlinedTextField(request,::updateRequest,Modifier.weight(1f),label={Text("루틴 전체 수정 요청")})
+                                        Button(enabled=loaded&&!planning&&request.isNotBlank(),onClick={askPlanner(request,true)}) { Text("변경 제안") }
                                     }
                                 }
                                 if(step==3) {
@@ -283,7 +380,7 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
                                     }
                                 }
                                 Row(horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-                                    Button(enabled=issues.isEmpty(),onClick={ val saving=w;scope.launch { if(WorkflowValidator.validate(saving).isNotEmpty())return@launch;val hash=WorkflowJson.semanticHash(saving);val old=withContext(Dispatchers.IO) { dao.routine(saving.id) };val verified=test?.takeIf { it.semanticHash==hash&&it.status==RunStatus.COMPLETED }?.semanticHash ?: old?.testedHash?.takeIf { it==hash };withContext(Dispatchers.IO) { dao.put(RoutineRecord(saving.id,WorkflowJson.encode(saving),false,verified,old?.priority ?: 0)) };message="비활성 루틴으로 저장했습니다. 내 루틴에서 검증 후 활성화할 수 있습니다." }}) { Text("검토한 루틴 저장") }
+                                    Button(enabled=loaded&&issues.isEmpty()&&!planning&&!saving,onClick={saveReview=w}) { Text("검토한 루틴 저장") }
                                     OutlinedButton(onClick={load(WorkflowEdits.clone(w,UUID.randomUUID().toString()));message="원본을 유지하고 복사본을 편집합니다."}) { Text("복제") }
                                     OutlinedButton(enabled=issues.isEmpty()&&!busy,onClick={val tested=w;scope.launch { if(app.runtime.confirm("실제 기능 테스트","저장된 규칙과 지원 상태를 다시 확인합니다. 실제 차량·연결된 서비스가 변경될 수 있습니다."))app.runtime.requestRun(tested,RunStartCause.ACTUAL_TEST) }}) { Text("실제 기능 테스트") }
                                 }
@@ -298,7 +395,7 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
                                 Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) { Text(routine.title,style=MaterialTheme.typography.titleLarge);Text(if(row.enabled)"활성" else "비활성",color=MaterialTheme.colorScheme.primary) }
                                 Text("${routine.trigger.type} · 버전 ${routine.revision} · 우선순위 ${row.priority}")
                                 Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-                                    Button(onClick={load(routine)},enabled=editable) { Text("열기") }
+                                    Button(onClick={load(routine)},enabled=editable,modifier=Modifier.testTag("open-routine-${routine.id}")) { Text("열기") }
                                     OutlinedButton(onClick={scope.launch {
                                         if(row.enabled)withContext(Dispatchers.IO) { dao.enable(row.id,false) }
                                         else if(row.testedHash!=WorkflowJson.semanticHash(routine))message="현재 규칙의 시뮬레이션을 통과하고 저장한 뒤 활성화하세요."
@@ -327,8 +424,75 @@ private val appColors=darkColorScheme(primary=Color(0xFF76BCEB),onPrimary=Color(
             }
         }
         approval?.takeIf { editable }?.let { q -> AlertDialog(onDismissRequest={q.answer.complete(false)},title={Text(q.title)},text={Text(q.detail)},confirmButton={Button(enabled=editable,onClick={q.answer.complete(true)}) { Text("확인") }},dismissButton={TextButton(onClick={q.answer.complete(false)}) { Text("취소") }}) }
-        candidate?.takeIf { editable }?.let { next -> AlertDialog(onDismissRequest={candidate=null},title={Text("AI 변경 제안 확인")},text={Column(Modifier.verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) { Text(message);RuleDescriptions.changes(w,next).forEach { Text(it) };WorkflowValidator.validate(next).forEach { Text(it.message,color=MaterialTheme.colorScheme.error) } }},confirmButton={Button(enabled=editable,onClick={changed(next);candidate=null;step=1}) { Text("초안에 적용") }},dismissButton={TextButton(onClick={candidate=null}) { Text("취소") }}) }
-        editNode?.takeIf { editable }?.let { node -> NodeEditor(node,{editNode=null}) { n -> changed(w.copy(revision=w.revision+1,nodes=w.nodes.map { if(it.id==n.id)n else it }));editNode=null } }
+        candidate?.takeIf { editable }?.let { review ->
+            val next=review.proposal.workflow
+            AlertDialog(onDismissRequest={candidate=null},title={Text("AI 변경 제안 확인")},
+                text={Column(Modifier.verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+                    Text(review.proposal.explanation)
+                    review.selectedNodeId?.let { id->
+                        val originalIds=review.base.nodes.map { it.id }.toSet()
+                        fun path(flow:WorkflowDefinition):String {
+                            var current=flow.nodes.first { it.id==id }
+                            val labels=mutableListOf(current.label)
+                            while(true) {
+                                val edge=flow.edges.singleOrNull { it.source==current.id && it.port=="next" } ?: break
+                                current=flow.nodes.first { it.id==edge.target }
+                                labels+=current.label
+                                if(current.id in originalIds)break
+                            }
+                            return labels.joinToString(" → ")
+                        }
+                        Text("수정 전 · "+path(review.base))
+                        Text("수정 후 · "+path(next),color=MaterialTheme.colorScheme.primary)
+                    }
+                    RuleDescriptions.changes(review.base,next).forEach { Text(it) }
+                }},confirmButton={Button(enabled=w==review.base,onClick={
+                    if(canEdit() && w==review.base) { changed(next);gleoReviewId=review.gleoReviewId;step=1 }
+                    candidate=null
+                }) { Text("초안에 적용") }},dismissButton={TextButton(onClick={candidate=null}) { Text("취소") }})
+        }
+        scopeEditor?.takeIf { editable }?.let { node ->
+            ScopedRequestDialog(node,{text->
+                scopeEditor=null
+                if(selected==node.id && w.nodes.contains(node))askPlanner(text,true,node.id)
+            },{scopeEditor=null})
+        }
+        clarification?.takeIf { editable }?.let { draft ->
+            ClarificationDialog(draft,planning,message,{i,value->clarification=draft.withAnswer(i,value)},
+                {askPlanner(draft.requestText,draft.edit,draft.selectedNodeId,draft.answered())},
+                {resetPlanner();message=""})
+        }
+        saveReview?.takeIf { editable }?.let { reviewed ->
+            NamedSaveDialog(reviewed,saving,{name->
+                if(!saving && canEdit() && reviewed==w && issues.isEmpty()) {
+                    saving=true
+                    val next=if(name==reviewed.title)reviewed else reviewed.copy(title=name,revision=reviewed.revision+1)
+                    val origin=gleoReviewId
+                    val hash=WorkflowJson.semanticHash(next)
+                    val tested=test?.takeIf { it.status==RunStatus.COMPLETED && it.semanticHash==hash }?.semanticHash
+                    scope.launch {
+                        try {
+                            withContext(Dispatchers.IO) { app.database.withTransaction {
+                                val old=dao.routine(next.id)
+                                dao.put(RoutineRecord(next.id,WorkflowJson.encode(next),false,
+                                    tested ?: old?.testedHash?.takeIf { it==hash },old?.priority ?: 0))
+                            } }
+                            if(w==reviewed) {
+                                if(next!=w) { history.replace(next);w=next }
+                                saveReview=null;message="‘${next.title}’ 루틴을 비활성으로 저장했습니다."
+                            }
+                            if(origin!=null && withContext(Dispatchers.IO) { app.gleoReviews.saved(origin,next.id) }) {
+                                if(pendingRequest?.id==origin)pendingRequest=null
+                                if(gleoReviewId==origin)gleoReviewId=null
+                            }
+                        } catch(e:CancellationException) { throw e }
+                        catch(_:Exception) { saveReview=null;message="저장 결과를 내 루틴에서 확인해 주세요." }
+                        finally { saving=false }
+                    }
+                }
+            },{saveReview=null})
+        }
+        editNode?.takeIf { editable }?.let { node -> NodeEditor(node,capabilities,{editNode=null}) { n -> changed(w.copy(revision=w.revision+1,nodes=w.nodes.map { if(it.id==n.id)n else it }));editNode=null } }
         if(editable && triggerEditor)TriggerEditor(w.trigger,{triggerEditor=false}) { t -> changed(w.copy(revision=w.revision+1,trigger=t));triggerEditor=false }
         if(editable && graphEditor)EdgeEditor(w,{graphEditor=false}) { edges -> changed(w.copy(revision=w.revision+1,edges=edges));graphEditor=false }
         if(editable && rename) { var name by remember { mutableStateOf(w.title) };AlertDialog(onDismissRequest={rename=false},title={Text("루틴 이름")},text={OutlinedTextField(name,{name=it.take(100)},label={Text("이름")})},confirmButton={Button(enabled=name.isNotBlank(),onClick={changed(w.copy(title=name,revision=w.revision+1));rename=false}) { Text("이름 저장") }},dismissButton={TextButton(onClick={rename=false}) { Text("취소") }}) }

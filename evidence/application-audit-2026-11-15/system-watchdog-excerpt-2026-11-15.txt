@@ -1,0 +1,39 @@
+Observed during avd-full-regression-1.log (2026-11-15 KST host; guest clock differs). Same signature as evidence/plan-compliance-2026-10-30/system-watchdog-excerpt-2026-11-01.txt. No application failure root cause inferred beyond this system_server trace.
+11-14 16:43:45.126 W/Watchdog(  782): *** WATCHDOG KILLING SYSTEM PROCESS: Blocked in handler on  on foreground thread (android.fg) for 67s
+11-14 16:43:45.126 W/ActivityManager(  782): Unable to start service Intent { act=ai.pleos.iap2.eap.proxy.action.BIND_PROXY_SERVICE pkg=ai.pleos.iap2.eap.proxy } U=10: not found
+11-14 16:43:45.127 W/Watchdog(  782): android.fg annotated stack trace:
+11-14 16:43:45.127 W/Watchdog(  782):     at com.android.server.location.gnss.hal.GnssNative.native_stop_sv_status_collection(Native Method)
+11-14 16:43:45.127 W/Watchdog(  782):     at com.android.server.location.gnss.hal.GnssNative.-$$Nest$smnative_stop_sv_status_collection(GnssNative.java:0)
+11-14 16:43:45.127 W/Watchdog(  782):     at com.android.server.location.gnss.hal.GnssNative$GnssHal.stopSvStatusCollection(GnssNative.java:1428)
+11-14 16:43:45.127 W/Watchdog(  782):     at com.android.server.location.gnss.hal.GnssNative.stopSvStatusCollection(GnssNative.java:800)
+11-14 16:43:45.127 W/Watchdog(  782):     at com.android.server.location.gnss.GnssStatusProvider.unregisterWithService(GnssStatusProvider.java:82)
+11-14 16:43:45.127 W/Watchdog(  782):     at com.android.server.location.listeners.ListenerMultiplexer.updateService(ListenerMultiplexer.java:437)
+11-14 16:43:45.127 W/Watchdog(  782):     - locked <0x0f364e1e> (a java.lang.Object)
+11-14 16:43:45.127 W/Watchdog(  782):     at com.android.server.location.listeners.ListenerMultiplexer$UpdateServiceBuffer.close(ListenerMultiplexer.java:806)
+11-14 16:43:45.127 W/Watchdog(  782):     at com.android.server.location.listeners.ListenerMultiplexer.updateRegistrations(ListenerMultiplexer.java:529)
+11-14 16:43:45.129 W/Watchdog(  782):     - locked <0x0f364e1e> (a java.lang.Object)
+11-14 16:43:45.129 W/Watchdog(  782):     at com.android.server.location.gnss.GnssListenerMultiplexer.onAppForegroundChanged(GnssListenerMultiplexer.java:427)
+11-14 16:43:45.129 W/Watchdog(  782):     at com.android.server.location.gnss.GnssListenerMultiplexer.$r8$lambda$35sLJ--uVkQZo3RsS05k5v4fstk(GnssListenerMultiplexer.java:0)
+11-14 16:43:45.129 W/Watchdog(  782):     at com.android.server.location.gnss.GnssListenerMultiplexer$$ExternalSyntheticLambda10.onAppForegroundChanged(R8$$SyntheticClass:0)
+11-14 16:43:45.129 W/Watchdog(  782):     at com.android.server.location.injector.AppForegroundHelper.notifyAppForeground(AppForegroundHelper.java:71)
+11-14 16:43:45.129 W/Watchdog(  782):     at com.android.server.location.injector.SystemAppForegroundHelper.lambda$onAppForegroundChanged$0(SystemAppForegroundHelper.java:59)
+11-14 16:43:45.130 W/Watchdog(  782):     at com.android.server.location.injector.SystemAppForegroundHelper.$r8$lambda$5uB0h0rLYhVesF_M48mOHETYIBQ(SystemAppForegroundHelper.java:0)
+11-14 16:43:45.130 W/Watchdog(  782):     at com.android.server.location.injector.SystemAppForegroundHelper$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:0)
+11-14 16:43:45.130 W/Watchdog(  782):     at android.os.Handler.handleCallback(Handler.java:958)
+11-14 16:43:45.130 W/Watchdog(  782):     at android.os.Handler.dispatchMessage(Handler.java:99)
+11-14 16:43:45.130 W/Watchdog(  782):     at android.os.Looper.loopOnce(Looper.java:205)
+11-14 16:43:45.130 W/Watchdog(  782):     at android.os.Looper.loop(Looper.java:294)
+11-14 16:43:45.130 W/Watchdog(  782):     at android.os.HandlerThread.run(HandlerThread.java:67)
+11-14 16:43:45.130 W/Watchdog(  782):     at com.android.server.ServiceThread.run(ServiceThread.java:46)
+11-14 16:43:45.130 W/Watchdog(  782): *** GOODBYE!
+11-14 16:43:45.882 I/wificond(  658): Regulatory domain changed to country: 00 on wiphy_index: 1
+11-14 16:43:45.882 I/wificond(  658): UpdateBandInfo
+11-14 16:43:45.885 I/wificond(  658): 2.4Ghz frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 2484
+11-14 16:43:45.885 I/wificond(  658): 5Ghz non-DFS frequencies:
+11-14 16:43:45.885 I/wificond(  658): 5Ghz DFS frequencies: 5180 5200 5220 5240 5260 5280 5300 5320 5500 5520 5540 5560 5580 5600 5620 5640 5660 5680 5700 5745 5765 5785 5805 5825
+11-14 16:43:45.885 I/wificond(  658): 6Ghz frequencies:
+11-14 16:43:45.885 I/wificond(  658): 60Ghz frequencies:
+11-14 16:43:45.889 D/vold    (  199): Aborting fuse connection entry /sys/fs/fuse/connections/170/abort
+11-14 16:43:45.889 W/vold    (  199): Skip fsync /sys/fs/fuse/connections/170/abort on a file system does not support synchronization: Invalid argument
+11-14 16:43:45.890 D/vold    (  199): Aborting fuse connection entry /sys/fs/fuse/connections/104/abort
+11-14 16:43:45.890 W/vold    (  199): Skip fsync /sys/fs/fuse/connections/104/abort on a file system does not support synchronization: Invalid argument

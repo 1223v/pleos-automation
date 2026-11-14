@@ -20,6 +20,12 @@ AI_ENABLED=false, 일/월 예산 0, CONNECTORS_ENABLED=false가 기본값입니�
 | POST `/v1/run-explanations` | 실행 당시 정의·단계 근거에 대한 읽기 전용 설명 |
 | POST `/v1/connector-actions` | 허용한 일정·장소·스마트홈 동작 |
 
+루틴 생성 중 AI가 좌석을 물으면 앱은 원문과 답을 함께 다시 보냅니다. 선택 필드 `clarification`은 같은 `requestText`, 대응하는 `questions`·`answers` 배열을 받습니다. 요청당 누적 질문은 5개, 문답 한 항목은 1,000자까지입니다. 생성 모드의 `needs_clarification`에 들어 있는 그래프는 읽기 전용이며, 시트 이동 카드의 빈 영역은 좌석을 정해야 한다는 뜻입니다. 정식 `draft`에는 유효한 영역이 필요합니다.
+
+편집 모드는 기존대로 전체 루틴의 패치를 받을 수 있습니다. 특정 카드를 누른 요청은 `baseWorkflow`, `baseRevision`과 함께 `selectedNodeId`를 보냅니다. 이때 서버는 선택한 카드의 허용 설정, 그 다음에 추가하는 대기와 같은 영역·종류의 공조/열선/조명 설정, 원래 다음 카드로 돌아오는 연결만 허용합니다. 다른 카드나 시작 조건을 건드린 조작은 최종 그래프에서 원상 복귀하더라도 거부합니다. 이 검사는 AI 초안의 범위를 정하며 차량의 실제 권한·지원 영역은 앱에서 확인합니다.
+
+생성·편집 요청의 선택 필드 `vehicleAreas`는 앱이 조회한 차량 SDK 영역 ID를 전달합니다. 각 항목은 `{type, areas}`이며 시트 이동에는 `axis`도 필요합니다. 공조 목표, 앰비언트 밝기·색상, 열선, 시트 앞뒤·등받이까지 6항목을 받을 수 있습니다. 항목당 ID는 최대 32개, ID당 최대 160자입니다. `+`로 이어진 복합 영역은 하나의 ID입니다. 서버는 새로 제안한 대상이 해당 항목의 목록과 일치하는지 검사합니다. 좌석이 하나만 보고되어도 운전자가 어느 좌석을 젖힐지 밝히지 않았다면 AI가 질문하도록 지시합니다. 선택되지 않은 기존 카드의 영역은 보존합니다. [Pleos SDK 영역 확인 절차](https://document.pleos.ai/en/docs/pleos-only/tutorial/vehicle-sdk-sample-app)
+
 모든 경로는 Bearer 인증이 필요합니다. 브라우저 Origin은 허용하지 않습니다. 본문 128 KiB, 분당 60요청, AI 동시 실행 1건 제한입니다. 외부 인터페이스는 HTTPS가 필요합니다.
 
 실행 설명은 `{requestId,locale,workflow,run,startCause,omittedEventCount}`를 받습니다. `workflow`는 당시 snapshot이고 `run`은 앱의 RunResult입니다. 이벤트가 많으면 처음32개/마지막96개를 보내며 원래 sequence와 생략 수를 유지합니다. 설명은 전송된 이벤트만 참조할 수 있습니다. 응답은 `{runId,summary,details:[{nodeId,explanation,eventSequences}],limitations}`이며 patch나 차량 명령을 포함하지 않습니다. 실행 불가로 차단된 초안도 설명할 수 있도록 snapshot은 구조 스키마와 참조를 검사하되 실행 자격을 부여하지 않습니다. 앱은 당시 snapshot의 의미 해시를 검증하며 서버는 해시를 재계산하거나 실행 기록을 인증했다고 주장하지 않습니다.

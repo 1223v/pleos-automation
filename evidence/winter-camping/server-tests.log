@@ -1,0 +1,77 @@
+
+> pleos-routine-planner@0.1.0 test
+> npm run build && node --test dist/test/*.test.js
+
+
+> pleos-routine-planner@0.1.0 build
+> tsc -p tsconfig.json
+
+✔ HA light unknown or unavailable state blocks before any service write (70.2583ms)
+✔ HA light mismatched or missing current state blocks before service write (1.0532ms)
+✔ HA light reads before write and verifies the selected on or off state afterwards (44.1103ms)
+✔ Calendar rejects malformed event collections and explicit error payloads (29.4817ms)
+✔ Calendar preserves omitted or empty items and valid optional event fields (1.3632ms)
+✔ Kakao rejects missing or malformed place lists and unusable destination coordinates (2.1839ms)
+✔ Kakao preserves empty results and valid place coordinates without optional metadata (0.832ms)
+✔ what3words rejects absent malformed or out of range coordinates (3.2558ms)
+✔ what3words verifies numeric coordinates including zero and range boundaries (21.1796ms)
+✔ workflow contract accepts exactly4096 visits and rejects4097 before provider compilation (122.2845ms)
+✔ deep nested repeats saturate rather than overflow the visit limit (64.2272ms)
+✔ IF alternatives use the maximum path instead of summing both (1.3412ms)
+✔ parallel branches add their visits even when each branch alone fits (7.6078ms)
+✔ create clarification carries a typed preview whose unresolved seat cannot be a draft (93.6207ms)
+✔ clarification preview must still pass graph bounds, topology, action validation and have a real question (13.4318ms)
+✔ winter camping HTTP flow carries the first request, seat answer and selected edit across three calls (147.3579ms)
+✔ a selected followup passes the original edit, paired answers and selection to the mock provider (4.3716ms)
+✔ invalid selection or clarification context is rejected before the provider (77.087ms)
+✔ selected brightness may insert a wait and same-area dimming before its original successor (5.6382ms)
+✔ a selected edit cannot change title, trigger, another node, identity, branch or unrelated edge even transiently (49.86ms)
+✔ the disconnected edge ID may be reused on the new path and stale selected edits are rejected (3.6906ms)
+✔ the planner receives only reported area IDs and can present a seat question even when the backrest has one zone (8.6112ms)
+✔ area hints reject state, invalid identifiers, excessive data and duplicate capability entries before an AI call (12.2411ms)
+✔ an existing unrelated legacy area does not block a selected edit when current hints differ (4.6714ms)
+✔ explanation route is authenticated and disabled before any provider or reservation (317.3738ms)
+✔ explanation sends exact historic evidence and separate output contract, with shared budget (104.3132ms)
+✔ explanation validates references, types, source separation and extra keys before provider (129.4906ms)
+✔ explanation rejects hallucinated event references and command-bearing output (123.2267ms)
+✔ explanation accepts explicit omitted-event window without inventing omitted evidence (15.2739ms)
+✔ explanation cannot report real VERIFIED as simulated or simulated effects as real (25.3362ms)
+✔ explanations and drafts share one active-call gate in both directions (18.572ms)
+✔ explanation reserves before calling and blocks insufficient budget (11.7394ms)
+✔ explanation provider failure retains uncertain reservation and sanitized error (18.1287ms)
+✔ explanation limits event count and request bytes before provider (12.8516ms)
+✔ a blocked historic draft remains explainable even when its action is not executable (7.0549ms)
+✔ official SDK explanation wire request uses supported strict schema and never exposes vehicle tools (22.2334ms)
+✔ known overspend blocks later reservations across restart and preserves known charge (244.707ms)
+✔ settled costs cannot be settled again to refund spend (1.7443ms)
+✔ budget periods change at Korean midnight including month boundary (2.7544ms)
+✔ legacy UTC-day charges conservatively overlap both Korean dates and months (110.3352ms)
+✔ two ledger connections cannot reserve beyond one shared limit (141.4716ms)
+✔ malformed mode locale and create-only fields are rejected before provider or reservation (8.3328ms)
+✔ complete valid graph rejects approval and semantic malformed values (11.782ms)
+✔ unavailable HA climate cannot write even when its old target matches (4.5411ms)
+✔ HA unavailable after write stays UNKNOWN and is never retried (1.1535ms)
+✔ actual SDK pins official origin and sends strict nonstored nonretry request (19.299ms)
+✔ HTTP rejects browser and oversized final response, keeping error bounded (274.1249ms)
+✔ invalid usage keeps reservation and locks the ledger (10.249ms)
+✔ real SDK does not retry network errors (3.6902ms)
+✔ HTTP MIME JSON body and request rate boundaries are enforced (361.8797ms)
+✔ connector stream overflow and redirect failure return sanitized errors (1.9572ms)
+✔ default and missing budgets block before provider creation/call (105.0491ms)
+✔ mock completion validates and duplicate request does not bill twice (8.9512ms)
+✔ uncertain reservations survive restart and enforce budget (147.9532ms)
+✔ provider failure keeps full reservation and hides provider secrets (3.0118ms)
+✔ invalid AI output is never a draft (1.4133ms)
+✔ connectors disabled and unlisted HA target produce no fetch (0.8384ms)
+✔ HA acknowledgement without matching state remains UNKNOWN (9.8636ms)
+✔ HTTP authentication and disabled AI do not call a provider (109.4353ms)
+✔ schema rejects unexpected execution approval (1.9173ms)
+✔ shared Kotlin fixture and minimal edit preserve other nodes (39.7926ms)
+ℹ tests 61
+ℹ suites 0
+ℹ pass 61
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2950.8498

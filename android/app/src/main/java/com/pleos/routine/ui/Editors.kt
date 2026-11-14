@@ -8,6 +8,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.pleos.routine.core.*
+import com.pleos.routine.vehicle.Capability
+import com.pleos.routine.vehicle.editableVehicleAreas
 import java.util.UUID
 
 fun actionName(type:ActionType)=when(type) {
@@ -39,15 +41,25 @@ fun actionName(type:ActionType)=when(type) {
 @Composable private fun Days(days:List<Int>,onChange:(List<Int>)->Unit) {
     Row(horizontalArrangement=Arrangement.spacedBy(2.dp)) { listOf("월","화","수","목","금","토","일").forEachIndexed { i,s -> FilterChip(i+1 in days,{onChange(if(i+1 in days)days-(i+1) else (days+(i+1)).sorted())},label={Text(s)}) } }
 }
-@Composable fun NodeEditor(initial:WorkflowNode,onClose:()->Unit,onApply:(WorkflowNode)->Unit) {
+@Composable fun NodeEditor(initial:WorkflowNode,capabilities:List<Capability>,onClose:()->Unit,onApply:(WorkflowNode)->Unit) {
     var n by remember(initial) { mutableStateOf(initial) };var error by remember { mutableStateOf("") }
     AlertDialog(onDismissRequest=onClose,title={Text("${initial.label} 수정")},text={Column(Modifier.heightIn(max=600.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         OutlinedTextField(n.label,{n=n.copy(label=it)},label={Text("카드 이름")},modifier=Modifier.fillMaxWidth())
         if(n.kind==NodeKind.ACTION) {
             val a=n.action ?: ActionSpec(ActionType.SET_HVAC_TARGET)
             fun update(next:ActionSpec) { n=n.copy(action=next) }
-            Choice("동작",a.type,ActionType.entries.toList(),::actionName) { type -> update(ActionSpec(type,area="ROW_1_LEFT",value=when(type) { ActionType.SET_HVAC_TARGET->23.0;ActionType.SET_AMBIENT_BRIGHTNESS->30.0;ActionType.SET_SEAT_HEAT->2.0;else->null },text=if(type==ActionType.SET_AMBIENT_COLOR)"#FF4B85DB" else null,targetId=if(type==ActionType.PLAY_LOCAL_AUDIO)"rest-tone" else null,axis=if(type==ActionType.MOVE_SEAT_LIMITED)SeatAxis.FORE_AFT else null,direction=if(type==ActionType.MOVE_SEAT_LIMITED)MoveDirection.BACKWARD else null)) }
-            if(a.type in ActionResources.parkedTypes)OutlinedTextField(a.area,{update(a.copy(area=it))},label={Text("공식 영역 · 지원 조회에서 확인")},supportingText={Text("ROW_1_LEFT = 앞줄 왼쪽. 운전석 위치를 추정하지 않습니다.")})
+            Choice("동작",a.type,ActionType.entries.toList(),::actionName) { type -> if(type!=a.type) update(ActionSpec(type,area=if(type in ActionResources.parkedTypes)"" else ActionSpec(type).area,value=when(type) { ActionType.SET_HVAC_TARGET->23.0;ActionType.SET_AMBIENT_BRIGHTNESS->30.0;ActionType.SET_SEAT_HEAT->2.0;else->null },text=if(type==ActionType.SET_AMBIENT_COLOR)"#FF4B85DB" else null,targetId=if(type==ActionType.PLAY_LOCAL_AUDIO)"rest-tone" else null,axis=if(type==ActionType.MOVE_SEAT_LIMITED)SeatAxis.FORE_AFT else null,direction=if(type==ActionType.MOVE_SEAT_LIMITED)MoveDirection.BACKWARD else null)) }
+            if(a.type in ActionResources.parkedTypes) {
+                val options=editableVehicleAreas(a,capabilities)
+                val current=options.find { it.id==a.area }
+                if(options.isNotEmpty()) {
+                    Choice("차량 영역",a.area,options.map { it.id },name={ id -> options.find { it.id==id }?.label ?: "영역 선택" }) {
+                        update(a.copy(area=it))
+                    }
+                } else Text("연결 설정에서 차량 지원을 조회하면 이 동작의 영역을 선택할 수 있습니다.")
+                if(current==null && a.area.isNotBlank())Text("현재 초안의 영역 ${a.area} · 차량 지원 미확인")
+                if(a.type==ActionType.MOVE_SEAT_LIMITED)Text("앞뒤·등받이 이동과 정지 검증이 끝날 때까지 시트 루틴은 가상 테스트만 가능합니다.")
+            }
             when(a.type) {
                 ActionType.SET_HVAC_TARGET,ActionType.SET_AMBIENT_BRIGHTNESS,ActionType.SET_SEAT_HEAT -> NumberInput(when(a.type) { ActionType.SET_HVAC_TARGET->"목표 온도 °C";ActionType.SET_AMBIENT_BRIGHTNESS->"밝기 %";else->"열선 단계" },a.value) { update(a.copy(value=it)) }
                 ActionType.MOVE_SEAT_LIMITED -> { Choice("축",a.axis ?: SeatAxis.FORE_AFT,SeatAxis.entries.toList(),name={if(it==SeatAxis.FORE_AFT)"앞뒤" else "등받이"}) { update(a.copy(axis=it)) };Choice("방향",a.direction ?: MoveDirection.BACKWARD,MoveDirection.entries.toList(),name={if(it==MoveDirection.FORWARD)"앞으로" else "뒤로"}) { update(a.copy(direction=it)) };Text("전체 실행 전 1회 확인 · 검증된 시간 한도 · 취소 시 STOP 우선") }
@@ -62,7 +74,16 @@ fun actionName(type:ActionType)=when(type) {
         if(n.kind in setOf(NodeKind.WAIT,NodeKind.TIMER))NumberInput("대기 시간 · 초",n.durationSeconds) { n=n.copy(durationSeconds=it?.takeIf { v -> v%1==0.0 }?.toLong()) }
         if(n.kind==NodeKind.REPEAT)NumberInput("반복 횟수 · 1~20",n.repeatCount) { n=n.copy(repeatCount=it?.takeIf { v -> v%1==0.0 }?.toInt()) }
         if(error.isNotBlank())Text(error,color=MaterialTheme.colorScheme.error)
-    }},confirmButton={Button(onClick={val errors=n.action?.let(WorkflowValidator::actionErrors).orEmpty();if(errors.isNotEmpty())error=errors.joinToString("\n") else onApply(n)}) { Text("변경 적용") }},dismissButton={TextButton(onClick=onClose) { Text("취소") }})
+    }},confirmButton={Button(onClick={
+        val a=n.action
+        val options=a?.let { editableVehicleAreas(it,capabilities) }.orEmpty()
+        val errors=a?.let(WorkflowValidator::actionErrors).orEmpty()
+        when {
+            a!=null && a.type in ActionResources.parkedTypes && options.isNotEmpty() && options.none { it.id==a.area } -> error="조회된 차량 영역에서 선택해 주세요."
+            errors.isNotEmpty() -> error=errors.joinToString("\n")
+            else -> onApply(n)
+        }
+    }) { Text("변경 적용") }},dismissButton={TextButton(onClick=onClose) { Text("취소") }})
 }
 @Composable fun TriggerEditor(initial:TriggerDefinition,onClose:()->Unit,onApply:(TriggerDefinition)->Unit) {
     var t by remember(initial) { mutableStateOf(initial) }

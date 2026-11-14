@@ -1,0 +1,141 @@
+✖ create clarification carries a typed preview whose unresolved seat cannot be a draft (83.3263ms)
+✖ clarification preview must still pass graph bounds, topology, action validation and have a real question (2.1466ms)
+✖ followup passes original text, paired answers and selection to the mock provider (0.7885ms)
+✖ invalid selection or clarification context is rejected before the provider (0.9662ms)
+✖ selected brightness may insert a wait and same-area dimming before its original successor (1.0694ms)
+✖ a selected edit cannot change title, trigger, another node, identity, branch or unrelated edge even transiently (0.8739ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3237.191
+
+✖ failing tests:
+
+test at dist\test\planner-context.test.js:45:1
+✖ create clarification carries a typed preview whose unresolved seat cannot be a draft (83.3263ms)
+  Error [AppError]: 질문·미지원 응답에는 실행 초안을 포함할 수 없습니다.
+      at validateResponse (file:///C:/pleos-automation/server/dist/src/contracts.js:272:19)
+      at file:///C:/pleos-automation/server/dist/src/planner.js:57:85
+      at Planner.complete (file:///C:/pleos-automation/server/dist/src/planner.js:77:20) {
+    code: 'INVALID_AI_OUTPUT',
+    status: 502
+  }
+
+test at dist\test\planner-context.test.js:50:1
+✖ clarification preview must still pass graph bounds, topology, action validation and have a real question (2.1466ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /노드|연결/. Input:
+  
+  'AppError: 질문·미지원 응답에는 실행 초안을 포함할 수 없습니다.'
+  
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:51:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AppError: 질문·미지원 응답에는 실행 초안을 포함할 수 없습니다.
+        at validateResponse (file:///C:/pleos-automation/server/dist/src/contracts.js:272:19)
+        at file:///C:/pleos-automation/server/dist/test/planner-context.test.js:51:25
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:51:12)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12),
+    expected: /노드|연결/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at dist\test\planner-context.test.js:60:1
+✖ followup passes original text, paired answers and selection to the mock provider (0.7885ms)
+  Error [AppError]: 요청 ID·모드·요청 문장을 확인하세요.
+      at Planner.plan (file:///C:/pleos-automation/server/dist/src/planner.js:47:19)
+      at plan (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:39:30)
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:63:26)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_INPUT',
+    status: 400
+  }
+
+test at dist\test\planner-context.test.js:70:1
+✖ invalid selection or clarification context is rejected before the provider (0.9662ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /선택|질문|보충/. Input:
+  
+  'AppError: 요청 ID·모드·요청 문장을 확인하세요.'
+  
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:74:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AppError: 요청 ID·모드·요청 문장을 확인하세요.
+        at Planner.plan (file:///C:/pleos-automation/server/dist/src/planner.js:47:19)
+        at plan (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:39:30)
+        at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:74:30)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: /선택|질문|보충/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at dist\test\planner-context.test.js:78:1
+✖ selected brightness may insert a wait and same-area dimming before its original successor (1.0694ms)
+  Error [AppError]: 요청 ID·모드·요청 문장을 확인하세요.
+      at Planner.plan (file:///C:/pleos-automation/server/dist/src/planner.js:47:19)
+      at plan (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:39:30)
+      at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:79:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_INPUT',
+    status: 400
+  }
+
+test at dist\test\planner-context.test.js:81:1
+✖ a selected edit cannot change title, trigger, another node, identity, branch or unrelated edge even transiently (0.8739ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /선택/. Input:
+  
+  'AppError: 요청 ID·모드·요청 문장을 확인하세요.'
+  
+      at async TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:95:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AppError: 요청 ID·모드·요청 문장을 확인하세요.
+        at Planner.plan (file:///C:/pleos-automation/server/dist/src/planner.js:47:19)
+        at plan (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:39:30)
+        at TestContext.<anonymous> (file:///C:/pleos-automation/server/dist/test/planner-context.test.js:95:30)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: /선택/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

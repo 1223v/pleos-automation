@@ -1,0 +1,8 @@
+11-14 08:38:34.618 D/LifecycleMonitor( 7766): Lifecycle status change: com.pleos.routine.GleoActivity@2e3c748 in: PRE_ON_CREATE
+11-14 08:38:34.635 D/[GAA]   ( 2654): onReceive() : action:ai.pleos.playground.intent.action.APP_ACTION_RESPONSE, Intent { act=ai.pleos.playground.intent.action.APP_ACTION_RESPONSE flg=0x10 (has extras) }
+11-14 08:38:34.635 W/[GAA]   ( 2654): Intent-key: response , value: Bundle[{response={"functionName":"CONTROL_ROUTINE","status":"fail","message":"The routine request contains missing or invalid parameters.","mode":"voice"}, packageName=com.pleos.routine}][key]
+11-14 08:38:34.635 W/[GAA]   ( 2654): Intent-key: packageName , value: Bundle[{response={"functionName":"CONTROL_ROUTINE","status":"fail","message":"The routine request contains missing or invalid parameters.","mode":"voice"}, packageName=com.pleos.routine}][key]
+11-14 08:38:34.635 D/[GAA]   ( 2654): processReceiver(): APP_ACTION_RESPONSE
+11-14 08:38:34.635 D/[GAA]   ( 2654): processAppActionResponse data: Bundle[{response={"functionName":"CONTROL_ROUTINE","status":"fail","message":"The routine request contains missing or invalid parameters.","mode":"voice"}, packageName=com.pleos.routine}] , status: Sleeping
+11-14 08:38:34.635 D/[GAA]   ( 2654): AppAction cancels the timeout process......
+11-14 08:38:34.635 E/[GAA]   ( 2654): processAppActionResponse Reject AppActionResponse. [Bundle[{response={"functionName":"CONTROL_ROUTINE","status":"fail","message":"The routine request contains missing or invalid parameters.","mode":"voice"}, packageName=com.pleos.routine}]]

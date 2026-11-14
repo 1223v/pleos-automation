@@ -76,7 +76,7 @@ class GleoRestoreTest {
                 repeat(length) { check(input.read() >= 0) }
                 received.countDown()
                 check(release.await(15, TimeUnit.SECONDS))
-                val body = """{"explanation":"이전 요청 응답","workflow":${WorkflowJson.encode(WorkflowExamples.blank("obsolete-proposal"))}}""".toByteArray(Charsets.UTF_8)
+                val body = """{"status":"draft","explanation":"이전 요청 응답","questions":[],"patch":null,"workflow":${WorkflowJson.encode(WorkflowExamples.blank("obsolete-proposal"))}}""".toByteArray(Charsets.UTF_8)
                 socket.getOutputStream().apply {
                     write("HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: ${body.size}\r\nConnection: close\r\n\r\n".toByteArray())
                     write(body); flush()

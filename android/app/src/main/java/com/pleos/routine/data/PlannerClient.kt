@@ -3,8 +3,8 @@ package com.pleos.routine.data
 import android.content.Context
 import com.pleos.routine.BuildConfig
 import com.pleos.routine.core.*
+import com.pleos.routine.vehicle.Capability
 import kotlinx.serialization.json.*
-import java.util.UUID
 
 class PlannerClient(context:Context) {
     private val prefs=context.getSharedPreferences("connection",Context.MODE_PRIVATE)
@@ -18,8 +18,7 @@ class PlannerClient(context:Context) {
         set(value) { prefs.edit().putString("token",value).apply() }
     suspend fun request(path:String,body:JsonObject?=null,beforeSend:suspend()->Unit={}):JsonObject=
         transport.request(endpoint,token,path,body,BuildConfig.DEBUG,beforeSend)
-    suspend fun plan(text:String,base:WorkflowDefinition?):JsonObject=request("/v1/routine-drafts",buildJsonObject {
-        put("requestId",UUID.randomUUID().toString());put("mode",if(base==null) "create" else "edit");put("requestText",text);put("locale","ko-KR")
-        if(base!=null) { put("baseWorkflow",WorkflowJson.format.encodeToJsonElement(base));put("baseRevision",base.revision) }
-    })
+    suspend fun plan(text:String,base:WorkflowDefinition?,selectedNodeId:String?=null,
+                     answers:AnsweredQuestions?=null,capabilities:List<Capability> = emptyList()):JsonObject =
+        request("/v1/routine-drafts",PlannerConversation.request(text,base,selectedNodeId,answers,capabilities))
 }

@@ -1,0 +1,93 @@
+INSTRUMENTATION_STATUS: class=com.pleos.routine.WinterCampingEditorTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.WinterCampingEditorTest:
+INSTRUMENTATION_STATUS: test=clarificationSelectedLightReviewAndInactiveSaveThroughLocalHttp
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.WinterCampingEditorTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: No node found that matches TestTag = 'open-routine-9540fd6b-0fa8-4b05-9de2-242d3a791468' in scrollable container
+Semantics of the node:
+Node #892 at (l=24.0, t=230.0, r=1658.0, b=1186.0)px
+IsTraversalGroup = 'true'
+VerticalScrollAxisRange = 'ScrollAxisRange(value=5636.0, maxValue=5636.0, reverseScrolling=false)'
+CollectionInfo = 'androidx.compose.ui.semantics.CollectionInfo@3a62ef5'
+Actions = [ScrollBy, ScrollByOffset, IndexForKey, ScrollToIndex, GetScrollViewportLength]
+Has 6 children, 11 siblings
+Selector used: (((ScrollToIndex is defined) && (ScrollBy is defined)) && ((HorizontalScrollAxisRange is defined) || (VerticalScrollAxisRange is defined)))
+
+	at androidx.compose.ui.test.ActionsKt.performScrollToNode(Actions.kt:264)
+	at com.pleos.routine.WinterCampingEditorTest.clarificationSelectedLightReviewAndInactiveSaveThroughLocalHttp(WinterCampingEditorTest.kt:145)
+
+INSTRUMENTATION_STATUS: stream=
+Error in clarificationSelectedLightReviewAndInactiveSaveThroughLocalHttp(com.pleos.routine.WinterCampingEditorTest):
+java.lang.AssertionError: No node found that matches TestTag = 'open-routine-9540fd6b-0fa8-4b05-9de2-242d3a791468' in scrollable container
+Semantics of the node:
+Node #892 at (l=24.0, t=230.0, r=1658.0, b=1186.0)px
+IsTraversalGroup = 'true'
+VerticalScrollAxisRange = 'ScrollAxisRange(value=5636.0, maxValue=5636.0, reverseScrolling=false)'
+CollectionInfo = 'androidx.compose.ui.semantics.CollectionInfo@3a62ef5'
+Actions = [ScrollBy, ScrollByOffset, IndexForKey, ScrollToIndex, GetScrollViewportLength]
+Has 6 children, 11 siblings
+Selector used: (((ScrollToIndex is defined) && (ScrollBy is defined)) && ((HorizontalScrollAxisRange is defined) || (VerticalScrollAxisRange is defined)))
+
+	at androidx.compose.ui.test.ActionsKt.performScrollToNode(Actions.kt:264)
+	at com.pleos.routine.WinterCampingEditorTest.clarificationSelectedLightReviewAndInactiveSaveThroughLocalHttp(WinterCampingEditorTest.kt:145)
+
+INSTRUMENTATION_STATUS: test=clarificationSelectedLightReviewAndInactiveSaveThroughLocalHttp
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoCallbackTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+com.pleos.routine.GleoCallbackTest:
+INSTRUMENTATION_STATUS: test=controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.pleos.routine.GleoCallbackTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stack=java.lang.IllegalArgumentException: No local Gleo callback for fail
+	at com.pleos.routine.GleoCallbackTest.controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch$expect(GleoCallbackTest.kt:59)
+	at com.pleos.routine.GleoCallbackTest.controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch(GleoCallbackTest.kt:78)
+
+INSTRUMENTATION_STATUS: stream=
+Error in controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch(com.pleos.routine.GleoCallbackTest):
+java.lang.IllegalArgumentException: No local Gleo callback for fail
+	at com.pleos.routine.GleoCallbackTest.controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch$expect(GleoCallbackTest.kt:59)
+	at com.pleos.routine.GleoCallbackTest.controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch(GleoCallbackTest.kt:78)
+
+INSTRUMENTATION_STATUS: test=controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 44.701
+There were 2 failures:
+1) clarificationSelectedLightReviewAndInactiveSaveThroughLocalHttp(com.pleos.routine.WinterCampingEditorTest)
+java.lang.AssertionError: No node found that matches TestTag = 'open-routine-9540fd6b-0fa8-4b05-9de2-242d3a791468' in scrollable container
+Semantics of the node:
+Node #892 at (l=24.0, t=230.0, r=1658.0, b=1186.0)px
+IsTraversalGroup = 'true'
+VerticalScrollAxisRange = 'ScrollAxisRange(value=5636.0, maxValue=5636.0, reverseScrolling=false)'
+CollectionInfo = 'androidx.compose.ui.semantics.CollectionInfo@3a62ef5'
+Actions = [ScrollBy, ScrollByOffset, IndexForKey, ScrollToIndex, GetScrollViewportLength]
+Has 6 children, 11 siblings
+Selector used: (((ScrollToIndex is defined) && (ScrollBy is defined)) && ((HorizontalScrollAxisRange is defined) || (VerticalScrollAxisRange is defined)))
+
+	at androidx.compose.ui.test.ActionsKt.performScrollToNode(Actions.kt:264)
+	at com.pleos.routine.WinterCampingEditorTest.clarificationSelectedLightReviewAndInactiveSaveThroughLocalHttp(WinterCampingEditorTest.kt:145)
+2) controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch(com.pleos.routine.GleoCallbackTest)
+java.lang.IllegalArgumentException: No local Gleo callback for fail
+	at com.pleos.routine.GleoCallbackTest.controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch$expect(GleoCallbackTest.kt:59)
+	at com.pleos.routine.GleoCallbackTest.controlReviewProducesAskingAndTerminalBroadcastsWithoutDispatch(GleoCallbackTest.kt:78)
+
+FAILURES!!!
+Tests run: 2,  Failures: 2
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,137 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.6/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+> Task :core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:compileKotlin UP-TO-DATE
+> Task :core:compileJava NO-SOURCE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :core:processTestResources NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateGleoAssets UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kspDebugKotlin UP-TO-DATE
+> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:bundleDebugClassesToRuntimeJar UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+
+> Task :core:compileTestKotlin FAILED
+e: file:///C:/pleos-automation/android/core/src/test/kotlin/com/pleos/routine/core/WinterCampingWorkflowTest.kt:27:36 Unresolved reference 'applyScopedPatch'.
+e: file:///C:/pleos-automation/android/core/src/test/kotlin/com/pleos/routine/core/WinterCampingWorkflowTest.kt:28:56 Unresolved reference 'it'.
+e: file:///C:/pleos-automation/android/core/src/test/kotlin/com/pleos/routine/core/WinterCampingWorkflowTest.kt:55:27 Unresolved reference 'applyScopedPatch'.
+e: file:///C:/pleos-automation/android/core/src/test/kotlin/com/pleos/routine/core/WinterCampingWorkflowTest.kt:58:27 Unresolved reference 'applyScopedPatch'.
+e: file:///C:/pleos-automation/android/core/src/test/kotlin/com/pleos/routine/core/WinterCampingWorkflowTest.kt:74:27 Unresolved reference 'applyScopedPatch'.
+
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:kspDebugUnitTestKotlin
+
+> Task :app:compileDebugUnitTestKotlin FAILED
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/GleoReviewsTest.kt:9:25 Unresolved reference 'GleoReviews'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/GleoReviewsTest.kt:9:55 Unresolved reference 'it'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/GleoReviewsTest.kt:9:67 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/GleoReviewsTest.kt:11:9 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/GleoReviewsTest.kt:11:16 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/GleoReviewsTest.kt:11:23 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:21:21 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:22:32 Unresolved reference 'PlannerReply'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:22:50 Unresolved reference 'draft'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:24:24 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:24:52 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:25:9 Overload resolution ambiguity between candidates:
+static fun assertEquals(p0: Any!, p1: Any!): Unit
+static fun assertEquals(p0: Long, p1: Long): Unit
+@Deprecated(...) static fun assertEquals(p0: Double, p1: Double): Unit
+@Deprecated(...) static fun assertEquals(p0: (Array<Any!>..Array<out Any!>?), p1: (Array<Any!>..Array<out Any!>?)): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:26:20 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:26:48 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:27:20 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:27:48 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:28:20 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:29:54 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
+val JsonElement.jsonPrimitive: JsonPrimitive
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:30:47 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
+val JsonElement.jsonObject: JsonObject
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:33:22 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:34:35 Unresolved reference 'PlannerReply'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:34:53 Unresolved reference 'draft'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:42:20 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:43:57 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
+val JsonElement.jsonPrimitive: JsonPrimitive
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:44:60 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
+val JsonElement.jsonPrimitive: JsonPrimitive
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:51:13 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:53:62 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:60:62 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:62:62 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:63:22 Unresolved reference 'PlannerConversation'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:63:101 Unresolved reference 'PlannerReply'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/data/PlannerConversationTest.kt:64:69 Unresolved reference 'draft'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/vehicle/EditableVehicleAreasTest.kt:11:21 Unresolved reference 'editableVehicleAreas'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/vehicle/EditableVehicleAreasTest.kt:12:52 Unresolved reference 'it'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/vehicle/EditableVehicleAreasTest.kt:13:65 Unresolved reference 'label'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/vehicle/EditableVehicleAreasTest.kt:18:24 Unresolved reference 'editableVehicleAreas'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/vehicle/EditableVehicleAreasTest.kt:20:20 Unresolved reference 'editableVehicleAreas'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/vehicle/EditableVehicleAreasTest.kt:24:30 Unresolved reference 'vehicleAreaLabel'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/vehicle/EditableVehicleAreasTest.kt:25:31 Unresolved reference 'vehicleAreaLabel'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/vehicle/EditableVehicleAreasTest.kt:26:36 Unresolved reference 'vehicleAreaLabel'.
+
+[Incubating] Problems report is available at: file:///C:/pleos-automation/android/build/reports/problems/problems-report.html
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':core:compileTestKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:compileDebugUnitTestKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.6/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 22s
+28 actionable tasks: 3 executed, 25 up-to-date

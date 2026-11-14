@@ -34,6 +34,8 @@ data class DraftRecord(@PrimaryKey val id: String, val definition: String)
     @Query("SELECT * FROM drafts WHERE id = 'working'") suspend fun working():DraftRecord?
     @Query("SELECT * FROM drafts WHERE id = 'working-request'") suspend fun workingRequest():DraftRecord?
     @Query("SELECT * FROM drafts WHERE id = 'working-origin'") suspend fun workingOrigin():DraftRecord?
+    @Query("SELECT * FROM drafts WHERE id = 'working-clarification'") suspend fun workingClarification():DraftRecord?
+    @Query("SELECT * FROM drafts WHERE id = 'working-gleo-review'") suspend fun workingGleoReview():DraftRecord?
 }
 @Database(entities=[RoutineRecord::class,RunRecord::class,DraftRecord::class,RunEventRecord::class],version=3,exportSchema=true)
 abstract class RoutineDatabase:RoomDatabase() {

@@ -1,5 +1,9 @@
 # 요구사항 검증 및 시연 계획
 
+## 2026-11-12 겨울 차박 시나리오
+
+좌석 보충 질문, 조명 노드에 한정한 수정안, 외기 3·5·8°C와 미상, 저장 확인을 [겨울 차박 장부](evidence/winter-camping/verification.md)에서 추적한다. [서버 회귀](evidence/winter-camping/server-verification.md)의 고정 응답, 차량 SDK 재조회, 참가자 서명 전 [지원서 검수](evidence/winter-camping/form-qa.md)를 별도로 기록한다.
+
 ## 2026-11-02 A05 후속 검증 — 11월3일 기록 확정
 
 [A05 장부](evidence/A05/verification-2026-11-02.md)가 실행 설명·이력 개선의 현재 근거다. 서버50·core98·앱64 시험과 debug/test/unsigned release 빌드, offline lint0오류1경고를 확인했다. 전체 AVD26개와 별도 실제 프로세스 복구1개가 통과했다. 표적7개는 전체26개에 포함되므로 중복 합산하지 않는다. 이력 경합/복구 로딩의 RED→GREEN, Room1/2→3 보존, 앱→로컬 HTTP→모의 설명 응답을 포함한다.11월3일 소스126개/APK3개 해시 일치를 확인하고 기록을 확정했으며 앱 시험을 다시 실행한 것은 아니다. 실제 OpenAI 설명 정확도·시트·최종 release10회는 포함하지 않는다.
