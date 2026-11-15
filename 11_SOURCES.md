@@ -9,6 +9,7 @@
 | [Vehicle Emulator(Virtual Console) 사용](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/use-vehicle-emulator) | 에뮬레이터 v2.1.0 이상, `adb forward tcp:8088 tcp:8088` 후 `http://127.0.0.1:8088/`. 탭을 화면에 띄워 둬야 한다는 내용은 없다. README의 해당 주의는 이 프로젝트의 관찰([area-fix](evidence/area-fix-2026-11-16/README.md))로 구분해 적었다. |
 | [Vehicle SDK 프로젝트 설정](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/project-setup) · [샘플 앱 튜토리얼](https://document.pleos.ai/docs/pleos-only/tutorial/vehicle-sdk-sample-app) | Maven 저장소 `https://nexus-playground.pleos.ai/repository/maven-releases/`(인증 언급 없음), `ai.pleos.playground:Vehicle:2.3.2`, 기준 Vehicle Service 2.3.22, JDK 17·compileSdk 35. 샘플 minSdk 23과 달리 Playground 배포 제품은 API 28 이상. |
 | YouTube oEmbed(`https://www.youtube.com/oembed`) | 사용자가 준 [시연 영상](https://youtu.be/hA8jhEtuvh0)과 [숏폼](https://youtube.com/shorts/PHBOkS89bLM)이 로그인 없이 조회되고 제목이 이 앱의 시연·숏폼임을 확인했다. 재생 자체는 확인하지 않았다. |
+| [현대자동차그룹 · 글레오 AI 개발자 인터뷰](https://www.hyundaimotorgroup.com/ko/story/42dot-gleo-ai-developer-present-and-future) | Pleos Connect 음성 AI의 공식 명칭은 글레오 AI(Gleo AI), 포티투닷 개발. 발화 좌석을 식별해 운전석·동승석 창문을 따로 제어하는 사례와, 반복 이동 루틴·선호를 기억하는 개인화를 향후 방향으로 소개한다. README 비전 절의 음성 호출 표현 근거. 계정·프로필의 차량 간 연동은 이 글에 없다. |
 
 ## 2026-11-15 Astryx 디자인·흐름 그림·UI 기준
 

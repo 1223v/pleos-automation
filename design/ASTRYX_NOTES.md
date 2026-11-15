@@ -56,6 +56,7 @@
 cd design
 npm ci
 node figures/render.mjs        # evidence/application-figures-2026-11-15/fig1~4.png + figures.sha256
+node figures/render-vision.mjs # docs/vision/vision-*.png + figures.sha256 (README 비전 그림 2장)
 python figures/replace_docx_media.py <수정본.docx> <출력.docx>
 powershell -File figures/render-word.ps1 -InputDocx <출력.docx 절대경로> -OutputPdf <출력.pdf 절대경로>
 python figures/verify_docx.py <수정본.docx> <수정본.pdf> <출력.docx> <출력.pdf>
