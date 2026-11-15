@@ -30,6 +30,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.room.withTransaction
 import com.pleos.routine.core.*
 import com.pleos.routine.data.*
+import com.pleos.routine.vehicle.vehicleAreaIssues
 import com.pleos.routine.ui.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -159,7 +160,7 @@ private data class EditorSnapshot(val editor:WorkingEditor,val clarification:Str
         var pendingRequest by remember { mutableStateOf<PendingRoutineRequest?>(null) }
         var originRequestId by remember { mutableStateOf<String?>(null) }
         val editable=!app.platform.automotive || !vehicle.uxRestricted
-        val issues=remember(w) { WorkflowValidator.validate(w) }
+        val issues=remember(w,capabilities) { WorkflowValidator.validate(w)+vehicleAreaIssues(w,capabilities) }
         fun canEdit() = !app.platform.automotive || !app.platform.state.value.uxRestricted
         fun cancelPlanner() {
             planningJob?.cancel();planningJob=null;planning=false

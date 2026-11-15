@@ -2,7 +2,10 @@ package com.pleos.routine.vehicle
 
 import com.pleos.routine.core.ActionType
 import com.pleos.routine.core.ActionSpec
+import com.pleos.routine.core.NodeKind
 import com.pleos.routine.core.SeatAxis
+import com.pleos.routine.core.WorkflowDefinition
+import com.pleos.routine.core.WorkflowNode
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -39,5 +42,30 @@ class EditableVehicleAreasTest {
         assertEquals(listOf("ROW_1_LEFT"),editableVehicleAreas(legacy.copy(axis=SeatAxis.FORE_AFT),capabilities).map { it.id })
         assertTrue(editableVehicleAreas(legacy,capabilities.take(1)).isEmpty())
         assertEquals("DRIVER",legacy.area)
+    }
+
+    private fun routine(vararg actions:ActionSpec)=WorkflowDefinition(id="r",title="r",
+        nodes=listOf(WorkflowNode("start",NodeKind.START,"시작"))+actions.mapIndexed { i,a -> WorkflowNode("a$i",NodeKind.ACTION,"동작$i",action=a) }+WorkflowNode("end",NodeKind.END,"완료"),edges=emptyList())
+
+    @Test fun reviewFlagsTheDriverAliasEvenBeforeCapabilitiesAreKnown() {
+        val issues=vehicleAreaIssues(routine(ActionSpec(ActionType.SET_HVAC_TARGET,value=23.0)),emptyList())
+        assertEquals(listOf("a0"),issues.map { it.nodeId })
+    }
+
+    @Test fun reviewFlagsAnAreaTheVehicleDidNotReportAndAcceptsReportedOnes() {
+        val cabin="ROW_1_LEFT+ROW_1_RIGHT"
+        val caps=listOf(Capability(ActionType.SET_HVAC_TARGET,"READ_WRITE",listOf("ROW_1_LEFT","ROW_1_RIGHT")),
+            Capability(ActionType.SET_AMBIENT_BRIGHTNESS,"READ_WRITE",listOf(cabin)))
+        val w=routine(ActionSpec(ActionType.SET_HVAC_TARGET,area="ROW_1_LEFT",value=23.0),
+            ActionSpec(ActionType.SET_AMBIENT_BRIGHTNESS,area="ROW_1_LEFT",value=30.0),
+            ActionSpec(ActionType.SET_AMBIENT_BRIGHTNESS,area=cabin,value=30.0),
+            ActionSpec(ActionType.PLAY_LOCAL_AUDIO,targetId="rest-tone"))
+        assertEquals(listOf("a1"),vehicleAreaIssues(w,caps).map { it.nodeId })
+    }
+
+    @Test fun unreportedOrReadOnlyCapabilitiesLeaveTheDecisionToPreflight() {
+        val w=routine(ActionSpec(ActionType.SET_HVAC_TARGET,area="ROW_1_LEFT",value=23.0))
+        assertTrue(vehicleAreaIssues(w,emptyList()).isEmpty())
+        assertTrue(vehicleAreaIssues(w,listOf(Capability(ActionType.SET_HVAC_TARGET,"READ",listOf("ROW_1_RIGHT")))).isEmpty())
     }
 }

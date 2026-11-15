@@ -8,7 +8,7 @@ object WorkflowExamples {
             WorkflowNode("start", NodeKind.START, "운전석 탑승", NodePosition(40f, 160f)),
             WorkflowNode("navigation", NodeKind.ACTION, "회사로 길 안내", NodePosition(300f, 160f), action = ActionSpec(ActionType.NAVIGATE, text = "회사 주소를 등록하세요")),
             WorkflowNode("cold", NodeKind.IF, "외기 온도 ≤ 5°C", NodePosition(560f, 160f), condition = ConditionSpec(ConditionField.OUTSIDE_TEMPERATURE, value = 5.0)),
-            WorkflowNode("heat", NodeKind.ACTION, "운전석 열선 2단계", NodePosition(820f, 60f), action = ActionSpec(ActionType.SET_SEAT_HEAT, value = 2.0)),
+            WorkflowNode("heat", NodeKind.ACTION, "운전석 열선 2단계", NodePosition(820f, 60f), action = ActionSpec(ActionType.SET_SEAT_HEAT, area = "ROW_1_LEFT", value = 2.0)),
             WorkflowNode("end", NodeKind.END, "완료", NodePosition(1080f, 160f))),
         edges = listOf(WorkflowEdge("e1","start","navigation"), WorkflowEdge("e2","navigation","cold"), WorkflowEdge("e3","cold","heat","true"), WorkflowEdge("e4","cold","end","false"), WorkflowEdge("e5","heat","end")))
 
@@ -33,12 +33,14 @@ object WorkflowExamples {
     }
 
     fun rest(): WorkflowDefinition {
+        // Areas are the SDK SeatArea names Connect v2.1.0 reported; the "DRIVER" default is never executable.
+        val cabin = "ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT"
         val actions = listOf(
-            "공조 목표 23°C" to ActionSpec(ActionType.SET_HVAC_TARGET, value = 23.0),
-            "앰비언트 밝기 30%" to ActionSpec(ActionType.SET_AMBIENT_BRIGHTNESS, value = 30.0),
-            "앰비언트 파랑" to ActionSpec(ActionType.SET_AMBIENT_COLOR, text = "#FF4B85DB"),
-            "시트 앞뒤 · 뒤로" to ActionSpec(ActionType.MOVE_SEAT_LIMITED, axis = SeatAxis.FORE_AFT, direction = MoveDirection.BACKWARD),
-            "등받이 · 뒤로" to ActionSpec(ActionType.MOVE_SEAT_LIMITED, axis = SeatAxis.BACKREST, direction = MoveDirection.BACKWARD),
+            "공조 목표 23°C" to ActionSpec(ActionType.SET_HVAC_TARGET, area = "ROW_1_LEFT", value = 23.0),
+            "앰비언트 밝기 30%" to ActionSpec(ActionType.SET_AMBIENT_BRIGHTNESS, area = cabin, value = 30.0),
+            "앰비언트 파랑" to ActionSpec(ActionType.SET_AMBIENT_COLOR, area = cabin, text = "#FF4B85DB"),
+            "시트 앞뒤 · 뒤로" to ActionSpec(ActionType.MOVE_SEAT_LIMITED, area = "ROW_1_LEFT", axis = SeatAxis.FORE_AFT, direction = MoveDirection.BACKWARD),
+            "등받이 · 뒤로" to ActionSpec(ActionType.MOVE_SEAT_LIMITED, area = "ROW_1_LEFT", axis = SeatAxis.BACKREST, direction = MoveDirection.BACKWARD),
             "휴식 음원" to ActionSpec(ActionType.PLAY_LOCAL_AUDIO, targetId = "rest-tone"))
         val nodes = listOf(WorkflowNode("start",NodeKind.START,"지금 시작",NodePosition(40f,150f))) + actions.mapIndexed { index, (label, action) -> WorkflowNode("action$index",NodeKind.ACTION,label,NodePosition(300f+260*index,150f),action=action) } + listOf(
             WorkflowNode("timer",NodeKind.TIMER,"30분 휴식",NodePosition(1860f,150f),durationSeconds=1800), WorkflowNode("end",NodeKind.END,"완료",NodePosition(2120f,150f)))
