@@ -23,9 +23,15 @@
 
 ### APK 검증 기록
 
-2026-11-15 KST · R12/R13 · W20/W22 · T34/T35. [제출 APK](apk/forky_forky_release.apk)는 앱 소스 커밋 `c516d1cfe2868cd5070ea4f7730620f173cd4b09`로 빌드했다. 패키지는 `com.pleos.routine`, 버전은 `0.1.0`(1), 파일 크기는 52,859,960바이트다.
+**2026-11-15 13:50 KST 교체.** [제출 APK](apk/forky_forky_release.apk)를 음성 입력·시트 단계 제외 실행이 들어간 앱 소스 커밋 `f27504aa894acb5b4fc7f25b4b722d939190131d`로 다시 빌드했다. 패키지 `com.pleos.routine`, 버전 `0.1.0`(1), 71,040,374바이트, SHA-256 `9f94aaae9f0bca732122fa23a4b5305f61726433ba89b6345b23ce4f16dd3ec7`. SpeechToText SDK의 의존성(네이티브 `libuacore.so` 등)으로 크기가 늘었다.
 
-- APK SHA-256은 `d07a4d2b89ca6278eb1bc3d728d3da098f2a8a2cf508820da96c9368f40ad21d`이다.
+- 사용자 결정으로 **새 서명 키**를 썼다. 인증서 DN `CN=Pleos AI Routine Builder`, 인증서 SHA-256 `2beae5c77f690533f3e097affb7f91935cc11c5e1e0b6b2359f9c590aa98088a`. 키와 비밀번호는 Git 밖 `.local/signing/`에 있다. 이전 APK와 서명이 달라 덮어 설치되지 않으므로 기존 설치본을 지운 뒤 설치한다.
+- `apksigner verify --verbose --print-certs`에서 v3 서명 1개, `zipalign -c -P 16 4` 통과. `emulator-5580`(사용자 10, 2560×1440)에서 이전 앱 제거 후 새로 설치 `Success`, 첫 실행 `Status: ok`·`LaunchState: COLD`·1,428ms, MainActivity resumed. [기록](evidence/application-audit-2026-11-15/release-fresh-install.txt)
+- 같은 새 AVD에서 ‘말로 입력’은 플랫폼 음성 서비스가 `ON_DEVICE_ENGINE_ERROR`를 돌려줘 앱이 글 입력 안내를 표시했다(2회). 서비스 쪽 로그는 엔진 인스턴스 생성 실패다. 작업용 AVD(`emulator-5556`)에서는 같은 요청이 준비 신호까지 진행됐다. 원인은 확정하지 못했고, 시연 AVD에서 미리 확인할 위험으로 남긴다.
+
+이전 기록(교체 전): 앱 소스 커밋 `c516d1cfe2868cd5070ea4f7730620f173cd4b09`, 52,859,960바이트.
+
+- 교체 전 APK SHA-256은 `d07a4d2b89ca6278eb1bc3d728d3da098f2a8a2cf508820da96c9368f40ad21d`이다.
 - Windows x64, Corretto 17.0.21, Gradle 8.14.6으로 `:app:assembleRelease` 성공. Build Tools 35.0.0의 `apksigner verify --verbose --print-certs`에서 v3 서명 1개를 확인했고 `zipalign -c -P 16 4`가 통과했다.
 - 공식 Pleos Connect API 34의 새 AVD(`emulator-5580`, 사용자 10)에서 패키지 미설치를 확인했다. `adb -s emulator-5580 install --user 10 apk/forky_forky_release.apk`는 `Success`, `adb -s emulator-5580 shell am start -W --user 10 -n com.pleos.routine/.MainActivity`는 `Status: ok`, `LaunchState: COLD`였다. 첫 화면까지 2,532ms였고 해당 Activity가 resumed 상태였다. 동일 APK의 필수 흐름 10회는 미실행이다.
 
