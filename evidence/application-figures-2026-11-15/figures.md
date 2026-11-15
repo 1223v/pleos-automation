@@ -14,7 +14,7 @@ Windows·JDK·Gradle / AVD·OS·SDK·Vehicle Service 버전: Windows 11 x64, Nod
 요청값·요청 시각 / 응답 종류·시각: 해당 없음
 변경 전/후 조회 또는 이벤트값·시각: 아래 표
 STOP 요청·응답·정지 확인 또는 결과 불명 근거: 해당 없음
-실제 결과 / 화면·로그·영상 경로: 이 폴더의 fig1~4.png, figures.sha256. 완성 DOCX·PDF는 개인정보가 있어 .local/application-figures-2026-11-15/ (Git 제외)
+실제 결과 / 화면·로그·영상 경로: 이 폴더의 fig1~4.png, figures.sha256. 완성 DOCX는 사용자 결정(20:30)으로 루트 contest-application-consent.docx에 커밋(참가자 정보 포함). PDF 렌더는 .local/application-figures-2026-11-15/ (Git 제외)
 실패 원인 / 수정 작업 / 재시험 결과: 첫 Word 렌더 스크립트(Temp 보관본)가 Close/Quit에 [ref] 인자를 주지 않아 숨은 Word가 남았다. 이 세션이 띄운 창 없는 인스턴스만 종료하고 design/figures/render-word.ps1로 고쳐 재실행, 정상 종료 확인
 남은 미검증 범위 / 재개 조건: 인쇄본 육안 확인과 메일 제출은 제출자가 한다. 3번째 팀원의 동의 체크·서명·날짜는 비어 있다(내용 변경 안 함)
 ```

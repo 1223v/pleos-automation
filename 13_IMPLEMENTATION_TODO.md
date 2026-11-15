@@ -4,7 +4,7 @@
 
 사용자 요청: 기획서 그림과 앱 UI를 n8n처럼 아이콘과 흐름이 보이게 바꾸고, Meta Astryx를 설치해 디자인 기준으로 삼는다. 기획서를 먼저 마감(11-15 23:59) 전에 끝내고, 앱 UI는 이어서 진행하되 제출 APK·커밋은 기존본(f27504a)을 유지한다. [Astryx 적용 기록](design/ASTRYX_NOTES.md)
 
-- [x] R12/R13 · W22 — Astryx 0.7.16(플러그인·npm) 설치, neutral 토큰·Lucide 아이콘으로 흐름 시각 언어 정의(`design/flow-visuals.mjs`). 기획서 그림 4장을 재현 가능한 스크립트로 다시 만들어 수정본 사본에 교체. 그 밖의 파트 바이트 동일, 7쪽, 그림 없는 쪽 픽셀 동일. 결과 DOCX는 Git 밖. [그림 기록](evidence/application-figures-2026-11-15/figures.md)
+- [x] R12/R13 · W22 — Astryx 0.7.16(플러그인·npm) 설치, neutral 토큰·Lucide 아이콘으로 흐름 시각 언어 정의(`design/flow-visuals.mjs`). 기획서 그림 4장을 재현 가능한 스크립트로 다시 만들어 수정본 사본에 교체. 그 밖의 파트 바이트 동일, 7쪽, 그림 없는 쪽 픽셀 동일. 사용자 결정으로 최종본을 루트 `contest-application-consent.docx`로 커밋. [그림 기록](evidence/application-figures-2026-11-15/figures.md)
 - [x] R14/R04 · W30(신규) · T39/T32 — 앱 UI 개편: Astryx light/dark 테마, 노드 아이콘·분류색 매핑(`NodeVisualsTest` 8건), n8n형 FlowCanvas(이동하는 격자·연결점·화살표·포트 라벨·전체 보기·실행 경로 강조), 캔버스 + 노드 추가 막대 + 오른쪽 속성 패널, 나머지 화면 아이콘화. 시험 문구·testTag와 안전 로직 유지. core 106·app 103 단위시험, lint 오류 0, 공식 AVD 계측 실행 통과 30건(인자 필요한 3건은 fixture·Console과 함께), 밝은 8장·어두운 4장 캡처. [W30 검증](evidence/W30/verification.md)
 - [ ] W30 후속 — 새 UI의 release 빌드·서명·제출 APK 교체(사용자 결정 필요), 주행 제한 화면·분할 화면 새 디자인 캡처.
 
