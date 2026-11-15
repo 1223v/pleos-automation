@@ -1,5 +1,15 @@
 # 공식 출처와 조사 이력
 
+## 2026-11-16 README 개편
+
+| 공식 문서·버전 | 확인한 범위 |
+|---|---|
+| [접수·제출 방법](https://appdevchallenge.auto-hmg.io/guide/submission) | README 권장 항목: 앱 이름·한 줄 소개, 실행 방법, 테스트 환경·필요 설정, 개발에 쓴 Pleos Connect 에뮬레이터 버전과 화면 규격, APK 위치 또는 Release 링크. APK는 `apk/`에 `팀명_앱이름_release.apk`. 메일에 저장소 주소와 심사 기준 커밋을 적고, 비공개 저장소는 11월 16일까지 공개해 11월 23일까지 유지해야 개발 가산점을 받는다. |
+| [Pleos Connect SDK 에뮬레이터 설치](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/setup-connect-sdk-emulator) | SDK Update Sites `Pleos Connect System Image`, Windows/Linux URL `.../connect-avd/2.x/crp-sys-img.xml`(Mac은 별도 주소), API 34 이미지, Automotive → Pleos Connect v2.1.0, 부팅 Cold, RAM 4 GB. 문서에 갱신일 표시는 없다. |
+| [Vehicle Emulator(Virtual Console) 사용](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/use-vehicle-emulator) | 에뮬레이터 v2.1.0 이상, `adb forward tcp:8088 tcp:8088` 후 `http://127.0.0.1:8088/`. 탭을 화면에 띄워 둬야 한다는 내용은 없다. README의 해당 주의는 이 프로젝트의 관찰([area-fix](evidence/area-fix-2026-11-16/README.md))로 구분해 적었다. |
+| [Vehicle SDK 프로젝트 설정](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/project-setup) · [샘플 앱 튜토리얼](https://document.pleos.ai/docs/pleos-only/tutorial/vehicle-sdk-sample-app) | Maven 저장소 `https://nexus-playground.pleos.ai/repository/maven-releases/`(인증 언급 없음), `ai.pleos.playground:Vehicle:2.3.2`, 기준 Vehicle Service 2.3.22, JDK 17·compileSdk 35. 샘플 minSdk 23과 달리 Playground 배포 제품은 API 28 이상. |
+| YouTube oEmbed(`https://www.youtube.com/oembed`) | 사용자가 준 [시연 영상](https://youtu.be/hA8jhEtuvh0)과 [숏폼](https://youtube.com/shorts/PHBOkS89bLM)이 로그인 없이 조회되고 제목이 이 앱의 시연·숏폼임을 확인했다. 재생 자체는 확인하지 않았다. |
+
 ## 2026-11-15 Astryx 디자인·흐름 그림·UI 기준
 
 | 공식 문서·버전 | 확인한 범위 |
