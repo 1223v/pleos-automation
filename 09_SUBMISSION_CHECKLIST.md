@@ -24,6 +24,14 @@
 
 ### APK 검증 기록
 
+**2026-11-16 KST 0.1.1 (마감 후 수정판).** [APK](apk/forky_forky_release.apk)를 예시 영역 수정 커밋 `e54640e780e9905bee9fca89e63e0932d5193fdc`에 버전 `0.1.1`(versionCode 2)을 더해 다시 빌드했다. 71,252,801바이트, SHA-256 `8c924c9d47bad7172db343949dba08c802492d3ae4ef705e1149ed54e8eb5214`. 0.1.0과 **같은 서명 키**(인증서 SHA-256 `2beae5c7…088a`)로 서명했다. 공모전 심사 대상은 마감 전 제출본인 아래 19:49 교체본(0.1.0)이다.
+
+- `:core:test :app:testDebugUnitTest :app:lintDebug :app:assembleRelease` 성공. core 108, app 106, lint 오류 0. [빌드 로그](evidence/area-fix-2026-11-16/release-build.log)
+- `zipalign -P 16 -f 4` → `apksigner sign` 실행. `apksigner verify`에서 v3 서명 1개, `zipalign -c -P 16 4` 통과, `aapt2 dump badging`으로 `versionCode='2' versionName='0.1.1'` 확인.
+- release APK 자체의 AVD 설치·실행은 미실행이다. 작업용 AVD(`emulator-5556`)에는 debug 서명 앱과 사용자 데이터가 있어 지우지 않았다. 같은 소스 debug APK로 휴식 예시 실행 결과를 [수정 기록](evidence/area-fix-2026-11-16/README.md)에 남겼다. 필수 흐름 10회도 미실행이다.
+
+이전 기록(19:49 교체본, 공모전 제출본):
+
 **2026-11-15 19:49 KST 교체.** [제출 APK](apk/forky_forky_release.apk)를 Astryx 새 UI가 들어간 앱 소스 커밋 `f614a014753c348208621e7a5427a635a727ea52`로 다시 빌드했다. 71,252,801바이트, SHA-256 `0a60626cdf1ea2c6f547b2bd5dab5ea5fbcaf04b759a7ac47252300247bca2ee`. 13:50과 **같은 서명 키**(인증서 SHA-256 `2beae5c7…088a`)로 서명했다.
 
 - `:app:assembleRelease` → `zipalign -P 16 -f 4` → `apksigner sign`(키 비밀번호는 `.local/signing/` 속성에서 환경 변수로만 전달). `apksigner verify`에서 v3 서명 1개, `zipalign -c -P 16 4` 통과.
