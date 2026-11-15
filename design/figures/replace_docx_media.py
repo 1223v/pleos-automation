@@ -4,7 +4,8 @@ Only word/media/image1..4.png and their drawing XML (size, crop, alt text) chang
 phrase for figure 3 whose source screen changed. Every other package part is copied byte for byte.
 The DOCX holds personal data: keep input and output under .local/ (Git-ignored).
 
-Usage: python design/figures/replace_docx_media.py <revised.docx> <output.docx>
+Usage: python design/figures/replace_docx_media.py <revised.docx> <output.docx> [rId ...]
+With rIds, only those figures are swapped and captions already updated are left alone.
 """
 import hashlib
 import re
@@ -25,8 +26,8 @@ FIGURES = {
               '사용 시나리오 예시. 조명 30% 노드를 선택해 AI에게 “10분 뒤 밝기를 20%로 낮춰줘”라고 요청하면, '
               '수정 후 흐름이 조명 30% → 10분 대기(추가) → 조명 20%(추가) → 완료로 바뀐다. 공조와 시트 단계는 그대로다.'),
     'rId11': ('word/media/image3.png', FIG / 'fig3-commute-screen.png',
-              '평일 아침 출근 예시. 제출 APK를 공식 Pleos 에뮬레이터에서 실행한 실제 화면의 흐름 부분: '
-              '운전석 탑승 → 회사로 길 안내 → 외기 온도 ≤ 5°C → 운전석 열선 2단계 → 완료.'),
+              '평일 아침 출근 예시. 제출 APK(Astryx UI)를 공식 Pleos 에뮬레이터에서 실행한 실제 화면의 흐름 부분: '
+              '운전석 탑승 → 회사로 길 안내 → 외기 온도 ≤ 5°C → 충족이면 운전석 열선 2단계 → 완료.'),
     'rId12': ('word/media/image4.png', FIG / 'fig4-driving-restriction.png',
               '실제 Pleos 주행 제한 화면의 중앙 안내(기어 D, 15 km/h). 주행 중에는 사용할 수 없습니다.'),
 }
@@ -42,20 +43,21 @@ def xml_attr(text: str) -> str:
     return text.replace('&', '&amp;').replace('"', '&quot;').replace('<', '&lt;').replace('>', '&gt;')
 
 
-def main(src: Path, out: Path) -> None:
-    pngs = {rid: path.read_bytes() for rid, (_, path, _) in FIGURES.items()}
+def main(src: Path, out: Path, only: list[str] | None = None) -> None:
+    figures = {rid: v for rid, v in FIGURES.items() if not only or rid in only}
+    pngs = {rid: path.read_bytes() for rid, (_, path, _) in figures.items()}
     with zipfile.ZipFile(src) as zin:
         doc = zin.read('word/document.xml').decode('utf-8')
         rels = zin.read('word/_rels/document.xml.rels').decode('utf-8')
-        for rid, (part, _, _) in FIGURES.items():
+        for rid, (part, _, _) in figures.items():
             assert f'Id="{rid}"' in rels and f'Target="{part[5:]}"' in rels, rid
 
         def swap(match: re.Match) -> str:
             block = match.group(0)
             rid = re.search(r'r:embed="(rId\d+)"', block)
-            if not rid or rid.group(1) not in FIGURES:
+            if not rid or rid.group(1) not in figures:
                 return block
-            part, path, alt = FIGURES[rid.group(1)]
+            part, path, alt = figures[rid.group(1)]
             w, h = png_size(pngs[rid.group(1)])
             cx = int(re.search(r'<wp:extent cx="(\d+)"', block).group(1))
             cy = round(cx * h / w)
@@ -69,6 +71,8 @@ def main(src: Path, out: Path) -> None:
 
         new_doc, count = re.subn(r'<w:drawing>.*?</w:drawing>', swap, doc, flags=re.S)
         for old, new in CAPTIONS:
+            if only and new_doc.count(new) == 1:
+                continue
             assert new_doc.count(old) == 1, old
             new_doc = new_doc.replace(old, new)
         out.parent.mkdir(parents=True, exist_ok=True)
@@ -77,7 +81,7 @@ def main(src: Path, out: Path) -> None:
                 data = zin.read(info.filename)
                 if info.filename == 'word/document.xml':
                     data = new_doc.encode('utf-8')
-                for rid, (part, _, _) in FIGURES.items():
+                for rid, (part, _, _) in figures.items():
                     if info.filename == part:
                         data = pngs[rid]
                 zout.writestr(info, data, compress_type=info.compress_type)
@@ -85,4 +89,4 @@ def main(src: Path, out: Path) -> None:
 
 
 if __name__ == '__main__':
-    main(Path(sys.argv[1]), Path(sys.argv[2]))
+    main(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3:] or None)

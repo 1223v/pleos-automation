@@ -190,8 +190,9 @@ function shoot(fig) {
 }
 
 const figures = [await figure1(), await figure2(),
-  await screenFigure('fig3-commute-screen', 'evidence/application-audit-2026-11-15/release-first-screen.png',
-    {x: 900, y: 848, w: 1300, h: 240}, 'car', '제출 APK 실제 화면 · 공식 Pleos 에뮬레이터 v2.1.0 · 11월 15일', '실제 화면'),
+  // 19:49 Astryx-UI release APK on the ForkyRelease AVD, "출근 예시로 시작" → 02 확인 (evidence/W30/release-commute-review.png).
+  await screenFigure('fig3-commute-screen', 'evidence/W30/release-commute-review.png',
+    {x: 920, y: 650, w: 1165, h: 265}, 'car', '제출 APK 실제 화면 · 공식 Pleos 에뮬레이터 v2.1.0 · 11월 15일', '실제 화면'),
   await screenFigure('fig4-driving-restriction', 'evidence/W04/app-driving-restriction.png',
     {x: 1400, y: 570, w: 590, h: 250}, 'car', '주행 중(D · 15 km/h)', '실제 화면', 1.25)];
 const lines = [];
