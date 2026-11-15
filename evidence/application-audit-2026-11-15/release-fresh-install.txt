@@ -1,0 +1,26 @@
+# release APK fresh install — 2026-11-15 13:50 KST
+device: emulator-5580 (ForkyRelease AVD), Pleos/crp_avd/crp_avd_x86_64:14/RELEASE.release_connect_v2.1.0/release_connect_v2.1.0:user/test-keys, user 10, Physical size: 2560x1440
+source commit: f27504aa894acb5b4fc7f25b4b722d939190131d
+apk sha256: 9f94aaae9f0bca732122fa23a4b5305f61726433ba89b6345b23ce4f16dd3ec7
+- uninstall previous APK (different signing key):
+Success
+- package after uninstall: 0
+- install:
+Performing Incremental Install
+Performing Streamed Install
+Success
+- installed version: versionName=0.1.0
+- STT permission: pleos.car.permission.STT_SERVICE:granted=true
+- cold start:
+Status: ok
+LaunchState: COLD
+TotalTime: 1428
+- resumed: com.pleos.routine/.MainActivity
+11-14 20:51:15.596  5576  5576 I RoutineVoice: initialized mode=ON_DEVICE
+11-14 20:51:15.596  5576  5576 I RoutineVoice: request sent locale=ko-KR
+11-14 20:51:56.400  3058  7569 W [GAAS]OnDeviceSttManagerImpl: [ondevice-stt-input-channel](jobId=3) init(com.pleos.routine) failed to get SpeechToText Instance
+11-14 20:51:56.401  3058  7569 I [GAAS]OnDeviceSttManagerImpl: [ondevice-stt-input-channel](jobId=3) getSpeechToText currentLocale(com.pleos.routine) ko_KR
+11-14 20:51:56.402  5576  5576 I [CAAS][SDK]SttViewModel: [main]notifyError(ON_DEVICE_ENGINE_ERROR)
+11-14 20:51:56.445  3058  7569 E [GAAS]OnDeviceSttManagerImpl: [ondevice-stt-input-channel](jobId=3) getSpeechToText - Error : RuntimeError: Internal: unk is not defined., occurred at /builds/speech/c
+11-14 20:51:56.447  3058  7569 W [GAAS]OnDeviceSttManagerImpl: [ondevice-stt-input-channel](jobId=3) startRecording SpeechToText Instance creation fail|com.pleos.routine
+11-14 20:51:56.452  5576  5576 I [CAAS][SDK]SttViewModel: [main]notifyError(ON_DEVICE_ENGINE_ERROR)
