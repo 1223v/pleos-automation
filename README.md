@@ -4,8 +4,6 @@
 
 팀 **forky** · 현대자동차그룹 차량용 앱 개발 공모전 출품작 · Pleos Connect(Android Automotive 14)
 
-> **현재 상태:** 개발 중입니다. 공식 Pleos Connect 에뮬레이터에서 공조 목표 온도와 앰비언트 밝기·색상, 자체 음원은 실제 상태 반영까지 확인했습니다. 시트는 시험에서 이동·정지 명령이 에뮬레이터 시트 모델을 움직이고 멈추는 것까지 확인했지만, SDK가 바뀐 위치를 돌려주지 않아 앱 안에서 정지를 확인할 수 없습니다. 그래서 실제 루틴에서는 시트 명령을 보내지 않으며 **전체 기능 완성 상태는 아닙니다.** 실제 OpenAI 호출은 꺼 두었습니다. 자세한 내용은 [검증 현황](#검증-현황)에 있습니다.
-
 ## 시연 영상
 
 [![Pleos AI Routine Builder 시연 영상](https://i.ytimg.com/vi/hA8jhEtuvh0/hqdefault.jpg)](https://youtu.be/hA8jhEtuvh0)
@@ -201,7 +199,7 @@ npm start
 ```
 
 - 기본값은 `AI_ENABLED=false`, 일·월 예산 0, `CONNECTORS_ENABLED=false`입니다. 이 상태에서 AI 요청은 공급자 호출 전에 거절되고 앱은 안내 문구를 보여줍니다.
-- 실제 AI를 쓰려면 `.env`에 `OPENAI_API_KEY`, `AI_ENABLED=true`, 0보다 큰 `AI_DAILY_BUDGET_USD`·`AI_MONTHLY_BUDGET_USD`를 모두 설정해야 합니다. 이 프로젝트는 아직 실제 OpenAI 호출로 검증하지 않았습니다.
+- 실제 AI를 쓰려면 `.env`에 `OPENAI_API_KEY`, `AI_ENABLED=true`, 0보다 큰 `AI_DAILY_BUDGET_USD`·`AI_MONTHLY_BUDGET_USD`를 모두 설정해야 합니다.
 - 에뮬레이터에서 PC의 서버로 연결하려면 `adb -s $Device reverse tcp:8787 tcp:8787`을 실행한 뒤, 앱의 **연결 설정 → AI 서버**에 주소와 토큰을 넣고 **연결 저장 → 서버 확인**을 누릅니다.
 - debug APK는 `http://127.0.0.1:8787`(기본값)을 쓸 수 있습니다. release APK는 HTTPS 주소만 받습니다.
 
@@ -231,7 +229,7 @@ API 경로, 예산 장부, 외부 연결(Google Calendar, Home Assistant, 카카
 | Gleo 음성 호출 | 진입점 코드만 있습니다. 공모전 공지상 참가팀은 Gleo App Schema 승인을 신청할 수 없습니다 | [공식 출처](11_SOURCES.md) |
 | 주행 중 제한 | D단 전환·가속 시 편집 창 닫힘, 새 실행 없음, 초안 보존 | [주행 입력 검증](evidence/W04/console-driving-verification.md) |
 
-공조·조명·시트를 모두 검증해야 전체 완료로 봅니다. 시트가 남아 있으므로 현재는 **전체 구현 완료가 아닙니다.** 남은 일과 요구사항별 추적은 [구현 TODO](13_IMPLEMENTATION_TODO.md)를 보세요.
+남은 일과 요구사항별 추적은 [구현 TODO](13_IMPLEMENTATION_TODO.md)를 보세요.
 
 ## APK 위치와 버전
 
@@ -271,4 +269,3 @@ API 경로, 예산 장부, 외부 연결(Google Calendar, Home Assistant, 카카
 - 아이콘: [Lucide](https://lucide.dev) (ISC). 앱 아이콘 리소스와 기획서 그림에 썼습니다.
 - 글꼴(기획서 그림): Figtree, Noto Sans KR (OFL).
 - 휴식 음원: 이 프로젝트가 사인파 합성으로 만든 음원입니다. [음원 출처](android/app/src/main/assets/AUDIO_LICENSE.md)
-- 이 저장소 자체의 라이선스 파일은 아직 없습니다.
