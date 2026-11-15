@@ -7,6 +7,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.pleos.routine.R
 import com.pleos.routine.core.*
 import com.pleos.routine.vehicle.Capability
 import com.pleos.routine.vehicle.editableVehicleAreas
@@ -22,7 +23,7 @@ fun actionName(type:ActionType)=when(type) {
 }
 @Composable private fun <T> Choice(label:String,value:T,options:List<T>,name:(T)->String={it.toString()},onChange:(T)->Unit) {
     var open by remember { mutableStateOf(false) }
-    Box { OutlinedButton(onClick={open=true},modifier=Modifier.fillMaxWidth()) { Text("$label · ${name(value)} ▾") };DropdownMenu(expanded=open,onDismissRequest={open=false}) { options.forEach { item -> DropdownMenuItem(text={Text(name(item))},onClick={onChange(item);open=false}) } } }
+    Box { OutlinedButton(onClick={open=true},modifier=Modifier.fillMaxWidth()) { Text("$label · ${name(value)}",Modifier.weight(1f));LucideIcon(R.drawable.ic_lucide_chevron_down,size=20.dp) };DropdownMenu(expanded=open,onDismissRequest={open=false}) { options.forEach { item -> DropdownMenuItem(text={Text(name(item))},onClick={onChange(item);open=false}) } } }
 }
 @Composable private fun NumberInput(label:String,value:Number?,onChange:(Double?)->Unit) {
     var raw by remember(value) { mutableStateOf(value?.toString().orEmpty()) }
@@ -43,7 +44,7 @@ fun actionName(type:ActionType)=when(type) {
 }
 @Composable fun NodeEditor(initial:WorkflowNode,capabilities:List<Capability>,onClose:()->Unit,onApply:(WorkflowNode)->Unit) {
     var n by remember(initial) { mutableStateOf(initial) };var error by remember { mutableStateOf("") }
-    AlertDialog(onDismissRequest=onClose,title={Text("${initial.label} 수정")},text={Column(Modifier.heightIn(max=600.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+    AlertDialog(onDismissRequest=onClose,icon={LucideIcon(NodeVisuals.of(initial).icon,size=32.dp)},title={Text("${initial.label} 수정")},text={Column(Modifier.heightIn(max=600.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         OutlinedTextField(n.label,{n=n.copy(label=it)},label={Text("카드 이름")},modifier=Modifier.fillMaxWidth())
         if(n.kind==NodeKind.ACTION) {
             val a=n.action ?: ActionSpec(ActionType.SET_HVAC_TARGET)
@@ -87,7 +88,7 @@ fun actionName(type:ActionType)=when(type) {
 }
 @Composable fun TriggerEditor(initial:TriggerDefinition,onClose:()->Unit,onApply:(TriggerDefinition)->Unit) {
     var t by remember(initial) { mutableStateOf(initial) }
-    AlertDialog(onDismissRequest=onClose,title={Text("언제 시작할까요?")},text={Column(Modifier.heightIn(max=600.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+    AlertDialog(onDismissRequest=onClose,icon={LucideIcon(R.drawable.ic_lucide_zap,size=32.dp)},title={Text("언제 시작할까요?")},text={Column(Modifier.heightIn(max=600.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         Choice("시작",t.type,TriggerType.entries.toList(),name={when(it) { TriggerType.MANUAL->"직접 실행";TriggerType.VOICE->"음성 요청 후 확인";TriggerType.SEAT_OCCUPIED->"좌석이 비었다가 탑승할 때";TriggerType.TIME->"정해진 시간";TriggerType.CONDITION_ENTER->"상태 조건이 새로 충족될 때" }}) { type -> t=t.copy(type=type,condition=if(type==TriggerType.CONDITION_ENTER)ConditionSpec(ConditionField.OUTSIDE_TEMPERATURE,value=5.0) else null,minuteOfDay=if(type==TriggerType.TIME)480 else null,weekdays=if(type==TriggerType.TIME)listOf(1,2,3,4,5) else emptyList()) }
         if(t.type==TriggerType.TIME) { NumberInput("시작 시각 · 자정부터 분",t.minuteOfDay) { t=t.copy(minuteOfDay=it?.takeIf { v -> v%1==0.0 && v in 0.0..1439.0 }?.toInt()) };Days(t.weekdays) { t=t.copy(weekdays=it) } }
         t.condition?.let { c -> ConditionEditor(c) { t=t.copy(condition=it) } }
@@ -100,7 +101,7 @@ fun actionName(type:ActionType)=when(type) {
 @Composable fun EdgeEditor(w:WorkflowDefinition,onClose:()->Unit,onApply:(List<WorkflowEdge>)->Unit) {
     var edges by remember(w) { mutableStateOf(w.edges) }
     var source by remember { mutableStateOf(w.nodes.first().id) };var target by remember { mutableStateOf(w.nodes.last().id) };var port by remember { mutableStateOf("next") }
-    AlertDialog(onDismissRequest=onClose,title={Text("카드 연결 편집")},text={Column(Modifier.heightIn(max=600.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+    AlertDialog(onDismissRequest=onClose,icon={LucideIcon(R.drawable.ic_lucide_link,size=32.dp)},title={Text("카드 연결 편집")},text={Column(Modifier.heightIn(max=600.dp).verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(8.dp)) {
         Text("IF는 true/false, 반복은 body/next, 병렬은 branch:0 등으로 연결합니다. 저장 전 전체 경로를 검증합니다.")
         edges.forEach { e -> Row { Text("${w.nodes.find { it.id==e.source }?.label} [${e.port}] → ${w.nodes.find { it.id==e.target }?.label}",Modifier.weight(1f));TextButton(onClick={edges=edges.filterNot { it.id==e.id }}) { Text("삭제") } } }
         Choice("출발 카드",source,w.nodes.map { it.id },name={id->w.nodes.find { it.id==id }!!.label}) { source=it }

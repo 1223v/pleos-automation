@@ -5,6 +5,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import com.pleos.routine.R
 import com.pleos.routine.voice.VoiceInput
 import com.pleos.routine.voice.VoiceState
 
@@ -16,10 +17,10 @@ fun VoiceButton(voice: VoiceInput, target: String, enabled: Boolean, modifier: M
     Column(modifier) {
         when {
             mine && (state is VoiceState.Preparing || state is VoiceState.Listening) ->
-                OutlinedButton(onClick = { voice.cancel() }, modifier = Modifier.testTag("voice-$target")) { Text("듣기 중지") }
+                OutlinedButton(onClick = { voice.cancel() }, modifier = Modifier.testTag("voice-$target")) { ButtonIcon(R.drawable.ic_lucide_circle_stop); Text("듣기 중지") }
             else ->
                 OutlinedButton(onClick = { voice.dismissError(); voice.start(target) }, enabled = enabled && (state.target == null || state is VoiceState.Failed),
-                    modifier = Modifier.testTag("voice-$target")) { Text("말로 입력") }
+                    modifier = Modifier.testTag("voice-$target")) { ButtonIcon(R.drawable.ic_lucide_mic); Text("말로 입력") }
         }
         if (mine) when (val s = state) {
             is VoiceState.Preparing -> Text("음성 인식을 준비하는 중…")

@@ -1,0 +1,13 @@
+<resources>
+    <!-- Astryx neutral, dark mode (background-body #1B1B1B, accent #F1F1F1). -->
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowBackground">@color/window_body</item>
+        <item name="android:colorBackground">#1B1B1B</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#1B1B1B</item>
+        <item name="android:navigationBarColor">#1B1B1B</item>
+        <item name="android:colorAccent">#F1F1F1</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+</resources>
