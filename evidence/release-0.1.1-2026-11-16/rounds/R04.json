@@ -1,0 +1,186 @@
+{
+  "round": "R04",
+  "mode": "CONDITION_ENTER",
+  "notes": [],
+  "before": {
+    "gear": "Park",
+    "driver_temp": 25.0,
+    "passenger_temp": 22.0,
+    "brightness": 10,
+    "color": "#2979ff",
+    "seat_slide_driver": 0,
+    "seat_recline_driver": 0,
+    "browser": {
+      "active": true,
+      "clients": 2,
+      "timeout_ms": 3000
+    },
+    "at": "2026-11-16T01:15:56"
+  },
+  "review_issues": [],
+  "trigger_editor": [
+    "시작 · 상태 조건이 새로 충족될 때",
+    "비교할 상태 · 기어",
+    "기어 · P"
+  ],
+  "simulation": [
+    "시뮬레이션 · 차량을 변경하지 않습니다",
+    "COMPLETED · 가상 경과 1800초",
+    "#4 · +0ms · SIMULATED · 공조 목표 23°C\n실행 예정 · SET_HVAC_TARGET\n설정: ROW_1_LEFT · 공조 목표 23°C"
+  ],
+  "saved": "‘Rest R04’ 루틴을 비활성으로 저장했습니다.",
+  "activated": [
+    "끄기"
+  ],
+  "gear_drive_at": "01:17:13",
+  "fg_in_drive": "com.pleos.routine/.MainActivity",
+  "start_at": "01:17:18",
+  "gear_park_at": "01:17:18",
+  "fg_after_park": "com.pleos.routine/.MainActivity",
+  "consent_text": [
+    "시트 단계 제외 실행 확인",
+    "이 환경에서는 시트 이동·정지가 검증되지 않았습니다.\n아래 시트 단계 2개는 실행하지 않고 ‘미실행’으로 기록합니다. 시트 명령은 전송하지 않습니다.\n· 시트 앞뒤 · 뒤로 — ROW_1_LEFT · 시트 앞뒤 · 뒤로\n· 등받이 · 뒤로 — ROW_1_LEFT · 등받이 · 뒤로\n나머지 동작은 실제로 실행됩니다. 이번 실행에만 적용되며 중지할 수 있습니다."
+  ],
+  "consent_at": "01:17:25",
+  "after": {
+    "gear": "Park",
+    "driver_temp": 23.0,
+    "passenger_temp": 22.0,
+    "brightness": 30,
+    "color": "#4b85db",
+    "seat_slide_driver": 0,
+    "seat_recline_driver": 0,
+    "browser": {
+      "active": true,
+      "clients": 2,
+      "timeout_ms": 3000
+    },
+    "at": "2026-11-16T01:17:26"
+  },
+  "vehicle_reflected_s": 0.5,
+  "running_banners": [
+    "앱 소유 음원 재생 중",
+    "30분 휴식: 남은 1796초"
+  ],
+  "audio_players_running": [
+    "AudioPlaybackConfiguration piid:407 deviceId:2 type:android.media.AudioTrack u/pid:1010178/8986 state:started attr:AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_MUSIC flags=0xA00 tags= bundle=null sessionId:409 mutedState:none  FormatInfo{isSpatialized=false, channelMask=0x1, sampleRate=16000}"
+  ],
+  "stopped_at": "01:17:38",
+  "after_stop_banners": [],
+  "audio_players_after_stop": [],
+  "state_after_stop": {
+    "gear": "Park",
+    "driver_temp": 23.0,
+    "passenger_temp": 22.0,
+    "brightness": 30,
+    "color": "#4b85db",
+    "seat_slide_driver": 0,
+    "seat_recline_driver": 0,
+    "browser": {
+      "active": true,
+      "clients": 2,
+      "timeout_ms": 3000
+    },
+    "at": "2026-11-16T01:17:40"
+  },
+  "history": [
+    "PLEOS  /  ROUTINE",
+    "나의 이동을, 나의 방식으로",
+    "P  ·  0.0 m/s",
+    "편집 가능",
+    "루틴 만들기",
+    "내 루틴",
+    "연결 둘러보기",
+    "실행 이력",
+    "연결 설정",
+    "초안 저장됨",
+    "주행 UX 제한이 적용되었습니다. 상세 편집은 정차 후 이어갈 수 있습니다.",
+    "Rest R04",
+    "실제 실행 · CANCELLED · 버전 3",
+    "미실행 단계 2개 · 시트 앞뒤 · 뒤로, 등받이 · 뒤로",
+    "시작 원인: 자동 실행",
+    "2026-11-16T01:17:17.310+09:00[Asia/Seoul]",
+    "당시 시작 조건: 기어 = P에 새로 진입할 때 · Asia/Seoul",
+    "규칙 해시: 6eda6aebbde35eeb34aa3fd95a6eaf577de5d4081398663012e3d8f65865bc53",
+    "#1 · +7416ms · PENDING · 지금 시작\n지금 시작\n설정: 시작 조건 확인",
+    "#2 · +7476ms · REQUESTED · 공조 목표 23°C\n공조 목표 23°C\n설정: ROW_1_LEFT · 공조 목표 23°C",
+    "#3 · +7541ms · ACKNOWLEDGED · 공조 목표 23°C\n요청 응답 수신 · 상태 재조회 중\n설정: ROW_1_LEFT · 공조 목표 23°C",
+    "#4 · +7563ms · VERIFIED · 공조 목표 23°C\n목표 상태 반영 확인\n설정: ROW_1_LEFT · 공조 목표 23°C\n관찰값: 23.0",
+    "#5 · +7596ms · REQUESTED · 앰비언트 밝기 30%\n앰비언트 밝기 30%\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 밝기 30%",
+    "#6 · +7662ms · ACKNOWLEDGED · 앰비언트 밝기 30%\n요청 응답 수신 · 상태 재조회 중\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 밝기 30%",
+    "#7 · +7678ms · VERIFIED · 앰비언트 밝기 30%\n목표 상태 반영 확인\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 밝기 30%\n관찰값: 30.0",
+    "#8 · +7731ms · REQUESTED · 앰비언트 파랑\n앰비언트 파랑\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 색상 #FF4B85DB",
+    "#9 · +7790ms · ACKNOWLEDGED · 앰비언트 파랑\n요청 응답 수신 · 상태 재조회 중\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 색상 #FF4B85DB",
+    "#10 · +7806ms · VERIFIED · 앰비언트 파랑\n목표 상태 반영 확인\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 색상 #FF4B85DB\n관찰값: -1.1827749E7",
+    "#11 · +7814ms · SKIPPED · 시트 앞뒤 · 뒤로\n시트 이동·정지 미검증 · 사용자 동의로 미실행 · 차량 명령 미전송\n설정: ROW_1_LEFT · 시트 앞뒤 · 뒤로 · 전체 실행 전 1회 확인",
+    "#12 · +7825ms · SKIPPED · 등받이 · 뒤로\n시트 이동·정지 미검증 · 사용자 동의로 미실행 · 차량 명령 미전송\n설정: ROW_1_LEFT · 등받이 · 뒤로 · 전체 실행 전 1회 확인",
+    "#13 · +7830ms · REQUESTED · 휴식 음원\n휴식 음원\n설정: 자체 휴식 음원 재생",
+    "#14 · +7996ms · VERIFIED · 휴식 음원\n앱 소유 음원 재생 상태 확인\n설정: 자체 휴식 음원 재생",
+    "#15 · +8022ms · PENDING · 30분 휴식\n30분 휴식: 1800초 대기\n설정: 1800초 타이머",
+    "#16 · +18026ms · CANCELLED · 실행\n실행이 중지되었습니다.",
+    "시작 조건 편집",
+    "AI 설명은 참고용입니다. 위 실행 상태와 관찰 기록이 기준이며 규칙을 자동 변경하지 않습니다.",
+    "AI 실행 설명 요청",
+    "잠깐 쉬어가기",
+    "시뮬레이션 · COMPLETED · 버전 2",
+    "시작 원인: 가상 입력 테스트",
+    "2026-11-16T01:16:39.410+09:00[Asia/Seoul]",
+    "Rest R03",
+    "실제 실행 · CANCELLED · 버전 2",
+    "시작 원인: 직접 실행",
+    "2026-11-16T01:15:11.056+09:00[Asia/Seoul]",
+    "Rest R02",
+    "2026-11-16T01:13:25.963+09:00[Asia/Seoul]"
+  ],
+  "steps": [
+    "#1 · +7416ms · PENDING · 지금 시작\n지금 시작\n설정: 시작 조건 확인",
+    "#2 · +7476ms · REQUESTED · 공조 목표 23°C\n공조 목표 23°C\n설정: ROW_1_LEFT · 공조 목표 23°C",
+    "#3 · +7541ms · ACKNOWLEDGED · 공조 목표 23°C\n요청 응답 수신 · 상태 재조회 중\n설정: ROW_1_LEFT · 공조 목표 23°C",
+    "#4 · +7563ms · VERIFIED · 공조 목표 23°C\n목표 상태 반영 확인\n설정: ROW_1_LEFT · 공조 목표 23°C\n관찰값: 23.0",
+    "#5 · +7596ms · REQUESTED · 앰비언트 밝기 30%\n앰비언트 밝기 30%\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 밝기 30%",
+    "#6 · +7662ms · ACKNOWLEDGED · 앰비언트 밝기 30%\n요청 응답 수신 · 상태 재조회 중\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 밝기 30%",
+    "#7 · +7678ms · VERIFIED · 앰비언트 밝기 30%\n목표 상태 반영 확인\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 밝기 30%\n관찰값: 30.0",
+    "#8 · +7731ms · REQUESTED · 앰비언트 파랑\n앰비언트 파랑\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 색상 #FF4B85DB",
+    "#9 · +7790ms · ACKNOWLEDGED · 앰비언트 파랑\n요청 응답 수신 · 상태 재조회 중\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 색상 #FF4B85DB",
+    "#10 · +7806ms · VERIFIED · 앰비언트 파랑\n목표 상태 반영 확인\n설정: ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT · 앰비언트 색상 #FF4B85DB\n관찰값: -1.1827749E7",
+    "#11 · +7814ms · SKIPPED · 시트 앞뒤 · 뒤로\n시트 이동·정지 미검증 · 사용자 동의로 미실행 · 차량 명령 미전송\n설정: ROW_1_LEFT · 시트 앞뒤 · 뒤로 · 전체 실행 전 1회 확인",
+    "#12 · +7825ms · SKIPPED · 등받이 · 뒤로\n시트 이동·정지 미검증 · 사용자 동의로 미실행 · 차량 명령 미전송\n설정: ROW_1_LEFT · 등받이 · 뒤로 · 전체 실행 전 1회 확인",
+    "#13 · +7830ms · REQUESTED · 휴식 음원\n휴식 음원\n설정: 자체 휴식 음원 재생",
+    "#14 · +7996ms · VERIFIED · 휴식 음원\n앱 소유 음원 재생 상태 확인\n설정: 자체 휴식 음원 재생",
+    "#15 · +8022ms · PENDING · 30분 휴식\n30분 휴식: 1800초 대기\n설정: 1800초 타이머",
+    "#16 · +18026ms · CANCELLED · 실행\n실행이 중지되었습니다."
+  ],
+  "run_status": "실제 실행 · CANCELLED · 버전 3",
+  "disabled_after": true,
+  "logcat_props": [
+    "11-15 08:17:24.861  1066  1165 D TemperatureControlView: onPropertyStateChanged property ID: HVAC_TEMPERATURE_SET 358614275, areaId: 1, mCurrentTempC: 23.0, view: 186333786",
+    "11-15 08:17:24.862  1066  1165 D TemperatureControlView: onPropertyStateChanged property ID: HVAC_TEMPERATURE_SET 358614275, areaId: 1, mCurrentTempC: 23.0, view: 60380372",
+    "11-15 08:17:24.862  2562  3139 D [GAA-Vehicle]: [Car-Context-Observe] (HVAC_TEMPERATURE_SET) >> [ROW_1_LEFT] | 23.0",
+    "11-15 08:17:24.972  2562  3139 D [GAA-Vehicle]: [Car-Context-Observe] (INTERIOR_LIGHTS_AMBIENT_BRIGHTNESS) >> [ROW_1_LEFT, ROW_1_RIGHT, ROW_2_LEFT, ROW_2_CENTER, ROW_2_RIGHT] | 30"
+  ],
+  "verdict_inputs": {
+    "hvac": "VERIFIED",
+    "brightness": "VERIFIED",
+    "color": "VERIFIED",
+    "seat_fore_aft": "SKIPPED",
+    "seat_backrest": "SKIPPED",
+    "audio": "VERIFIED",
+    "timer": "PENDING",
+    "run": "실제 실행 · CANCELLED · 버전 3",
+    "console_changed": {
+      "temp": [
+        25.0,
+        23.0
+      ],
+      "brightness": [
+        10,
+        30
+      ],
+      "color": [
+        "#2979ff",
+        "#4b85db"
+      ]
+    },
+    "seat_positions_unchanged": true
+  }
+}

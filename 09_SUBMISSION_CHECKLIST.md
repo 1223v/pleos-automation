@@ -28,7 +28,9 @@
 
 - `:core:test :app:testDebugUnitTest :app:lintDebug :app:assembleRelease` 성공. core 108, app 106, lint 오류 0. [빌드 로그](evidence/area-fix-2026-11-16/release-build.log)
 - `zipalign -P 16 -f 4` → `apksigner sign` 실행. `apksigner verify`에서 v3 서명 1개, `zipalign -c -P 16 4` 통과, `aapt2 dump badging`으로 `versionCode='2' versionName='0.1.1'` 확인.
-- release APK 자체의 AVD 설치·실행은 미실행이다. 작업용 AVD(`emulator-5556`)에는 debug 서명 앱과 사용자 데이터가 있어 지우지 않았다. 같은 소스 debug APK로 휴식 예시 실행 결과를 [수정 기록](evidence/area-fix-2026-11-16/README.md)에 남겼다. 필수 흐름 10회도 미실행이다.
+- ForkyRelease AVD(`emulator-5580`, 사용자 10, 2560×1440)에서 이 APK를 설치했다. 0.1.0 위 덮어 설치 `Success`, 제거 후 새로 설치 `Success`, 첫 실행 `Status: ok`·`LaunchState: COLD`·1,024ms. [기록](evidence/release-0.1.1-2026-11-16/release-install.txt)
+- 같은 APK로 휴식 예시 흐름을 10회 반복했다(홀수 회차 직접 실행, 짝수 회차 기어 D→P 조건 진입). 실행 가능 항목은 **10/10 통과**했다. 매 회 Console 값이 바뀐 것과 앱의 VERIFIED 판정이 일치했다(공조 23°C, 밝기 30%, 색상). 시트 미실행 기록, 음원 시작·중지, 타이머 등록·취소, 이력도 확인했고 허용되지 않은 실행은 0건이다.
+- 다만 T36 원래 기준은 **미통과(BLOCKED)**다. 매 회 실제 AI 초안과 시트 두 축 이동·STOP을 실행하지 않았다. [반복 시험 기록](evidence/release-0.1.1-2026-11-16/README.md)
 
 이전 기록(19:49 교체본, 공모전 제출본):
 
