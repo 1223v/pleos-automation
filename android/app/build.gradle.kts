@@ -66,6 +66,8 @@ dependencies {
     implementation("androidx.media3:media3-session:1.5.1")
     implementation("ai.pleos.playground:Vehicle:2.3.2")
     implementation("ai.pleos.playground:NaviHelper:3.0.5")
+    // Voice input for the request fields; ON_DEVICE mode needs no network or app registration.
+    implementation("ai.pleos.playground:SpeechToText:3.3.1")
     compileOnly(files("${android.sdkDirectory}/platforms/android-35/optional/android.car.jar"))
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")

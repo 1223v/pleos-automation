@@ -17,6 +17,8 @@
     <uses-permission android:name="pleos.car.permission.CONTROL_CAR_SEATS" />
     <uses-permission android:name="pleos.car.permission.NAVI_ROUTE" />
     <uses-permission android:name="pleos.car.permission.NAVI_ROUTE_SEARCH" />
+    <!-- Pleos SpeechToText 3.3.1: required for initialize, listeners and recognition requests. -->
+    <uses-permission android:name="pleos.car.permission.STT_SERVICE" />
     <uses-feature android:name="android.hardware.type.automotive" android:required="false" />
     <queries>
         <intent><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent>

@@ -9,11 +9,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.pleos.routine.core.*
 import com.pleos.routine.data.ClarificationDraft
+import com.pleos.routine.voice.VoiceInput
+import kotlinx.coroutines.flow.Flow
+
+/** Appends heard text to what the driver already typed, bounded like the request field. */
+fun joinHeard(current: String, heard: String): String =
+    (if (current.isBlank()) heard else current.trimEnd() + " " + heard).take(4000)
 
 @Composable
 fun ClarificationDialog(draft: ClarificationDraft, planning: Boolean, feedback: String,
-                        onAnswer: (Int,String)->Unit, onSend: ()->Unit, onCancel: ()->Unit) {
-    AlertDialog(onDismissRequest=onCancel,title={Text("초안을 완성할 질문")},
+                        onAnswer: (Int,String)->Unit, onSend: ()->Unit, onCancel: ()->Unit, voice: VoiceInput? = null) {
+    AlertDialog(onDismissRequest={voice?.cancel();onCancel()},title={Text("초안을 완성할 질문")},
         text={Column(Modifier.verticalScroll(rememberScrollState()),verticalArrangement=Arrangement.spacedBy(12.dp)) {
             Text(draft.explanation)
             draft.preview?.let { w ->
@@ -28,21 +34,26 @@ fun ClarificationDialog(draft: ClarificationDraft, planning: Boolean, feedback: 
             draft.questions.forEachIndexed { index,question ->
                 OutlinedTextField(draft.answers[index],{onAnswer(index,it)},Modifier.fillMaxWidth(),
                     enabled=!planning,label={Text(question)})
+                voice?.let { VoiceButton(it,"answer:$index",!planning) }
             }
             if(feedback.isNotBlank())Text(feedback,color=MaterialTheme.colorScheme.error)
-        }},confirmButton={Button(onClick=onSend,enabled=!planning && draft.answers.all { it.isNotBlank() }) {
+        }},confirmButton={Button(onClick={voice?.cancel();onSend()},enabled=!planning && draft.answers.all { it.isNotBlank() }) {
             Text(if(planning)"답변 확인 중…" else "답변 보내기")
-        }},dismissButton={TextButton(onClick=onCancel){Text("요청 취소")}})
+        }},dismissButton={TextButton(onClick={voice?.cancel();onCancel()}){Text("요청 취소")}})
 }
 
 @Composable
-fun ScopedRequestDialog(node: WorkflowNode,onSubmit: (String)->Unit,onClose: ()->Unit) {
+fun ScopedRequestDialog(node: WorkflowNode,onSubmit: (String)->Unit,onClose: ()->Unit,
+                        voice: VoiceInput? = null, heard: Flow<Pair<String,String>>? = null) {
     var text by remember(node) { mutableStateOf("") }
-    AlertDialog(onDismissRequest=onClose,title={Text("${node.label} 수정 요청")},text={Column {
+    LaunchedEffect(node,heard) { heard?.collect { (target,value) -> if(target=="scoped")text=joinHeard(text,value) } }
+    val close={ voice?.cancel();onClose() }
+    AlertDialog(onDismissRequest=close,title={Text("${node.label} 수정 요청")},text={Column {
         Text(RuleDescriptions.node(node))
         OutlinedTextField(text,{text=it.take(4000)},Modifier.fillMaxWidth(),label={Text("이 노드에서 바꿀 내용")})
-    }},confirmButton={Button(enabled=text.isNotBlank(),onClick={onSubmit(text)}) { Text("수정안 보기") }},
-        dismissButton={TextButton(onClick=onClose) { Text("취소") }})
+        voice?.let { VoiceButton(it,"scoped",true) }
+    }},confirmButton={Button(enabled=text.isNotBlank(),onClick={voice?.cancel();onSubmit(text)}) { Text("수정안 보기") }},
+        dismissButton={TextButton(onClick=close) { Text("취소") }})
 }
 
 @Composable

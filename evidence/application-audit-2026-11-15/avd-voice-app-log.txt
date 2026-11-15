@@ -1,0 +1,16 @@
+11-14 20:25:34.357 14693 14693 I [CAAS][SDK]OnDeviceStt: [main]bindOnDeviceSttService
+11-14 20:25:34.396 14693 14693 D [CAAS][SDK]OnDeviceStt: [main]onServiceConnected
+11-14 20:25:34.398 14693 14693 D [CAAS][SDK]OnDeviceStt: [main]registerCallback
+11-14 20:25:34.460 14693 14693 I RoutineVoice: initialized mode=ON_DEVICE
+11-14 20:25:34.460 14693 14693 D [CAAS][SDK]SpeechToText: [main]addListener
+11-14 20:25:34.460 14693 14693 I [CAAS][SDK]SpeechToText: [main]updateLocale ko_KR
+11-14 20:25:34.461 14693 14693 D [CAAS][SDK]SpeechToText: [main]request
+11-14 20:25:34.461 14693 14825 D [CAAS][SDK]OnDeviceStt: [DefaultDispatcher-worker-3]setLocale ko_KR com.pleos.routine
+11-14 20:25:34.462 14693 14693 I RoutineVoice: request sent locale=ko-KR
+11-14 20:25:34.462 14693 14825 I [CAAS][SDK]OnDeviceStt: [DefaultDispatcher-worker-3]request com.pleos.routine
+11-14 20:25:34.937 14693 14714 D [CAAS][SDK]SttCallback: [binder:14693_1]onUpdated ReadyToStartRecognition 
+11-14 20:25:34.938 14693 14693 I [CAAS][SDK]SttViewModel: [main]notifyReady
+11-14 20:25:34.460 14693 14693 I RoutineVoice: initialized mode=ON_DEVICE
+11-14 20:25:34.462 14693 14693 I RoutineVoice: request sent locale=ko-KR
+11-14 20:25:48.050 14693 14693 D [CAAS][SDK]SpeechToText: [main]stop
+11-14 20:25:48.051 14693 14825 I [CAAS][SDK]OnDeviceStt: [DefaultDispatcher-worker-3]close com.pleos.routine
