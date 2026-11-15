@@ -1,5 +1,14 @@
 # 공식 출처와 조사 이력
 
+## 2026-11-15 계획서 대조·음성 입력·시트 확인
+
+| 공식 문서·버전 | 확인한 범위 |
+|---|---|
+| [공지: 개발 범위 및 기술 문의 안내](https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000008) | 공개 문서의 SDK 범위에서만 개발하고, 지원되지 않는 기능은 기획서에 향후 계획으로 적는다. 참가팀은 Gleo Interface(App Schema) 검토·승인을 신청할 수 없다. 음성 인식은 SpeechToText SDK를 쓰며 차량 마이크 음성을 외부 인식 서비스로 보내지 않는다. 2차 PT는 Pleos Connect 에뮬레이터 시연이다. |
+| [공지: 비공개 GitHub 저장소 제출](https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000007) · [제출 방법](https://appdevchallenge.auto-hmg.io/guide/submission) | 마감 11월 15일 23:59. 접수 메일에 저장소 주소와 최종 커밋 해시. 비공개 저장소는 11월 16일까지 공개 전환, 11월 23일까지 유지. README에 앱 소개·실행법·시험 환경·에뮬레이터 버전과 화면 규격·APK 위치. `apk/팀명_앱이름_release.apk`. |
+| [SpeechToText 소개](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/intro) · [SDK 가져오기](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/importing-sdk) · [권한](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/declaring-permissions) · [초기화](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/initialization-and-release) · [리스너](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/result-listeners) · [시작·중지](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/start-and-stop) · [앱 등록](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/app-registration) · [언어](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/set-locale) · [오류](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/SpeechToText/error-code) | `ai.pleos.playground:SpeechToText:3.3.1`, 권한 `pleos.car.permission.STT_SERVICE`. ON_DEVICE는 네트워크·앱 등록이 필요 없다. ko-KR 지원. `ResultListener` 7개 콜백과 `ErrorType` 12종. 공식 Maven의 AAR(SHA-256 `35109ad1…37bf`)을 `javap`로 읽어 공개 서명이 문서와 같음을 확인했다. 에뮬레이터 caas 4.2.10이 SDK 최소 4.1.29를 넘는다. |
+| [Virtual Console](https://document.pleos.ai/docs/pleos-only/app-test-guide/virtual-console-guide) (한·영) · [Seat API 목록](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/Vehicle/vehicle/ai.pleos.playground.vehicle.api/seat/entry) | Seat API에는 `moveSeatForeAft`·`moveSeatBackrestAngle`이 있으나 Console의 시트 카드는 Seat Occupancy와 Seat Temperature뿐이다. 시트 위치·등받이·외기 온도·실제 속도 카드는 없다. 10월 28일 실측(MOVE·STOP 응답, 위치 0 유지)과 함께 에뮬레이터에서 시트 이동을 입증할 수단이 없다고 판단했다. |
+
 ## 2026-11-12 겨울 차박 구현·접수 재확인
 
 | 공식 문서·버전 | 확인한 범위 |
