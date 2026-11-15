@@ -20,3 +20,4 @@ evidence/**/logcat-local.txt
 evidence/**/emulator-stdout.log
 evidence/**/emulator-stderr.log
 ~$*
+design/.cache/

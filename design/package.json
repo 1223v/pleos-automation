@@ -1,0 +1,20 @@
+{
+  "name": "pleos-routine-design",
+  "private": true,
+  "description": "Astryx design reference and reproducible application figures for the Pleos AI Routine Builder. Not shipped in the app.",
+  "type": "module",
+  "scripts": {
+    "astryx": "node node_modules/@astryxdesign/cli/clients/cli/bin/astryx.mjs",
+    "figures": "node figures/render.mjs"
+  },
+  "dependencies": {
+    "@astryxdesign/core": "0.7.16",
+    "@astryxdesign/theme-neutral": "0.7.16",
+    "@stylexjs/stylex": "0.19.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@astryxdesign/cli": "0.7.16"
+  }
+}

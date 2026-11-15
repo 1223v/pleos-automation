@@ -1,5 +1,14 @@
 # 공식 출처와 조사 이력
 
+## 2026-11-15 Astryx 디자인·흐름 그림·UI 기준
+
+| 공식 문서·버전 | 확인한 범위 |
+|---|---|
+| [meta/astryx](https://github.com/meta/astryx) (커밋 `5ac1267`, 11월 15일) · [plugins/astryx](https://github.com/meta/astryx/tree/main/plugins/astryx) · [packages/native](https://github.com/meta/astryx/tree/main/packages/native) | MIT. React 19+·StyleX 웹 디자인 시스템이며 Android 바인딩은 아직 없다(native는 canary 실험). 기본 아이콘 29개의 Android 대응은 Material Symbols, 테마가 정한 아이콘이 우선한다. Claude Code 플러그인 설치 명령 확인. |
+| [Getting started](https://astryx.atmeta.com/docs/getting-started) · [Tokens](https://astryx.atmeta.com/docs/tokens) · [Icons](https://astryx.atmeta.com/docs/icons) · [Icon sets](https://astryx.atmeta.com/docs/cli-experimental-icon-sets) / 설치본 `@astryxdesign/core`·`theme-neutral`·`cli` 0.7.16 | 색은 `light-dark()`로 밝은/어두운 모드 자동 전환. 상태색은 채움·글자 토큰을 구분(`--color-on-<status>-muted`는 4.5:1 이상). neutral 테마의 실제 값은 설치본 `dist/theme.css`와 `astryx docs color`로 확인했고 웹 요약과 다른 값은 설치본을 따른다. neutral 아이콘은 `lucide-react` 1.73.0(ISC). |
+| [Pleos UI 디자인 가이드](https://document.pleos.ai/en/docs/connect/guide/docs-design/Introduction/intro) · [Iconography](https://document.pleos.ai/en/docs/connect/guide/docs-design/foundations/contents-creation/iconography) · [Typography](https://document.pleos.ai/en/docs/connect/guide/docs-design/foundations/typography) · [Colors](https://document.pleos.ai/en/docs/connect/guide/docs-design/foundations/colors) · [Layout](https://document.pleos.ai/en/docs/connect/guide/docs-design/getting-started/layout) · [주행 안전 설계](https://document.pleos.ai/en/docs/pleos-only/vehicle-app-planning-guide/driver-distraction-guideline) | 글자·아이콘 대비 4.5:1 이상, 아이콘에 텍스트 라벨 병기, 아이콘은 48×48dp 그리드, 최소 12sp(18px 이상), 1~2초 안에 파악, 주간/야간 밝기·대비 자동 조정, 주행 중 애니메이션 최소화, 큰 터치 영역. 색상·레이아웃 쪽은 수치를 이미지로만 제공해 앱에는 Astryx 토큰을 쓴다. |
+| [Compose Material 아이콘](https://developer.android.com/develop/ui/compose/graphics/images/material) · [Compose 그리기](https://developer.android.com/develop/ui/compose/graphics/draw/overview) | `material-icons-extended`는 더 이상 유지·권장하지 않으며 빌드 시간을 크게 늘린다. 벡터 XML을 `painterResource`로 쓰는 방식을 권장. 경로·글자 그리기는 `drawWithCache`로 객체를 캐시한다. 앱 UI 개편(W30)에 적용 예정. |
+
 ## 2026-11-15 계획서 대조·음성 입력·시트 확인
 
 | 공식 문서·버전 | 확인한 범위 |
