@@ -101,7 +101,8 @@
    - 기능: `seat-fore-aft-move`·`seat-backrest-move`(Negative/Stop/Positive)와 위치값(0~100) 기능, 각각 `SEAT_FORE_AFT_MOVE`와 `SEAT_BACKREST_ANGLE_1_MOVE`에 대응한다.
    - 액추에이터 시뮬레이션(`tick_ms` 100, `step_pct` 5)이 있다.
    - "이 AVD에서는 시트 이동·정지를 재현할 수 없다"는 기존 판단을 다시 확인해야 한다. 시트 교정 시험(이동→STOP→위치 정지 확인)의 후보 경로다.
-2. **좌석 점유를 읽지 않음:** 앱은 좌석 점유(`SEAT_OCCUPANCY`)를 SDK에서 읽지 않는다.
+2. **좌석 점유는 의도적으로 읽지 않음:** 앱은 좌석 점유(`SEAT_OCCUPANCY`)를 SDK에서 읽지 않는다.
    - `ExecutionContext.seatOccupied`는 시뮬레이션에서만 채워진다.
-   - 그래서 출근 예시의 "좌석이 비었다가 탑승할 때" 트리거는 실제 실행에서 참이 될 수 없다. 이번 조건 진입은 기어로 대신했다.
+   - 이유는 [VehiclePlatform.kt:112](../../android/app/src/main/java/com/pleos/routine/vehicle/VehiclePlatform.kt) 주석에 있다. SDK 2.3.2가 사용할 수 없는 점유값을 false로 합쳐 버리기 때문에, 대상별 원시 값 검증 전까지 UNKNOWN을 유지하는 설계다.
+   - 결과적으로 출근 예시의 "좌석이 비었다가 탑승할 때" 트리거는 실제 실행에서 참이 될 수 없다. 이번 조건 진입은 기어로 대신했다. (처음에 누락으로 적었다가 코드 확인 후 정정함.)
 3. **Console 연결 조건:** Console 백엔드는 브라우저 세션이 3초 안에 heartbeat를 보내야 활성 상태를 유지한다. 탭이 백그라운드로 밀려 heartbeat가 늦어지면 앱의 쓰기 반영이 늦어지고, 그 결과 실행이 결과 불명(UNKNOWN)으로 기록된다([area-fix 기록](../area-fix-2026-11-16/README.md)의 run2).

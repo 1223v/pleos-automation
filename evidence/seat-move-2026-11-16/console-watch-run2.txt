@@ -1,0 +1,16 @@
+01:51:23.690 slide_move=0 slide_pos=30 recline_move=0 recline_pos=30 active=0
+01:51:30.891 slide_move=1 slide_pos=30 recline_move=0 recline_pos=30 active=1
+01:51:31.015 slide_move=1 slide_pos=35 recline_move=0 recline_pos=30 active=1
+01:51:31.090 slide_move=0 slide_pos=40 recline_move=0 recline_pos=30 active=0
+01:51:31.638 slide_move=-1 slide_pos=40 recline_move=0 recline_pos=30 active=1
+01:51:31.750 slide_move=-1 slide_pos=35 recline_move=0 recline_pos=30 active=1
+01:51:31.819 slide_move=-1 slide_pos=30 recline_move=0 recline_pos=30 active=1
+01:51:31.876 slide_move=0 slide_pos=30 recline_move=0 recline_pos=30 active=0
+01:51:35.467 slide_move=0 slide_pos=30 recline_move=1 recline_pos=30 active=1
+01:51:35.544 slide_move=0 slide_pos=30 recline_move=1 recline_pos=35 active=1
+01:51:35.656 slide_move=0 slide_pos=30 recline_move=1 recline_pos=40 active=1
+01:51:35.733 slide_move=0 slide_pos=30 recline_move=0 recline_pos=40 active=0
+01:51:36.225 slide_move=0 slide_pos=30 recline_move=-1 recline_pos=40 active=1
+01:51:36.294 slide_move=0 slide_pos=30 recline_move=-1 recline_pos=35 active=1
+01:51:36.417 slide_move=0 slide_pos=30 recline_move=-1 recline_pos=30 active=1
+01:51:36.471 slide_move=0 slide_pos=30 recline_move=0 recline_pos=30 active=0

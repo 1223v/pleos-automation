@@ -5,8 +5,11 @@
 - [x] R06/R07 · W11 — 휴식·출근 예시의 차량 단계가 SDK 영역이 아닌 `DRIVER` 별칭으로 들어가 실행 직전에 차단되던 문제를 고쳤다. 검토 단계에서 별칭이나 지원하지 않는 영역을 "확인할 항목"으로 표시한다. core 108·app 106 단위시험, lint 오류 0. [수정 기록](evidence/area-fix-2026-11-16/README.md)
 - [x] W20 · T34/T35 — release 0.1.1(2) 빌드·서명(0.1.0과 같은 키), ForkyRelease AVD에서 업그레이드 설치·새 설치·콜드 스타트. [설치 기록](evidence/release-0.1.1-2026-11-16/release-install.txt)
 - [~] W21 · T36 — 같은 release로 10회 반복했다. 공조·밝기·색상 반영, 시트 미실행 기록, 음원·타이머·이력, 직접 실행과 조건 진입은 10/10 통과했다. 실제 AI 초안과 시트 두 축 이동·STOP은 매 회 BLOCKED여서 T36 전체는 미통과다. [반복 시험 기록](evidence/release-0.1.1-2026-11-16/README.md)
-- [ ] R08/R10 · W13/W18 · T19/T36 — Console 카탈로그의 숨김 시트 이동 기능(`SEAT_FORE_AFT_MOVE`, `SEAT_BACKREST_ANGLE_1_MOVE`, 액추에이터 시뮬레이션)으로 시트 이동→STOP→정지 확인 교정 시험이 가능한지 확인한다.
-- [ ] R05 · W12 — 앱이 좌석 점유(`SEAT_OCCUPANCY`)를 SDK에서 읽지 않아 "좌석이 비었다가 탑승할 때" 트리거가 실제 실행에서 참이 될 수 없다. 읽기 경로를 추가하고 Console Seat Occupancy로 시험한다.
+- [~] R08/R10 · W05/W13 · T08/T09/T19 — 시트 이동 검증. `SeatCalibrationProbeTest` 2회와 Console 시트 상태 50ms 기록으로 확인했다.
+  - 앱 SDK의 MOVE/STOP이 VHAL `SEAT_*_MOVE`와 Console 시트 모델을 실제로 움직이고 멈춘다(두 축, 두 방향, ±10 이동 후 정지 유지).
+  - SDK 위치 조회는 28/28회 0이었고 `SEAT_*_POS` 변경 이벤트는 0건이었다. 위치 피드백이 이 이미지에서 전달되지 않는다.
+  - 앱 안의 정지 확인이 불가능하므로 `seatPolicy` 잠금을 유지한다. 다음 단계(Pleos 문의 또는 정지 확인 기준 변경)는 사용자 결정 사항이다. [시트 검증 기록](evidence/seat-move-2026-11-16/README.md)
+- [ ] R05 · W12 — 좌석 점유(`SEAT_OCCUPANCY`)는 SDK 2.3.2가 사용할 수 없는 값을 false로 합치므로 의도적으로 UNKNOWN을 유지한다(`VehiclePlatform.snapshot`). 그래서 "좌석이 비었다가 탑승할 때" 트리거는 실제 실행에서 참이 될 수 없다. 대상 AVD의 원시 점유값 유효성 경로를 확인한 뒤 읽기를 추가한다.
 - [ ] 실행 이력 색상 관찰값을 `#FF4B85DB` 형식으로 표시한다(현재 부호 있는 정수).
 
 ## 2026-11-15 Astryx 디자인 적용 (기획서 그림 → 앱 UI)
