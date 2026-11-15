@@ -21,7 +21,7 @@
 - **겨울 차박**: 좌석 보충 질문, 선택한 카드 주변만 고치는 AI 수정 제안, 이름 확인 후 비활성 저장, 시작 화면의 "겨울 차박 예시".
 - 검증: 서버 61, core 106, app 95 단위시험, lint 오류 0, 같은 debug APK의 에뮬레이터 계측 28건과 별도 계측 3건. [1단계 기록](evidence/application-audit-2026-11-15/stage1-baseline.md) · [계측 결과](evidence/application-audit-2026-11-15/avd-regression-final.txt)
 
-[제출용 APK 다운로드](apk/forky_forky_release.apk) · 버전 0.1.0 · 소스 커밋 `f27504a` 기준. 2026-11-15 공식 Pleos 에뮬레이터에서 새로 설치하고 첫 화면 실행을 확인했습니다. 이전 APK와 서명 키가 달라 기존 설치본을 지운 뒤 설치하세요. [서명 및 설치 기록](09_SUBMISSION_CHECKLIST.md#apk-검증-기록)
+[제출용 APK 다운로드](apk/forky_forky_release.apk) · 버전 0.1.0 · Astryx 새 UI, 앱 소스 커밋 `f614a01` 기준. 2026-11-15 19:49 공식 Pleos 에뮬레이터에서 새로 설치하고 첫 화면 실행을 확인했습니다. 13:50 제출본과 같은 서명 키라 그 위에 덮어 설치됩니다. 그보다 이전 APK가 있으면 지운 뒤 설치하세요. [서명 및 설치 기록](09_SUBMISSION_CHECKLIST.md#apk-검증-기록)
 
 ## 현재 구현
 

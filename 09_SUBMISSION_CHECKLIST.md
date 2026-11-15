@@ -17,12 +17,20 @@
 - [x] 5~8명 사용성 조사와 20명 파일럿을 계획으로, 월 활성 12명과 4주차 재사용률 40%를 목표로 표기했다.
 - [ ] 전원 개인정보 동의, 각자의 서명/날짜 확보. 팀원 CC 공유 안내.
 - [x] 2026-11-15 심사 답변을 실제 검증 범위에 맞춘 수정본을 만들었다(음성 입력은 Pleos SpeechToText, Gleo 연동은 공모전 기간 신청 불가로 이후 과제, 시트는 실행별 동의로 미실행 기록). 운영·동의·서명 쪽은 원본과 픽셀이 같고 7쪽을 유지한다. 수정본은 개인정보가 있어 Git 밖에 두며 제출자가 확인 후 보낸다.
-- [x] 2026-11-15 18:55 수정본의 그림 4장을 Astryx 디자인(neutral 토큰·Lucide 아이콘)의 노드 흐름도와 제출 APK 실제 화면으로 교체했다. 그림·대체 문구·그림 3 캡션 한 구절 외에는 바이트 동일, 7쪽, 그림 없는 1·4·6·7쪽 픽셀 동일. 20:30 사용자 결정으로 이 최종본(팀원 추가 + 수정 답변 + 새 그림, SHA-256 `e82aafd4…57c3`)을 루트 [지원서](contest-application-consent.docx)로 커밋했다. 참가자 이름·연락처가 들어 있다. [그림 기록](evidence/application-figures-2026-11-15/figures.md)
+- [x] 2026-11-15 18:55 수정본의 그림 4장을 Astryx 디자인(neutral 토큰·Lucide 아이콘)의 노드 흐름도와 제출 APK 실제 화면으로 교체했다. 그림·대체 문구·그림 3 캡션 한 구절 외에는 바이트 동일, 7쪽, 그림 없는 1·4·6·7쪽 픽셀 동일. 20:30 사용자 결정으로 이 최종본(팀원 추가 + 수정 답변 + 새 그림)을 루트 [지원서](contest-application-consent.docx)로 커밋했고, 이어서 3번째 팀원의 소속·이메일·역할을 채웠다(SHA-256 `a9c48f1d…8a27`, 7쪽, 1쪽 팀원 표 외 픽셀 동일). 참가자 이름·연락처가 들어 있다. 3번째 팀원의 동의 체크·서명·날짜는 비어 있다. [그림 기록](evidence/application-figures-2026-11-15/figures.md)
 - [ ] 심사 본문·그림·문서 속성·첨부자료에서 실명·소속·연락처·계정정보 등 식별 요소를 점검한다. 운영용 작성·서명 사본은 제출용 소스 저장소에 포함하지 않는다.
 
 ## 1차 선택 개발 자료
 
 ### APK 검증 기록
+
+**2026-11-15 19:49 KST 교체.** [제출 APK](apk/forky_forky_release.apk)를 Astryx 새 UI가 들어간 앱 소스 커밋 `f614a014753c348208621e7a5427a635a727ea52`로 다시 빌드했다. 71,252,801바이트, SHA-256 `0a60626cdf1ea2c6f547b2bd5dab5ea5fbcaf04b759a7ac47252300247bca2ee`. 13:50과 **같은 서명 키**(인증서 SHA-256 `2beae5c7…088a`)로 서명했다.
+
+- `:app:assembleRelease` → `zipalign -P 16 -f 4` → `apksigner sign`(키 비밀번호는 `.local/signing/` 속성에서 환경 변수로만 전달). `apksigner verify`에서 v3 서명 1개, `zipalign -c -P 16 4` 통과.
+- ForkyRelease AVD(`emulator-5580`, 사용자 10, 2560×1440)에서 13:50 제출본 위 덮어 설치 `Success`, 제거 후 새로 설치 `Success`, 첫 실행 `Status: ok`·`LaunchState: COLD`·1,419ms, MainActivity resumed. [기록](evidence/W30/release-install.txt) · [첫 화면](evidence/W30/release-first-screen.png)
+- 같은 소스의 debug APK로 계측 30건 실행 통과는 [W30 검증](evidence/W30/verification.md)에 있다. release APK 자체의 필수 흐름 10회는 미실행이다.
+
+이전 기록(13:50 교체본):
 
 **2026-11-15 13:50 KST 교체.** [제출 APK](apk/forky_forky_release.apk)를 음성 입력·시트 단계 제외 실행이 들어간 앱 소스 커밋 `f27504aa894acb5b4fc7f25b4b722d939190131d`로 다시 빌드했다. 패키지 `com.pleos.routine`, 버전 `0.1.0`(1), 71,040,374바이트, SHA-256 `9f94aaae9f0bca732122fa23a4b5305f61726433ba89b6345b23ce4f16dd3ec7`. SpeechToText SDK의 의존성(네이티브 `libuacore.so` 등)으로 크기가 늘었다.
 

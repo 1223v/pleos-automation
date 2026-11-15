@@ -1,0 +1,20 @@
+# release APK install check — 2026-11-15 19:49 KST
+device: emulator-5580 (ForkyRelease AVD), Pleos/crp_avd/crp_avd_x86_64:14/RELEASE.release_connect_v2.1.0/release_connect_v2.1.0:user/test-keys, user 10, Physical size: 2560x1440
+source commit: f614a014753c348208621e7a5427a635a727ea52 (app sources; working tree differs only in contest-application-consent.docx)
+apk sha256: 0a60626cdf1ea2c6f547b2bd5dab5ea5fbcaf04b759a7ac47252300247bca2ee
+- installed before: versionName=0.1.0
+- upgrade install over the 11-15 submission APK (same key):
+Performing Streamed Install
+Success
+- uninstall for a fresh install:
+Success
+- package after uninstall: 0
+- fresh install:
+Performing Streamed Install
+Success
+- installed version: versionName=0.1.0
+- cold start:
+Status: ok
+LaunchState: COLD
+TotalTime: 1419
+- resumed: com.pleos.routine/.MainActivity
