@@ -12,6 +12,26 @@ object WorkflowExamples {
             WorkflowNode("end", NodeKind.END, "완료", NodePosition(1080f, 160f))),
         edges = listOf(WorkflowEdge("e1","start","navigation"), WorkflowEdge("e2","navigation","cold"), WorkflowEdge("e3","cold","heat","true"), WorkflowEdge("e4","cold","end","false"), WorkflowEdge("e5","heat","end")))
 
+    /** The application's winter camping scenario: only the HVAC target depends on the outside temperature. */
+    fun winterCamping(): WorkflowDefinition {
+        val cabin = "ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT"
+        return WorkflowDefinition(id = "winter-camping", title = "겨울 차박",
+            nodes = listOf(
+                WorkflowNode("start", NodeKind.START, "주차 후 시작", NodePosition(40f, 155f)),
+                WorkflowNode("cold", NodeKind.IF, "외기 5°C 이하", NodePosition(280f, 155f),
+                    condition = ConditionSpec(ConditionField.OUTSIDE_TEMPERATURE, Comparison.LTE, value = 5.0)),
+                WorkflowNode("hvac23", NodeKind.ACTION, "공조 목표 23°C", NodePosition(520f, 30f),
+                    action = ActionSpec(ActionType.SET_HVAC_TARGET, area = "ROW_1_LEFT", value = 23.0)),
+                WorkflowNode("seat", NodeKind.ACTION, "선택한 운전석 등받이", NodePosition(760f, 155f),
+                    action = ActionSpec(ActionType.MOVE_SEAT_LIMITED, area = "ROW_1_LEFT", axis = SeatAxis.BACKREST, direction = MoveDirection.BACKWARD)),
+                WorkflowNode("light30", NodeKind.ACTION, "조명 30%", NodePosition(1000f, 155f),
+                    action = ActionSpec(ActionType.SET_AMBIENT_BRIGHTNESS, area = cabin, value = 30.0)),
+                WorkflowNode("end", NodeKind.END, "완료", NodePosition(1240f, 155f))),
+            edges = listOf(WorkflowEdge("start-cold", "start", "cold"), WorkflowEdge("cold-hvac23", "cold", "hvac23", "true"),
+                WorkflowEdge("cold-seat", "cold", "seat", "false"), WorkflowEdge("hvac23-seat", "hvac23", "seat"),
+                WorkflowEdge("seat-light30", "seat", "light30"), WorkflowEdge("light30-end", "light30", "end")))
+    }
+
     fun rest(): WorkflowDefinition {
         val actions = listOf(
             "공조 목표 23°C" to ActionSpec(ActionType.SET_HVAC_TARGET, value = 23.0),

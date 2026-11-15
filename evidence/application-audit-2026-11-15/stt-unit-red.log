@@ -1,0 +1,175 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.6/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+> Task :core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:compileKotlin UP-TO-DATE
+> Task :core:compileJava NO-SOURCE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateGleoAssets UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kspDebugKotlin UP-TO-DATE
+> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:bundleDebugClassesToRuntimeJar UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:kspDebugUnitTestKotlin
+
+> Task :app:compileDebugUnitTestKotlin FAILED
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:7:30 Unresolved reference 'SpeechPort'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:10:21 Unresolved reference 'SpeechEvents'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:11:9 'start' overrides nothing.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:11:36 Unresolved reference 'SpeechEvents'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:12:9 'stop' overrides nothing.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:14:33 Unresolved reference 'VoiceInput'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:17:23 Unresolved reference 'VoiceInput'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:17:42 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:17:50 Cannot infer type for this parameter. Please specify it explicitly.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:17:68 None of the following candidates is applicable:
+@InlineOnly() fun <T> MutableCollection<in T>.plusAssign(element: T): Unit
+@InlineOnly() fun <T> MutableCollection<in T>.plusAssign(elements: Iterable<T>): Unit
+@InlineOnly() fun <T> MutableCollection<in T>.plusAssign(elements: Array<T>): Unit
+@InlineOnly() fun <T> MutableCollection<in T>.plusAssign(elements: Sequence<T>): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:17:78 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
+fun <A, B> A.to(that: B): Pair<A, B>
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:22:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:23:9 Overload resolution ambiguity between candidates:
+static fun assertEquals(p0: Any!, p1: Any!): Unit
+static fun assertEquals(p0: Long, p1: Long): Unit
+@Deprecated(...) static fun assertEquals(p0: Double, p1: Double): Unit
+@Deprecated(...) static fun assertEquals(p0: (Array<Any!>..Array<out Any!>?), p1: (Array<Any!>..Array<out Any!>?)): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:23:22 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:23:57 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:24:23 Unresolved reference 'ready'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:24:32 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:24:46 Unresolved reference 'started'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:25:9 Overload resolution ambiguity between candidates:
+static fun assertEquals(p0: Any!, p1: Any!): Unit
+static fun assertEquals(p0: Long, p1: Long): Unit
+@Deprecated(...) static fun assertEquals(p0: Double, p1: Double): Unit
+@Deprecated(...) static fun assertEquals(p0: (Array<Any!>..Array<out Any!>?), p1: (Array<Any!>..Array<out Any!>?)): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:25:22 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:25:61 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:26:9 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:26:23 Unresolved reference 'text'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:27:9 Overload resolution ambiguity between candidates:
+static fun assertEquals(p0: Any!, p1: Any!): Unit
+static fun assertEquals(p0: Long, p1: Long): Unit
+@Deprecated(...) static fun assertEquals(p0: Double, p1: Double): Unit
+@Deprecated(...) static fun assertEquals(p0: (Array<Any!>..Array<out Any!>?), p1: (Array<Any!>..Array<out Any!>?)): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:27:22 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:27:66 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:29:9 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:29:23 Unresolved reference 'text'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:31:9 Overload resolution ambiguity between candidates:
+static fun assertEquals(p0: Any!, p1: Any!): Unit
+static fun assertEquals(p0: Long, p1: Long): Unit
+@Deprecated(...) static fun assertEquals(p0: Double, p1: Double): Unit
+@Deprecated(...) static fun assertEquals(p0: (Array<Any!>..Array<out Any!>?), p1: (Array<Any!>..Array<out Any!>?)): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:31:22 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:31:41 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:32:9 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:32:23 Unresolved reference 'ended'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:32:32 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:32:46 Unresolved reference 'text'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:38:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:38:44 Unresolved reference 'text'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:38:66 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:38:80 Unresolved reference 'ended'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:40:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:40:30 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:40:44 Unresolved reference 'ended'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:42:9 Overload resolution ambiguity between candidates:
+static fun assertEquals(p0: Any!, p1: Any!): Unit
+static fun assertEquals(p0: Long, p1: Long): Unit
+@Deprecated(...) static fun assertEquals(p0: Double, p1: Double): Unit
+@Deprecated(...) static fun assertEquals(p0: (Array<Any!>..Array<out Any!>?), p1: (Array<Any!>..Array<out Any!>?)): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:42:22 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:42:95 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:47:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:47:43 Unresolved reference 'error'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:48:24 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:48:39 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:49:27 Unresolved reference 'message'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:49:43 Unresolved reference 'message'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:51:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:51:29 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:51:43 Unresolved reference 'error'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:52:23 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:52:38 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:52:57 Unresolved reference 'message'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:57:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:58:11 Unresolved reference 'cancel'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:59:40 Overload resolution ambiguity between candidates:
+static fun assertEquals(p0: Any!, p1: Any!): Unit
+static fun assertEquals(p0: Long, p1: Long): Unit
+@Deprecated(...) static fun assertEquals(p0: Double, p1: Double): Unit
+@Deprecated(...) static fun assertEquals(p0: (Array<Any!>..Array<out Any!>?), p1: (Array<Any!>..Array<out Any!>?)): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:59:53 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:59:72 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:60:13 Unresolved reference 'text'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:60:40 Unresolved reference 'error'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:61:42 Overload resolution ambiguity between candidates:
+static fun assertEquals(p0: Any!, p1: Any!): Unit
+static fun assertEquals(p0: Long, p1: Long): Unit
+@Deprecated(...) static fun assertEquals(p0: Double, p1: Double): Unit
+@Deprecated(...) static fun assertEquals(p0: (Array<Any!>..Array<out Any!>?), p1: (Array<Any!>..Array<out Any!>?)): Unit
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:61:55 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:61:74 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:62:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:62:42 Smart cast to 'TypeVariable(K)?' is impossible, because 'events' is a mutable property that could be mutated concurrently.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:63:13 Unresolved reference 'text'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:64:17 Unresolved reference 'text'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:70:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:70:31 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:71:66 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:72:23 Unresolved reference 'text'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:73:55 Unresolved reference 'state'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:73:70 Unresolved reference 'VoiceState'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:78:11 Unresolved reference 'start'.
+e: file:///C:/pleos-automation/android/app/src/test/java/com/pleos/routine/voice/VoiceInputTest.kt:78:43 Unresolved reference 'text'.
+
+[Incubating] Problems report is available at: file:///C:/pleos-automation/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugUnitTestKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.6/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 55s
+27 actionable tasks: 2 executed, 25 up-to-date

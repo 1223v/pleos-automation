@@ -1,0 +1,2 @@
+11-14 20:20:15.472   884  1168 I RoutineEvidence: SEAT_EXCLUDED status=COMPLETED events=start:PENDING: | before:REQUESTED: | before:ACKNOWLEDGED: | before:VERIFIED:20.0 | seat:SKIPPED: | after:REQUESTED: | after:ACKNOWLEDGED: | after:VERIFIED:50.0
+11-14 20:20:15.494   884  1168 I RoutineEvidence: SEAT_EXCLUDED area=ROW_1_LEFT+ROW_1_RIGHT+ROW_2_LEFT+ROW_2_CENTER+ROW_2_RIGHT original=30.0 first=20.0 second=50.0 observed=50.0 journal=COMPLETED seat=SKIPPED

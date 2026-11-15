@@ -23,6 +23,11 @@ class WinterCampingWorkflowTest {
         ))
     }
 
+    @Test fun builtInExampleIsTheSharedFixture() {
+        assertEquals(base, WorkflowExamples.winterCamping())
+        assertEquals(emptyList<ValidationIssue>(), WorkflowValidator.validate(WorkflowExamples.winterCamping()))
+    }
+
     @Test fun onlyTheSelectedLightGainsTheDelayAndLowerBrightness() = runBlocking {
         val edited = WorkflowEdits.applyScopedPatch(base, splice(), light.id)
         assertEquals(base.nodes, edited.nodes.filter { it.id in base.nodes.map(WorkflowNode::id) })

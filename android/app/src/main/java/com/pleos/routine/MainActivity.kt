@@ -278,7 +278,12 @@ private data class EditorSnapshot(val editor:WorkingEditor,val clarification:Str
                 catch(_:Exception) { draftStatus="초안 저장 실패 · 앱을 닫기 전에 다시 확인해 주세요." }
             }
         }
-        LaunchedEffect(editable) { if(!editable) { cancelPlanner();saveReview=null;editNode=null;triggerEditor=false;graphEditor=false;rename=false;add=false;message="주행 UX 제한이 적용되었습니다. 상세 편집은 정차 후 이어갈 수 있습니다." } }
+        // Heard text fills its own field only; the driver still presses the existing button to send it.
+        LaunchedEffect(Unit) { app.voiceResults.collect { (target,text) -> when {
+            target=="request" -> updateRequest(joinHeard(request,text))
+            target.startsWith("answer:") -> clarification?.let { d -> target.removePrefix("answer:").toIntOrNull()?.takeIf { it in d.answers.indices }?.let { i -> clarification=d.withAnswer(i,joinHeard(d.answers[i],text)) } }
+        } } }
+        LaunchedEffect(editable) { if(!editable) { app.voice.cancel();cancelPlanner();saveReview=null;editNode=null;triggerEditor=false;graphEditor=false;rename=false;add=false;message="주행 UX 제한이 적용되었습니다. 상세 편집은 정차 후 이어갈 수 있습니다." } }
         LaunchedEffect(editable,approval) { if(!editable)approval?.answer?.complete(false) }
         Surface(Modifier.fillMaxSize(),color=MaterialTheme.colorScheme.background) {
             Column(Modifier.fillMaxSize().padding(24.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
@@ -332,8 +337,10 @@ private data class EditorSnapshot(val editor:WorkingEditor,val clarification:Str
                                 Text("어떤 순간을 만들까요?",style=MaterialTheme.typography.headlineLarge)
                                 Text("상황과 원하는 동작을 말하듯 적어 주세요. AI가 만든 규칙은 확인한 뒤 사용할 수 있습니다.")
                                 OutlinedTextField(request,::updateRequest,Modifier.fillMaxWidth(),label={Text("나의 요청")},placeholder={Text("겨울 차박을 준비해 줘. 바깥이 5도 이하면 공조를 23도로 맞춰 줘.")},minLines=3)
+                                VoiceButton(app.voice,"request",editable&&!planning)
                                 Row(horizontalArrangement=Arrangement.spacedBy(10.dp)) {
                                     Button(enabled=loaded&&request.isNotBlank()&&!planning,onClick={askPlanner(request,false)}) { Text(if(planning)"규칙을 만드는 중…" else "AI로 초안 만들기") }
+                                    OutlinedButton(onClick={load(WorkflowExamples.winterCamping().copy(id=UUID.randomUUID().toString()));message="겨울 차박 예시입니다. 좌석과 조명 영역은 차량 지원 조회로 확인해 주세요."}) { Text("겨울 차박 예시") }
                                     OutlinedButton(onClick={load(WorkflowExamples.commute());message="예시 템플릿입니다. 회사 좌표와 좌석 영역을 직접 확인해 주세요."}) { Text("출근 예시로 시작") }
                                     OutlinedButton(onClick={load(WorkflowExamples.rest());message="휴식 예시입니다. 실제 지원 범위와 시트 STOP 검증이 필요합니다."}) { Text("휴식 예시") }
                                     TextButton(onClick={load(WorkflowExamples.blank(UUID.randomUUID().toString()))}) { Text("빈 흐름") }
@@ -455,12 +462,12 @@ private data class EditorSnapshot(val editor:WorkingEditor,val clarification:Str
             ScopedRequestDialog(node,{text->
                 scopeEditor=null
                 if(selected==node.id && w.nodes.contains(node))askPlanner(text,true,node.id)
-            },{scopeEditor=null})
+            },{scopeEditor=null},app.voice,app.voiceResults)
         }
         clarification?.takeIf { editable }?.let { draft ->
             ClarificationDialog(draft,planning,message,{i,value->clarification=draft.withAnswer(i,value)},
                 {askPlanner(draft.requestText,draft.edit,draft.selectedNodeId,draft.answered())},
-                {resetPlanner();message=""})
+                {resetPlanner();message=""},app.voice)
         }
         saveReview?.takeIf { editable }?.let { reviewed ->
             NamedSaveDialog(reviewed,saving,{name->
